@@ -4,6 +4,7 @@
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+
   /* ---------- Chips ---------- */
   document.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('click', () => {
@@ -21,28 +22,34 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     btn.textContent = '送信中…';
 
-    // Collect chip selections
+    // チップの選択内容をhidden fieldに反映
     const selected = [...document.querySelectorAll('.chip.selected')]
       .map(c => c.textContent.trim()).join(', ');
     const hiddenSpecialty = form.querySelector('[name="specialty"]');
     if (hiddenSpecialty) hiddenSpecialty.value = selected;
 
+    // Netlify Formsが要求する形式に変換
+    const formData = new FormData(form);
+    const encoded = new URLSearchParams(formData).toString();
+
     try {
-      const data = new FormData(form);
-      const response = await fetch(form.action || '/', {
+      const response = await fetch('/', {
         method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encoded,
       });
 
-      if (response.ok || response.status === 200) {
+      if (response.ok) {
         showThankYou();
       } else {
-        throw new Error('送信に失敗しました');
+        btn.disabled = false;
+        btn.textContent = '送信する →';
+        alert('送信に失敗しました。時間をおいて再度お試しください。');
       }
-    } catch {
-      // Fallback: show thank you anyway (demo / no backend yet)
-      showThankYou();
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = '送信する →';
+      alert('通信エラーが発生しました。時間をおいて再度お試しください。');
     }
   });
 
