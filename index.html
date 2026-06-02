@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emblem — Wearable Flight Technology</title>
+  <meta name="description" content="JAXAスタートアップ。ウェアラブル飛行技術（人が身に纏って飛ぶシステム）を開発するディープテック。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo"><img src="assets/images/emblem_logo.png" alt="EMBLEM"></a>
+      <div class="nav__links">
+        <a href="technology.html" class="nav__link" data-jp="Technology" data-en="Technology">Technology</a>
+        <a href="news.html" class="nav__link" data-jp="News" data-en="News">News</a>
+        <a href="recruit.html" class="nav__link" data-jp="Recruit" data-en="Recruit">Recruit</a>
+        <a href="team.html" class="nav__link" data-team-link data-jp="Team" data-en="Team">Team</a>
+      </div>
+      <div class="nav__right">
+        <div class="lang-toggle">
+          <button class="lang-toggle__item active" data-lang="jp">JP</button>
+          <span class="lang-toggle__sep">/</span>
+          <button class="lang-toggle__item" data-lang="en">EN</button>
+        </div>
+        <a href="recruit.html" class="btn btn--primary">
+          <span data-jp="Join the mission" data-en="Join the mission">Join the mission</span>
+        </a>
+      </div>
+      <button class="nav__hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="nav__overlay">
+    <a href="technology.html" class="nav__link" data-jp="Technology" data-en="Technology">Technology</a>
+    <a href="news.html" class="nav__link" data-jp="News" data-en="News">News</a>
+    <a href="recruit.html" class="nav__link" data-jp="Recruit" data-en="Recruit">Recruit</a>
+    <a href="team.html" class="nav__link" data-team-link data-jp="Team" data-en="Team">Team</a>
+    <div class="nav__right">
+      <div class="lang-toggle">
+        <button class="lang-toggle__item active" data-lang="jp">JP</button>
+        <span class="lang-toggle__sep">/</span>
+        <button class="lang-toggle__item" data-lang="en">EN</button>
+      </div>
+      <a href="recruit.html" class="btn btn--ghost">
+        <span data-jp="Join the mission" data-en="Join the mission">Join the mission</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero hero--home" data-nav-dark>
+    <div class="video-placeholder" style="display:flex;align-items:center;justify-content:center;background:#1a1a1a;color:#666;font-size:12px;letter-spacing:.1em;text-transform:uppercase;width:100%;height:100%;min-height:240px;">Video Placeholder</div>
+    <!-- 読みやすさのための最小限オーバーレイ -->
+    <div class="hero__overlay hero__overlay--light"></div>
+
+    <div class="hero__content hero__content--split container">
+      <!-- 左：メインコピー -->
+      <div class="hero__left">
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          JAXA STARTUP
+          <span class="hero__badge-dot"></span>
+          NEDO ADOPTED
+        </div>
+        <h1 class="display hero__title" data-jp="empower heroes." data-en="empower heroes.">empower heroes.</h1>
+      </div>
+
+      <!-- 右：日本語ミッションテキスト -->
+      <div class="hero__right">
+        <h2 class="hero__right-title" data-jp="ヒトが空を飛ぶ未来を創る。" data-en="Creating a future where humans fly.">ヒトが空を飛ぶ未来を創る。</h2>
+        <p class="hero__right-lead" data-jp="私たちは、人が空を飛ぶ「ウェアラブル飛行技術」を実現します。" data-en="We are making wearable flight technology a reality.">私たちは、人が空を飛ぶ「ウェアラブル飛行技術」を実現します。</p>
+        <div class="hero__right-body">
+          <p data-html="true" data-jp="いざという時、最前線で誰かの命を守る人たちがいます。<br>私たちは、彼らを「ヒーロー」と呼びます。<br>社会の安全・安心を支えるすべての現場に、ヒーローはいます。" data-en="When it matters most, there are people on the front lines protecting lives. We call them heroes. Heroes exist on every front that supports the safety and security of society.">いざという時、最前線で誰かの命を守る人たちがいます。<br>私たちは、彼らを「ヒーロー」と呼びます。<br>社会の安全・安心を支えるすべての現場に、ヒーローはいます。</p>
+          <p data-html="true" data-jp="私たちは、そのヒーローに&ldquo;飛ぶ力&rdquo;を届けます。" data-en="We deliver the power of flight to those heroes.">私たちは、そのヒーローに"飛ぶ力"を届けます。</p>
+          <p data-html="true" data-jp="必要な場所へ、すぐに行ける。<br>その当たり前を、空から実現します。" data-en="Get to where you're needed, immediately.<br>We make that a reality — from the sky.">必要な場所へ、すぐに行ける。<br>その当たり前を、空から実現します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TECHNOLOGY — Home section ========== -->
+  <section class="home-tech fade-in">
+    <div class="home-tech__inner">
+      <!-- 左 2/5: テキスト -->
+      <div class="home-tech__text">
+        <p class="caption home-tech__eyebrow" data-jp="Technology" data-en="Technology">Technology</p>
+        <h2 class="h2 home-tech__title"
+            data-jp="ウェアラブル飛行システムの開発"
+            data-en="Wearable Flight System Development">
+          ウェアラブル飛行システムの開発
+        </h2>
+        <p class="home-tech__body"
+           data-jp="石川県加賀市の試験拠点で、ホバリング試験を継続中。推進・制御・構造の3軸で世界初のシステムを開発している。"
+           data-en="Ongoing hovering tests at our facility in Kaga, Ishikawa. Developing the world's first system across three axes: propulsion, control, and structure.">
+          石川県加賀市の試験拠点で、ホバリング試験を継続中。推進・制御・構造の3軸で世界初のシステムを開発している。
+        </p>
+        <a href="technology.html" class="btn btn--primary home-tech__btn"
+           data-jp="Learn more →" data-en="Learn more →">Learn more →</a>
+      </div>
+      <!-- 右 3/5: 正方形クロップ動画 -->
+      <a href="technology/stable-hovering.html" class="home-tech__video-link">
+        <div class="video-placeholder" style="display:flex;align-items:center;justify-content:center;background:#1a1a1a;color:#666;font-size:12px;letter-spacing:.1em;text-transform:uppercase;width:100%;height:100%;min-height:240px;">Video Placeholder</div>
+        <div class="home-tech__video-overlay"></div>
+        <div class="home-tech__video-label">
+          <span class="home-tech__video-chip" data-jp="最新試験" data-en="Latest Test">最新試験</span>
+          <p class="home-tech__video-title" data-jp="安定したホバリング" data-en="Stable Hovering">安定したホバリング</p>
+          <span class="home-tech__video-arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== NEWS CAROUSEL ========== -->
+  <section class="section section--stone">
+    <div class="news-carousel-wrap">
+      <div class="news-carousel-header fade-in">
+        <h2 class="h2" data-jp="実績・ニュース" data-en="News & Achievements">実績・ニュース</h2>
+        <a href="news.html" class="link-arrow" data-jp="すべて見る →" data-en="View all →">すべて見る →</a>
+      </div>
+      <div class="news-carousel fade-in">
+
+        <!-- ブータン 2026/1/21 -->
+        <div class="news-card">
+          <div class="news-card__img news-card__img--photo">
+            <img src="assets/images/bhutan_LOI.png" alt="ブータン政府LOI調印">
+          </div>
+          <div class="news-card__body">
+            <p class="caption news-card__date">Jan 21, 2026</p>
+            <span class="news-card__badge" data-jp="連携" data-en="Partnership">連携</span>
+            <p class="news-card__title" data-jp="ブータン政府とのLOI調印。" data-en="LOI signed with Bhutan government.">ブータン政府とのLOI調印。</p>
+            <p class="news-card__desc" data-jp="ブータン王国政府と基本合意書（LOI）に調印。ペマ・ワンチュク首相来日の機会に合わせ、JETROビジネスセミナーにて事業説明および飛行映像を披露した。" data-en="Signed an LOI with the Kingdom of Bhutan. Presented at the JETRO Business Seminar coinciding with PM Wangchuck's visit to Japan, showcasing flight footage and discussing bilateral opportunities.">ブータン王国政府と基本合意書（LOI）に調印。ペマ・ワンチュク首相来日の機会に合わせ、JETROビジネスセミナーにて事業説明および飛行映像を披露した。</p>
+          </div>
+        </div>
+
+        <!-- モザンビーク 2025/3/16 -->
+        <div class="news-card">
+          <div class="news-card__img news-card__img--photo">
+            <img src="assets/images/mozambique_LOI.jpg" alt="モザンビーク政府LOI調印">
+          </div>
+          <div class="news-card__body">
+            <p class="caption news-card__date">Mar 16, 2025</p>
+            <span class="news-card__badge" data-jp="連携" data-en="Partnership">連携</span>
+            <p class="news-card__title" data-jp="モザンビーク政府とのLOI調印。" data-en="LOI signed with Mozambique government.">モザンビーク政府とのLOI調印。</p>
+            <p class="news-card__desc" data-jp="モザンビーク共和国政府と基本合意書を締結。大阪・関西万博のパビリオン内で飛行映像を展示し、アフリカ市場への展開可能性を探った。" data-en="LOI signed with the Republic of Mozambique. Flight footage was exhibited at the Osaka-Kansai Expo pavilion, exploring potential deployment across the African market.">モザンビーク共和国政府と基本合意書を締結。大阪・関西万博のパビリオン内で飛行映像を展示し、アフリカ市場への展開可能性を探った。</p>
+          </div>
+        </div>
+
+        <!-- JAXA 2024/10/23 -->
+        <div class="news-card">
+          <div class="news-card__img news-card__img--white">
+            <img src="assets/images/js_logo__シグネチャー.png" alt="JAXA Startup">
+          </div>
+          <div class="news-card__body">
+            <p class="caption news-card__date">Oct 23, 2024</p>
+            <span class="news-card__badge" data-jp="認定" data-en="Certified">認定</span>
+            <p class="news-card__title" data-jp="JAXAスタートアップ認定。航空技術部門から2社目。" data-en="Certified as a JAXA startup. 2nd from aviation division.">JAXAスタートアップ認定。航空技術部門から2社目。</p>
+            <p class="news-card__desc" data-jp="JAXAスタートアップ認定プログラムに選出。航空技術部門からは史上2社目の認定となり、JAXAとの技術連携・共同研究体制を正式に構築した。" data-en="Selected for the JAXA Startup Certification Program — only the 2nd company ever from the aviation technology division. Formal technical collaboration and joint research with JAXA has now been established.">JAXAスタートアップ認定プログラムに選出。航空技術部門からは史上2社目の認定となり、JAXAとの技術連携・共同研究体制を正式に構築した。</p>
+          </div>
+        </div>
+
+        <!-- NEDO 2024/5/24 -->
+        <div class="news-card">
+          <div class="news-card__img news-card__img--white">
+            <img src="assets/images/NEDO_logo.svg" alt="NEDO">
+          </div>
+          <div class="news-card__body">
+            <p class="caption news-card__date">May 24, 2024</p>
+            <span class="news-card__badge" data-jp="採択" data-en="Selected">採択</span>
+            <p class="news-card__title" data-jp="NEDO先導研究プログラム採択（2024–26）。" data-en="Selected for NEDO Leading Research Program (2024–26).">NEDO先導研究プログラム採択（2024–26）。</p>
+            <p class="news-card__desc" data-jp="NEDOの先導研究プログラムに採択。JAXA・ミズノ・SOMと連携し、ウェアラブル飛行システムの実用化に向けた本格的な研究開発フェーズに移行する。" data-en="Selected for NEDO's Leading Research Program. In collaboration with JAXA, Mizuno, and SOM, we enter full-scale R&D toward commercializing the wearable flight system.">NEDOの先導研究プログラムに採択。JAXA・ミズノ・SOMと連携し、ウェアラブル飛行システムの実用化に向けた本格的な研究開発フェーズに移行する。</p>
+          </div>
+        </div>
+
+        <!-- 加賀市 2024/2/15 -->
+        <div class="news-card">
+          <div class="news-card__img news-card__img--white">
+            <img src="assets/images/kagashi_mark_mono.jpg" alt="加賀市" class="news-card__img--kaga">
+          </div>
+          <div class="news-card__body">
+            <p class="caption news-card__date">Feb 15, 2024</p>
+            <span class="news-card__badge" data-jp="連携" data-en="Partnership">連携</span>
+            <p class="news-card__title" data-jp="石川県加賀市と包括連携協定締結。" data-en="Partnership agreement with Kaga City, Ishikawa.">石川県加賀市と包括連携協定締結。</p>
+            <p class="news-card__desc" data-jp="石川県加賀市と包括連携協定を締結。国家戦略特区に指定された加賀市内に専用の飛行試験拠点を整備し、継続的な実証飛行を開始する。" data-en="Signed a comprehensive partnership with Kaga City, Ishikawa. A dedicated flight test facility has been established within the National Strategic Special Zone for ongoing demonstration flights.">石川県加賀市と包括連携協定を締結。国家戦略特区に指定された加賀市内に専用の飛行試験拠点を整備し、継続的な実証飛行を開始する。</p>
+          </div>
+        </div>
+
+        <!-- メディア 2024/2/5 -->
+        <div class="news-card">
+          <div class="news-card__img news-card__img--placeholder" data-img-slot="media">
+            <span class="news-card__img-label">Media</span>
+          </div>
+          <div class="news-card__body">
+            <p class="caption news-card__date">Feb 5, 2024</p>
+            <span class="news-card__badge" data-jp="メディア" data-en="Media">メディア</span>
+            <p class="news-card__title" data-jp="日本経済新聞・中日新聞に掲載。" data-en="Featured in Nikkei and Chunichi Shimbun.">日本経済新聞・中日新聞に掲載。</p>
+            <p class="news-card__desc" data-jp="日本経済新聞および中日新聞にてEmblemの開発するウェアラブル飛行技術が取り上げられる。人が飛ぶという未来像への注目が広がっている。" data-en="Emblem's wearable flight technology was featured in Nikkei and Chunichi Shimbun, generating broad interest in the vision of human flight.">日本経済新聞および中日新聞にてEmblemの開発するウェアラブル飛行技術が取り上げられる。人が飛ぶという未来像への注目が広がっている。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RECRUIT — フル幅動画背景 ========== -->
+
+  <section class="video-section video-section--tall fade-in" data-nav-dark>
+    <div class="video-placeholder" style="display:flex;align-items:center;justify-content:center;background:#1a1a1a;color:#666;font-size:12px;letter-spacing:.1em;text-transform:uppercase;width:100%;height:100%;min-height:240px;">Video Placeholder</div>
+    <div class="video-section__overlay"></div>
+    <!-- 中央右寄り：ラベル + 見出し + 説明 + ボタン -->
+    <div class="video-section__center-right">
+      <p class="caption video-section__label" data-jp="Recruit" data-en="Recruit">Recruit</p>
+      <h2 class="h1 video-section__heading" data-jp="一緒に、世界初を作りませんか。" data-en="Let's build the world's first, together.">一緒に、世界初を作りませんか。</h2>
+      <p class="video-section__body" data-jp="誰も解いていない問題がある。それがEmblemのフィールドです。" data-en="There are problems no one has solved yet. That is Emblem's field.">誰も解いていない問題がある。それがEmblemのフィールドです。</p>
+      <a href="recruit.html" class="btn btn--ghost-white">
+        <span data-jp="Join the mission →" data-en="Join the mission →">Join the mission →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <!-- 左：ロゴ＋ナビ -->
+        <div class="footer__left">
+          <div class="footer__logo">emblem</div>
+          <nav class="footer__links">
+            <a href="technology.html" class="footer__link" data-jp="Technology" data-en="Technology">Technology</a>
+            <a href="news.html" class="footer__link" data-jp="News" data-en="News">News</a>
+            <a href="recruit.html" class="footer__link" data-jp="Recruit" data-en="Recruit">Recruit</a>
+            <a href="team.html" class="footer__link" data-team-link data-jp="Team" data-en="Team">Team</a>
+          </nav>
+        </div>
+        <!-- 中央：contact + founders -->
+        <div class="footer__center">
+          <div class="footer__center-row">
+            <span class="footer__center-label">Contact</span>
+            <div class="footer__center-value">
+              <a href="mailto:contact@emblemand.co" class="footer__center-link">contact@emblemand.co</a>
+            </div>
+          </div>
+          <div class="footer__center-row">
+            <span class="footer__center-label">Founders</span>
+            <div class="footer__center-value">
+              <span class="footer__center-link">Kengo Nagahama</span>
+              <a href="https://www.linkedin.com/in/kengo-nagahama-28194146" target="_blank" rel="noopener" class="footer__li-link" aria-label="Kengo Nagahama LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+              <span class="footer__center-sep">/</span>
+              <span class="footer__center-link">Daichi Wada</span>
+              <a href="https://www.linkedin.com/in/daichi-wada-9a111b107/" target="_blank" rel="noopener" class="footer__li-link" aria-label="Daichi Wada LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <!-- 右：privacy + copyright -->
+        <div class="footer__meta">
+          <a href="privacy.html" class="footer__privacy">Privacy Policy</a>
+          <p class="footer__copy">&copy; 2026 emblem Inc.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=3"></script>
+</body>
+</html>
