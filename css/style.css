@@ -1180,42 +1180,44 @@ h2, .h2 {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0 20px;
 }
 .tech-next__inner {
   display: flex;
   align-items: center;
-  gap: 14px;
-  border: 0.5px dashed rgba(255,255,255,0.25);
-  border-radius: 5px;
-  padding: 12px 18px;
-  width: 100%;
-  max-width: 480px;
+  gap: 24px;
+  border: 2px dashed rgba(255,255,255,0.35);
+  border-radius: 8px;
+  padding: 28px 32px;
+  width: 80%;
+  max-width:80%;
 }
 .tech-next__placeholder {
-  width: 40px; height: 40px;
+  width: 60px; height: 60px;
   background: rgba(255,255,255,0.08);
-  border-radius: 4px;
+  border-radius: 6px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  color: rgba(255,255,255,0.2);
+  font-size: 28px;
+  color: rgba(255,255,255,0.25);
 }
 .tech-next__eyebrow {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 3px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 6px;
 }
 .tech-next__title {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
-  color: rgba(255,255,255,0.65);
-  margin: 0 0 2px;
+  color: rgba(255,255,255,0.75);
+  margin: 0 0 4px;
+  font-family: "Noto Sans JP", sans-serif;
 }
 .tech-next__date { font-size: 10px; color: rgba(255,255,255,0.3); }
 
