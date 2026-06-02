@@ -1091,8 +1091,8 @@ h2, .h2 {
 }
 
 .tech-archive__items {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: #000;
 }
@@ -1129,6 +1129,7 @@ h2, .h2 {
   text-decoration: none;
   background: #111;
   cursor: pointer;
+  height: var(--arc-item-h);
 }
 .tech-arc-item img {
   position: absolute;
@@ -1181,6 +1182,23 @@ h2, .h2 {
   transition: color 0.2s ease;
 }
 .tech-arc-item:hover .tech-arc-item__arrow { color: rgba(255,255,255,0.65); }
+
+/* NEXT COMING アイテム */
+.tech-arc-item--next-coming {
+  background: #000;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tech-arc-item--next-coming:hover { background: #000; }
+.tech-arc-item__next-placeholder {
+  font-size: 60px;
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 300;
+  line-height: 1;
+}
 
 /* ─── Next Coming: アーカイブと同じ高さ ─── */
 .tech-next {
@@ -1740,8 +1758,9 @@ h2, .h2 {
   }
   .tech-feat--main { grid-row: span 1; border-right: none; border-bottom: 0.5px solid #2A2A2A; }
 
-  /* Technology Archive: モバイルは高さ縮小 */
+  /* Technology Archive: モバイルは高さ縮小・1列に */
   :root { --arc-item-h: 200px; }
+  .tech-archive__items { grid-template-columns: 1fr; }
 
   /* NEXT COMING: モバイルはギャップを小さくする */
   .tech-next { min-height: calc(var(--arc-item-h) - 40px); }
