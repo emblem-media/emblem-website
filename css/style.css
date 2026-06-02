@@ -1493,6 +1493,9 @@ h2, .h2 {
   object-fit: cover;
   object-position: center;
 }
+.news-card-full__img--photo img {
+  object-position: top;
+}
 
 .news-card-full__placeholder-text {
   font-size: 11px;
