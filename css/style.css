@@ -1537,9 +1537,20 @@ h2, .h2 {
 .mission-text { max-width: 680px; }
 .mission-body { color: var(--stone-600); margin-top: 20px; }
 
-.roles-list {
+.roles-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.roles-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.roles-list {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 .role-item {
@@ -1716,6 +1727,7 @@ h2, .h2 {
   .news-grid { grid-template-columns: 1fr; }
   .news-card { width: 80vw; }
   .news-carousel-wrap { width: 92%; }
+  .roles-container { grid-template-columns: 1fr; gap: 32px; }
   .roles-list { grid-template-columns: 1fr; }
   .roles-note { grid-column: span 1; }
 
