@@ -1494,7 +1494,7 @@ h2, .h2 {
   object-position: center;
 }
 .news-card-full__img--photo img {
-  object-position: top;
+  object-position: center var(--photo-y, 35%);
 }
 
 .news-card-full__placeholder-text {
