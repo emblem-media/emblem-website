@@ -59,34 +59,7 @@ const NEWS_ITEMS = [
   }
 ];
 
-/* ---------- news.html 用: 全件表示 ---------- */
-/* news.html にid="news-list"のコンテナがある場合だけ実行 */
-(function renderNewsList() {
-  const container = document.getElementById('news-list');
-  if (!container) return;
-
-  /* 現在のnews.htmlのCSSクラス構造に合わせてHTMLを生成する。
-     クラス名はstyle.cssに定義済みのものをそのまま使うこと。 */
-  container.innerHTML = NEWS_ITEMS.map(item => `
-    <div class="news-card-full fade-in" data-category="${item.category}">
-      <div class="news-card-full__body">
-        <div class="news-card-full__meta">
-          <span class="news-card-full__date"
-                data-jp="${item.date_jp}"
-                data-en="${item.date_en}">${item.date_jp}</span>
-          <span class="news-card-full__badge"
-                data-jp="${item.category}"
-                data-en="${item.category}">${item.category}</span>
-        </div>
-        <p class="news-card-full__title"
-           data-jp="${item.title_jp}"
-           data-en="${item.title_en}">${item.title_jp}</p>
-      </div>
-    </div>
-  `).join('');
-})();
-/* ↑ DOMContentLoadedを使わず即時実行。
-   scriptタグをbody末尾に置くことでDOMが確実に存在する状態で実行できる。 */
+/* ↓ news.html のニュース一覧は HTML に直書きしているため、JS生成は不要 */
 
 /* ---------- index.html 用: 最新4件をNewsバンドに表示 ---------- */
 (function renderHomeBand() {

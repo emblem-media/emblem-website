@@ -19,12 +19,10 @@
 ├── css/
 │   └── style.css       全ページ共通スタイル
 ├── js/
-│   ├── data.js         ★コンテンツデータ（ニュース・試験）の一元管理
 │   ├── main.js         Nav・言語切り替え・アニメーション等の共通JS
 │   ├── form.js         採用フォームの送信処理
-│   ├── news.js         news.htmlのリスト自動生成
-│   ├── tech.js         technology.htmlのArchive自動生成
-│   └── home.js         index.htmlのNewsカルーセル自動生成
+│   ├── news.js         NEWS_ITEMSデータ + index.htmlのNewsカルーセル生成
+│   └── tech.js         TECH_TESTSデータ + technology.htmlのArchive生成
 └── assets/
     ├── images/         ロゴ・写真等
     └── videos/         飛行試験動画（mp4）
@@ -36,7 +34,28 @@
 
 ### ニュースを追加したい
 
-`js/data.js` を開き、`NEWS_ITEMS` 配列の**先頭**に以下の形式で追加する。
+**Step 1**: `news.html` の `id="news-list"` コンテナに新しいカードのHTMLを先頭に追加する。
+
+例:
+```html
+<!-- 新しい順に並べて、最初に挿入 -->
+<div class="news-card-full fade-in" data-category="連携">
+  <div class="news-card-full__img news-card-full__img--photo">
+    <!-- 画像があれば <img src="..." alt="..."> を入れる -->
+    <!-- 画像がなければプレースホルダー div -->
+    <div style="width:100%;height:100%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;color:#999;font-size:12px;letter-spacing:.05em;">No Image</div>
+  </div>
+  <div class="news-card-full__body">
+    <div class="news-card-full__meta">
+      <span class="news-card-full__date" data-jp="2026年X月" data-en="XXX 2026">2026年X月</span>
+      <span class="news-card-full__badge" data-jp="連携" data-en="Partnership">連携</span>
+    </div>
+    <p class="news-card-full__title" data-jp="日本語タイトル" data-en="English title">日本語タイトル</p>
+  </div>
+</div>
+```
+
+**Step 2**: `js/news.js` の `NEWS_ITEMS` 配列の先頭にも同じ内容を追加する（index.htmlのNewsバンド表示のため）。
 
 ```javascript
 {
@@ -49,7 +68,7 @@
 },
 ```
 
-これだけで `news.html` と `index.html` のニュース帯に自動で反映される。
+これで `news.html` と `index.html` のニュース帯に反映される。
 
 ---
 
