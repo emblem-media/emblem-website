@@ -708,28 +708,27 @@ h2, .h2 {
 
 /* カード上部の画像/ロゴエリア */
 .news-card__img {
+  display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  flex-shrink: 0;
+  background: var(--stone-100);
 }
+
 .news-card__img img {
-  /* ロゴを写真ボックスに合わせて大きく・高さ統一 */
-  width: auto;
-  height: 120px;
-  max-width: 76%;
-  object-fit: contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-/* 実写写真はボックス全体を埋める */
+
 .news-card__img--photo img {
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  object-fit: cover !important;
+  object-fit: cover;
+}
+
+.news-card__img--white img {
+  object-fit: contain;
+  padding: 16px;
 }
 /* 加賀市マーク：他ロゴの約2倍 */
 .news-card__img img.news-card__img--kaga {
@@ -1487,39 +1486,32 @@ h2, .h2 {
 .news-card-full:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
 
 .news-card-full__img {
+  display: block;
   width: 100%;
-  aspect-ratio: 16/9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
+  background: var(--stone-100);
 }
+
+.news-card-full__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .news-card-full__img--white { background: var(--white); }
 .news-card-full__img--stone { background: var(--stone-100); }
 .news-card-full__img--dark  { background: var(--void-black); }
 .news-card-full__img--placeholder { background: var(--stone-100); }
 
-/* ロゴ画像（NEDO・JAXA・加賀）: 中央寄せで縮小表示 */
-.news-card-full__img img {
-  max-width: 60%;
-  max-height: 60%;
-  width: auto;
-  height: auto;
+.news-card-full__img--white img {
   object-fit: contain;
+  padding: 24px;
+  background: #fff;
 }
-.news-card-full__img--dark img { filter: brightness(0) invert(1); }
 
-/* 写真画像: 枠いっぱいに自動クロップ
-   .news-card-full__img--photo を付けるだけで適用される */
-.news-card-full__img--photo img,
-.news-card-full__img--fill img {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
+/* 写真画像用の位置調整 */
 .news-card-full__img--photo img {
   object-position: center var(--photo-y, 35%);
 }
