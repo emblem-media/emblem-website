@@ -79,6 +79,8 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
   const overlay = document.querySelector('.nav__overlay');
 
   console.log('=== HAMBURGER DEBUG ===');
+  console.log('Window innerWidth:', window.innerWidth);
+  console.log('Should trigger mobile menu (max-width: 768px)?', window.innerWidth <= 768);
   console.log('btn found:', !!btn);
   console.log('overlay found:', !!overlay);
 
