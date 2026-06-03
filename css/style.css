@@ -1093,10 +1093,8 @@ h2, .h2 {
 .tech-archive__items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: var(--arc-item-h);
   gap: 1px;
-  background: #000;
-  width: 100%;
+  background: #333;
 }
 
 /* ─── 3列行: グリッドで3等分 ─── */
@@ -1762,7 +1760,9 @@ h2, .h2 {
 
   /* Technology Archive: モバイルは高さ縮小・1列に */
   :root { --arc-item-h: 200px; }
-  .tech-archive__items { grid-template-columns: 1fr; }
+  .tech-archive__items {
+    grid-template-columns: 1fr;
+  }
 
   /* NEXT COMING: モバイルはギャップを小さくする */
   .tech-next { min-height: calc(var(--arc-item-h) - 40px); }
