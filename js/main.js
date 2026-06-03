@@ -78,6 +78,17 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
   const btn = document.querySelector('.nav__hamburger');
   const overlay = document.querySelector('.nav__overlay');
   if (!btn || !overlay) return;
+
+  // Force hamburger span visibility
+  const spans = btn.querySelectorAll('span');
+  spans.forEach(span => {
+    span.style.display = 'block';
+    span.style.background = 'white';
+    span.style.opacity = '1';
+    span.style.visibility = 'visible';
+    span.style.height = '1.5px';
+  });
+
   btn.addEventListener('click', () => {
     const open = btn.classList.toggle('open');
     overlay.classList.toggle('open', open);
