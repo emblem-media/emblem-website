@@ -116,6 +116,8 @@ URL: https://emblemand.netlify.app
 動画ファイルはリポジトリに含めない（.gitignore参照）。
 動画はCloudflare R2に格納し、HTMLのsrc属性でURLを参照する。
 
+↑現状できていない。githubで全てまとめて公開中。将来的にはこの方法に移行。
+
 ---
 
 ## 言語切り替え

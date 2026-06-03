@@ -1,10 +1,20 @@
 /* ============================================================
    Emblem — news.js
-   ニュース一覧を管理・表示するファイル。
 
-   【ニュースを追加するには】
-   下の NEWS_ITEMS 配列の先頭に新しいオブジェクトを追加するだけ。
-   news.html と index.html（最新4件）に自動で反映される。
+   役割1: NEWS_ITEMS データの管理
+     index.html の Newsカルーセル帯（最新4件）の表示に使用する。
+
+   役割2: index.html 用のNewsカルーセルを自動生成
+     id="home-news-band" のコンテナにカードを挿入する。
+
+   ⚠️ news.html のニュース一覧はこのファイルとは独立している。
+      news.html は id="news-list" 内に HTML で直書きされている。
+      news.html を更新しても、このファイルは自動で変わらない。
+
+   【ニュースを追加するには — 必ず両方やること】
+   Step 1: news.html の id="news-list" の先頭に新しいカードの HTML を追加する
+   Step 2: このファイルの NEWS_ITEMS 配列の先頭にも同じ内容を追加する
+           （index.html の Newsカルーセルに反映させるため）
    ============================================================ */
 
 const NEWS_ITEMS = [
@@ -59,9 +69,9 @@ const NEWS_ITEMS = [
   }
 ];
 
-/* ↓ news.html のニュース一覧は HTML に直書きしているため、JS生成は不要 */
-
-/* ---------- index.html 用: 最新4件をNewsバンドに表示 ---------- */
+/* ---------- index.html 用: 最新4件をNewsカルーセルに表示 ----------
+   id="home-news-band" が存在するページ（index.html）でのみ動作する。
+   news.html では動作しない。                                     */
 (function renderHomeBand() {
   const container = document.getElementById('home-news-band');
   if (!container) return;
