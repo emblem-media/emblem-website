@@ -317,11 +317,13 @@ h2, .h2 {
   cursor: pointer;
 }
 .nav__hamburger span {
-  display: block;
-  height: 1.5px;
-  background: var(--ink) !important;
+  display: block !important;
+  height: 1.5px !important;
+  background: var(--white) !important;
   border-radius: 1px;
   transition: all 200ms ease;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .nav__hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
