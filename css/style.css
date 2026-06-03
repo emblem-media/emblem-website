@@ -350,6 +350,7 @@ h2, .h2 {
 }
 .nav__overlay .nav__link:hover { color: var(--stone-600); }
 .nav__overlay .nav__right {
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
