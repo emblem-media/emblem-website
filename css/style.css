@@ -1759,7 +1759,7 @@ h2, .h2 {
     padding-bottom: 40px;
   }
   .hero__video {
-    object-position: calc(center + 150px);
+    object-position: 75%;
   }
   .hero__title {
     word-spacing: 9999px;
