@@ -319,12 +319,10 @@ h2, .h2 {
 .nav__hamburger span {
   display: block;
   height: 1.5px;
-  background: var(--white);
+  background: var(--ink);
   border-radius: 1px;
   transition: all 200ms ease;
 }
-.nav--light .nav__hamburger span,
-.nav.scrolled .nav__hamburger span { background: var(--ink); }
 
 .nav__hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .nav__hamburger.open span:nth-child(2) { opacity: 0; }
@@ -335,7 +333,7 @@ h2, .h2 {
   display: none;
   position: fixed;
   inset: 0;
-  background: var(--white);
+  background: var(--stone-100);
   z-index: 99;
   flex-direction: column;
   align-items: flex-start;
