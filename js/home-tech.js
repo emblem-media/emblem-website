@@ -96,37 +96,36 @@
   const rightPanel = document.getElementById('htv2Right');
   if (!rightPanel) return;
 
+  /* ── ドット更新: IntersectionObserver方式（tech.jsと同じ）── */
   function updateDots(activeIndex) {
+    /* デスクトップ用ドット */
     document.querySelectorAll('#htv2Dots .htv2-dot').forEach((d, i) => {
       d.classList.toggle('active', i === activeIndex);
     });
+    /* モバイル用ドット */
     document.querySelectorAll('#htv2SwipeDots .htv2-dot').forEach((d, i) => {
       d.classList.toggle('active', i === activeIndex);
     });
   }
 
-  /* デスクトップ: スクロール位置から現在のエントリを判定 */
-  rightPanel.addEventListener('scroll', () => {
-    const entryEls = entriesContainer.querySelectorAll('.htv2-entry');
-    const scrollMid = rightPanel.scrollTop + rightPanel.clientHeight * 0.5;
-    let activeIdx = 0;
-    entryEls.forEach((el, i) => {
-      if (el.offsetTop <= scrollMid) activeIdx = i;
+  /* エントリが50%以上見えたらドットを更新 */
+  const entryObserver = new IntersectionObserver(observerEntries => {
+    observerEntries.forEach(observerEntry => {
+      if (observerEntry.isIntersecting) {
+        const idx = parseInt(observerEntry.target.dataset.index);
+        updateDots(idx);
+      }
     });
-    updateDots(activeIdx);
-  }, { passive: true });
+  }, {
+    /* デスクトップは右パネル、モバイルは横スクロールコンテナをrootに指定 */
+    root: null,         /* viewport基準。両方に対応 */
+    threshold: 0.5      /* 50%見えたらトリガー */
+  });
 
-  /* モバイル: 横スクロール位置から現在のエントリを判定 */
-  const entriesEl = entriesContainer;
-  entriesEl.addEventListener('scroll', () => {
-    const entryEls = entriesEl.querySelectorAll('.htv2-entry');
-    const scrollMid = entriesEl.scrollLeft + entriesEl.clientWidth * 0.5;
-    let activeIdx = 0;
-    entryEls.forEach((el, i) => {
-      if (el.offsetLeft <= scrollMid) activeIdx = i;
-    });
-    updateDots(activeIdx);
-  }, { passive: true });
+  /* 全エントリを監視 */
+  entriesContainer.querySelectorAll('.htv2-entry').forEach(el => {
+    entryObserver.observe(el);
+  });
 
   /* ── ドットクリックでスクロール ────────────────────────── */
   document.querySelectorAll('#htv2Dots .htv2-dot').forEach(dot => {
