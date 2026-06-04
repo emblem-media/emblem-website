@@ -2663,6 +2663,8 @@ body.home-page {
 .home-tech-grid {
   position: relative;
   background: #111;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* ── デスクトップ用レイアウト ── */
@@ -2672,6 +2674,8 @@ body.home-page {
   height: 100svh;
   min-height: 600px;
   width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* モバイル用レイアウト（デスクトップでは非表示） */
@@ -2687,15 +2691,16 @@ body.home-page {
   overflow: hidden;
 }
 
-/* テキストエリア: 上1/3 */
+/* テキストエリア: 上1/4 */
 .htg-text {
-  flex: 0 0 33.333%;
+  flex: 0 0 10%;
   background: #F7F6F3;
   border-bottom: 0.5px solid #E5E3DC;
-  padding: 28px 32px;
+  padding: 32px 32px 20px 32px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
 
 .htg-eyebrow {
@@ -2710,15 +2715,15 @@ body.home-page {
 .htg-copy {
   font-size: 13px;
   color: #3D3C37;
-  line-height: 1.85;
+  line-height: 1.5;
   font-style: italic;
-  flex: 1;
   margin-bottom: 16px;
   white-space: pre-line;
 }
 
 .htg-btn {
   width: fit-content;
+  margin-left: auto;
 }
 
 /* 01セル: 下2/3 */
@@ -2915,7 +2920,11 @@ body.home-page {
     flex: 0 0 auto;
     background: #F7F6F3;
     border-bottom: 0.5px solid #E5E3DC;
-    padding: 24px 20px;
+    padding: 32px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
   }
 
   /* 03: 全幅大枠 */
