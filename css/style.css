@@ -1886,6 +1886,9 @@ h2, .h2 {
   /* スクロールスナップ */
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  /* iOS Safariではscroll-snap-stop: alwaysが無視されることがある。
+     その場合はtouch-action: pan-yを追加する */
+  touch-action: pan-y;
 }
 
 /* ── 素材（動画/画像）── */
@@ -2155,7 +2158,8 @@ h2, .h2 {
   /* スクロールバー非表示 */
   scrollbar-width: none;
   -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch を削除。
+     iOS Safariではこれがscroll-snapと競合してスナップが無効になる */
 }
 .tech-scroll-container::-webkit-scrollbar {
   display: none;
