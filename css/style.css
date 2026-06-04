@@ -2569,3 +2569,89 @@ h2, .h2 {
     height: 100%;
   }
 }
+
+/* ============================================================
+   Home — スクロールスナップ
+   tech-scroll-containerと同じ方式。
+   bodyではなく専用のposition:fixedコンテナをスクロール軸にする。
+   ============================================================ */
+
+/* bodyはスクロールしない */
+body:not(.tech-page) {
+  overflow: hidden;
+  height: 100dvh;
+}
+
+/* スクロールコンテナ本体 */
+.home-scroll-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  z-index: 0;
+  /* スクロールバー非表示 */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.home-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── 各セクションのスナップ設定 ── */
+
+/* Hero: 100vh・必ずスナップ */
+.home-scroll-container .hero--home {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100svh;
+  min-height: 100svh;
+}
+
+/* Technology: 100vh・必ずスナップ */
+.home-scroll-container .home-tech-v2 {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  /* height は既存の 100svh をそのまま使う */
+}
+
+/* News: スナップするが always にしない
+   （横カルーセルを読み終えてから自然に次へ進めるよう） */
+.home-scroll-container .section--stone {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  /* Newsは内容量があるため min-height で高さを確保 */
+  min-height: 100svh;
+}
+
+/* Recruit: 100vh・必ずスナップ */
+.home-scroll-container .video-section--tall {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100svh;
+  min-height: 100svh;
+}
+
+/* Footer: スナップ対象（Recruitの後に自然に出てくる） */
+.home-scroll-container .footer {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+/* ── home-tech-v2の右パネルとの干渉を防ぐ ──
+   右パネルは独立スクロール領域。
+   ページの縦スナップと競合しないよう touch-action で分離する。 */
+.htv2-right {
+  touch-action: pan-y;
+  /* iOSで独立スクロールが正しく動作するよう overscroll-behavior を設定 */
+  overscroll-behavior: contain;
+}
+
+/* ── Newsカルーセルの横スクロールとの干渉を防ぐ ── */
+.news-carousel {
+  touch-action: pan-x;
+  overscroll-behavior: contain;
+}

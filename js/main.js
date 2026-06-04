@@ -53,7 +53,8 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
     initialized = true;
     applyTheme();
   }, {
-    // nav の高さ分だけのスリム帯で判定
+    /* home-scroll-containerをrootに指定 */
+    root: document.getElementById('homeScrollContainer'),
     rootMargin: `0px 0px -${window.innerHeight - NAV_H}px 0px`,
     threshold: 0
   });
