@@ -343,7 +343,7 @@ h2, .h2 {
   position: fixed;
   inset: 0;
   background: var(--stone-200);
-  z-index: 99;
+  z-index: 1001;  /* nav（z-index: 1000）より上、かつtech-scroll-containerより上 */
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -2160,6 +2160,7 @@ h2, .h2 {
   -ms-overflow-style: none;
   /* -webkit-overflow-scrolling: touch を削除。
      iOS Safariではこれがscroll-snapと競合してスナップが無効になる */
+  z-index: 0;  /* nav（1000）とoverlayに確実に負ける値 */
 }
 .tech-scroll-container::-webkit-scrollbar {
   display: none;
