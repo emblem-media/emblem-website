@@ -105,20 +105,27 @@
     });
   }
 
-  /* スクロール位置からアクティブインデックスを判定（デスクトップ） */
+  /* デスクトップ: スクロール位置から現在のエントリを判定 */
   rightPanel.addEventListener('scroll', () => {
-    const totalH = rightPanel.scrollHeight;
-    const pos    = rightPanel.scrollTop + rightPanel.clientHeight / 2;
-    const idx    = Math.floor(pos / (totalH / entries.length));
-    updateDots(Math.min(idx, entries.length - 1));
+    const entryEls = entriesContainer.querySelectorAll('.htv2-entry');
+    const scrollMid = rightPanel.scrollTop + rightPanel.clientHeight * 0.5;
+    let activeIdx = 0;
+    entryEls.forEach((el, i) => {
+      if (el.offsetTop <= scrollMid) activeIdx = i;
+    });
+    updateDots(activeIdx);
   }, { passive: true });
 
-  /* ── モバイル: 横スクロールのドット更新 ────────────────── */
+  /* モバイル: 横スクロール位置から現在のエントリを判定 */
   const entriesEl = entriesContainer;
   entriesEl.addEventListener('scroll', () => {
-    const pos = entriesEl.scrollLeft + entriesEl.clientWidth / 2;
-    const idx = Math.floor(pos / entriesEl.clientWidth);
-    updateDots(Math.min(idx, entries.length - 1));
+    const entryEls = entriesEl.querySelectorAll('.htv2-entry');
+    const scrollMid = entriesEl.scrollLeft + entriesEl.clientWidth * 0.5;
+    let activeIdx = 0;
+    entryEls.forEach((el, i) => {
+      if (el.offsetLeft <= scrollMid) activeIdx = i;
+    });
+    updateDots(activeIdx);
   }, { passive: true });
 
   /* ── ドットクリックでスクロール ────────────────────────── */
