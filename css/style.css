@@ -2155,6 +2155,7 @@ h2, .h2 {
   /* スクロールバー非表示 */
   scrollbar-width: none;
   -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
 }
 .tech-scroll-container::-webkit-scrollbar {
   display: none;
