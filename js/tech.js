@@ -275,7 +275,13 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
       const target = document.querySelector(
         `.tech-sec[data-index="${idx}"]`
       );
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      const scrollContainer = document.getElementById('techScrollContainer');
+      if (target && scrollContainer) {
+        scrollContainer.scrollTo({
+          top: target.offsetTop,
+          behavior: 'smooth'
+        });
+      }
     });
   });
 })();

@@ -43,13 +43,16 @@
     <!-- js/tech.js が動的生成 -->
   </nav>
 
-  <!-- セクション群 -->
-  <main class="tech-sections" id="techSections">
-    <!-- js/tech.js が TECH_ENTRIES から動的生成 -->
-  </main>
+  <!-- スクロールコンテナ: Navとドット以外をすべて包む -->
+  <div class="tech-scroll-container" id="techScrollContainer">
 
-  <!-- Footer -->
-  <footer class="footer">
+    <!-- セクション群 -->
+    <main class="tech-sections" id="techSections">
+      <!-- js/tech.js が TECH_ENTRIES から動的生成 -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
     <div class="container">
       <div class="footer__inner">
         <div class="footer__left">
@@ -86,6 +89,8 @@
       </div>
     </div>
   </footer>
+
+  </div><!-- end .tech-scroll-container -->
 
   <script src="js/tech.js?v=3"></script>
   <script src="js/main.js?v=18"></script>

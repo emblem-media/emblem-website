@@ -1883,6 +1883,9 @@ h2, .h2 {
   overflow: hidden;
   display: flex;
   align-items: flex-end;
+  /* スクロールスナップ */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* ── 素材（動画/画像）── */
@@ -2133,11 +2136,28 @@ h2, .h2 {
 /* ── Techページ: スクロールスナップ ── */
 
 .tech-page {
-  /* bodyをスクロールコンテナにする */
+  /* bodyはスクロールしない */
+  overflow: hidden;
+  height: 100dvh;
+}
+
+/* スクロールコンテナ */
+.tech-scroll-container {
+  /* スクロールコンテナ本体 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
-  height: 100dvh;
   scroll-behavior: smooth;
+  /* スクロールバー非表示 */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.tech-scroll-container::-webkit-scrollbar {
+  display: none;
 }
 
 /* Navは固定 */
@@ -2154,8 +2174,8 @@ h2, .h2 {
   position: fixed;
 }
 
-/* 各セクションをスナップ対象に */
-.tech-sec {
+/* Footerのスナップ設定 */
+.tech-scroll-container .footer {
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
