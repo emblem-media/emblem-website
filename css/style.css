@@ -2129,3 +2129,39 @@ h2, .h2 {
   transform: translateY(8px);
   transition-duration: 600ms;
 }
+
+/* ── Techページ: スクロールスナップ ── */
+
+.tech-page {
+  /* bodyをスクロールコンテナにする */
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  height: 100dvh;
+  scroll-behavior: smooth;
+}
+
+/* Navは固定 */
+.tech-page .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* ナビゲーションドットも固定 */
+.tech-page .tech-nav-dots {
+  position: fixed;
+}
+
+/* 各セクションをスナップ対象に */
+.tech-sec {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Footerもスナップ対象に */
+.tech-page .footer {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}

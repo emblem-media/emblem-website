@@ -78,7 +78,7 @@ Our goal is not a form of flight in which humans operate machines. It is a form 
 We are not simply developing technology for flying.
 We are exploring what it means to create a body that can fly naturally.
 That journey begins here.`,
-    link: 'technology/hands-free.html'
+    link: null
   },
   {
     id: 'hands',
@@ -106,7 +106,7 @@ Our goal is to move beyond a state where attention is constantly devoted to cont
 Hands-free flight is one step in that direction.
 It is not simply an advance in flight technology.
 It is an advance in human freedom.`,
-    link: 'technology/hands-free.html'
+    link: null
   },
   {
     id: 'vision',
