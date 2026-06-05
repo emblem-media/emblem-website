@@ -2872,6 +2872,7 @@ body.home-page {
   height: 100%;
   object-fit: cover;
   animation: htg-zoom 18s ease-in-out infinite alternate;
+  z-index: 1;
 }
 
 .htg-ph-desc {
@@ -2891,6 +2892,7 @@ body.home-page {
     rgba(0,0,0,0.05) 100%
   );
   transition: opacity 0.3s ease;
+  z-index: 0;
 }
 
 /* テキスト */
