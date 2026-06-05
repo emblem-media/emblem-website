@@ -32,8 +32,8 @@ const TECH_ENTRIES = [
       src: 'assets/images/truss_image.jpg',
       alt: '加賀市試験フィールド 上空からの俯瞰写真'
     },
-    date_jp: '2025年10月',
-    date_en: 'Oct 2025',
+    date_jp: '2025年12月',
+    date_en: 'Dec 2025',
     title_jp: '人が空を飛ぶフィールド',
     title_en: 'A Field for Human Flight',
     body_jp: `飛行機には空港があります。
@@ -89,8 +89,8 @@ That journey begins here.`,
       src: null,
       alt: 'ハンズフリーホバリング映像'
     },
-    date_jp: '2026年6月',
-    date_en: 'Jun 2026',
+    date_jp: '2026年5月',
+    date_en: 'May 2026',
     title_jp: '身体を解放する',
     title_en: 'Freeing the Hands',
     body_jp: `手は、人間にとって最も重要な道具です。
