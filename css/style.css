@@ -1902,6 +1902,11 @@ h2, .h2 {
   animation: htg-zoom 18s ease-in-out infinite alternate;
 }
 
+/* NEXT UP セクション（index 3）のズームアニメーション削除 */
+.tech-sec[data-index="3"] .tech-sec__media {
+  animation: none;
+}
+
 /* ── プレースホルダー ── */
 .tech-sec__placeholder {
   position: absolute;

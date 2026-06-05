@@ -114,7 +114,7 @@ It is an advance in human freedom.`,
     visible: true,
     media: {
       type: 'photo',
-      src: 'assets/images/next_goggle.jpg',
+      src: 'assets/images/next_goggle_2.jpg',
       alt: 'REKKIEゴーグルを着用した飛行写真'
     },
     date_jp: 'August 2026',
