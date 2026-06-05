@@ -2693,7 +2693,7 @@ body.home-page {
 
 /* テキストエリア: 上1/4 */
 .htg-text {
-  flex: 0 0 180px;
+  flex: 0 0 25svh;
   min-height: 0;
   overflow: hidden;
   background: #F7F6F3;
@@ -2910,19 +2910,22 @@ body.home-page {
     display: none;
   }
 
-  /* htg-mobile-layout: 親(home-tech-grid)の100svhを継承して高さを持たせる */
+  /* height: 100%ではなく100svhを直接指定 */
   .htg-mobile-layout {
     display: flex;
     flex-direction: column;
     gap: 1px;
     background: #333;
-    height: 100%;
-    min-height: 0;
+    height: 100svh;
+    min-height: 600px;
   }
 
-  /* テキストエリア: 高さ固定。justify-content:flex-endでテキストが下寄せになる */
+  /* テキストエリア高さ調整
+     ★ この flex: 0 0 XXX の数値を変えるだけで高さが変わる ★
+     現在の画面高さ(svh)に対する割合で考える場合:
+     25% of 100svh = 25svh と書いても同じ */
   .htg-text {
-    flex: 0 0 180px;
+    flex: 0 0 25svh;
     min-height: 0;
     overflow: hidden;
     background: #F7F6F3;
@@ -2934,9 +2937,8 @@ body.home-page {
     align-items: flex-start;
   }
 
-  /* 03セル: 残りの高さの55% */
   .htg-mob-cell--03 {
-    flex: 0 0 calc((100svh - 181px) * 0.55);
+    flex: 0 0 calc((100svh - 25svh) * 0.55);
     min-height: 0;
   }
 
