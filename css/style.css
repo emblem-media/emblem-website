@@ -309,7 +309,14 @@ h2, .h2 {
 }
 /* ハンバーガー三本線: 常に白 */
 .nav__hamburger span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
   background: #ffffff;
+  border-radius: 1px;
+  transition: all 200ms ease;
+  opacity: 1;
+  visibility: visible;
 }
 
 .nav__hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -1737,7 +1744,7 @@ h2, .h2 {
   }
   .nav__hamburger span {
     display: block;
-    background: var(--ink);
+    background: #ffffff;
     opacity: 1;
     visibility: visible;
   }
