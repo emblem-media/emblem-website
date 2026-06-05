@@ -29,7 +29,7 @@ const TECH_ENTRIES = [
     visible: true,
     media: {
       type: 'photo',
-      src: null,
+      src: 'assets/images/truss_image.jpg',
       alt: '加賀市試験フィールド 上空からの俯瞰写真'
     },
     date_jp: '2025年10月',
