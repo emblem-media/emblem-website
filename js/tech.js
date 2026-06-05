@@ -164,6 +164,23 @@ It is an advance in human freedom.`,
     link: null
   },
   {
+     id: 'test',
+     num: '04',  // または '06', '07'...
+     visible: true,
+     media: {
+       type: 'photo',  // or 'video'
+       src: 'assets/images/Test.jpg',
+       alt: 'Description'
+     },
+     date_jp: 'Month Year',
+     date_en: 'Month Year',
+     title_jp: '日本語タイトル',
+     title_en: 'English Title',
+     body_jp: '...',
+     body_en: '...',
+     link: null  // or URL
+   },
+  {
     id: 'vision',
     num: 'NEXT UP',
     visible: true,
