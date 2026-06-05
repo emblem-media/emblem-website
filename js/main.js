@@ -148,22 +148,22 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
     'hero-anim--body': 1200,
   };
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const timers = [];
-        Object.entries(DELAYS).forEach(([cls, delay]) => {
-          const els = hero.querySelectorAll(`.${cls}`);
-          const t = setTimeout(() => {
-            els.forEach(el => el.classList.add('visible'));
-          }, delay);
-          timers.push(t);
-        });
-      }
-    });
-  }, { threshold: 0.3 });
+  let animated = false;
 
-  observer.observe(hero);
+  function animateHero() {
+    if (animated) return;
+    animated = true;
+
+    Object.entries(DELAYS).forEach(([cls, delay]) => {
+      setTimeout(() => {
+        const els = hero.querySelectorAll(`.${cls}`);
+        els.forEach(el => el.classList.add('visible'));
+      }, delay);
+    });
+  }
+
+  // ページロード時にすぐにアニメーション開始
+  animateHero();
 })();
 
 /* ---------- Fade-in (Intersection Observer) ---------- */
