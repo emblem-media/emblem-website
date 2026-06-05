@@ -1,29 +1,42 @@
 /* ============================================================
    Emblem — main.js
-   Nav scroll · Language toggle · Intersection Observer · SHOW_TEAM
+
+   全ページ共通の制御機能：
+   • Team ページの表示/非表示トグル（SHOW_TEAM フラグ）
+   • Nav のスクロール連動表示/非表示
+   • ハンバーガーメニューと mobile overlay の開閉
+   • 言語切り替え（JP/EN）と localStorage 永続化
+   • Fade-in アニメーション（IntersectionObserver）
    ============================================================ */
 
-const SHOW_TEAM = false; // ← true に変えるだけで全表示
+const SHOW_TEAM = false; // ← true に変えるだけで Team ページ・リンク全表示
 
-/* ---------- Team visibility ---------- */
+/* ============================================================
+   Team ページの表示制御
+   SHOW_TEAM が false の場合：
+   • /team へのアクセスをホームにリダイレクト
+   • nav・footer の Team リンクを非表示
+   ============================================================ */
 (function applyTeamVisibility() {
   if (SHOW_TEAM) return;
-  // redirect team page to home
+  // /team ページへのアクセスを / にリダイレクト
   if (window.location.pathname.includes('/team')) {
     window.location.replace('/');
   }
-  // hide team links in nav/footer
+  // nav・footer 内の [data-team-link] 属性付き要素を非表示
   document.querySelectorAll('[data-team-link]').forEach(el => {
     el.style.display = 'none';
   });
 })();
 
-/* ---------- Nav theme (dark / light) ----------
-   data-nav-dark セクションが nav 領域を覆っている間は透明白テキスト。
-   白セクションにさしかかったらグレー背景＋黒テキスト。
-   nav--light ページ（tech/news等）は常に light のまま。
-   ------------------------------------------------------------ */
-/* ---------- Hamburger / Mobile overlay ---------- */
+/* ============================================================
+   Hamburger メニュー＋ Mobile overlay の開閉制御
+
+   操作：
+   • .nav__hamburger をクリック → overlay を表示
+   • overlay 内の a タグをクリック → overlay を非表示
+   • document.body.overflow を制御して背景スクロール防止
+   ============================================================ */
 (function initHamburger() {
   const btn = document.querySelector('.nav__hamburger');
   const overlay = document.querySelector('.nav__overlay');
@@ -106,7 +119,19 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
   }
 })();
 
-/* ---------- Language toggle（localStorage で永続化）---------- */
+/* ============================================================
+   言語切り替え制御（JP / EN）
+
+   動作：
+   • header の JP/EN ボタンをクリックで言語切り替え
+   • [data-jp] / [data-en] 属性の内容を動的に表示
+   • localStorage に言語設定を保存（ページリロード後も保持）
+   • html 要素の lang 属性を更新（SEO・アクセシビリティ対応）
+
+   対応要素：
+   • [data-jp] / [data-en] 属性 → すべてのテキスト要素
+   • [data-html="true"] → HTML 内容として反映（<br> など保持）
+   ============================================================ */
 (function initLang() {
   const LANG_KEY = 'emblem-lang';
   let currentLang = localStorage.getItem(LANG_KEY) || 'jp';
@@ -114,39 +139,58 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
   function setLang(lang) {
     currentLang = lang;
     localStorage.setItem(LANG_KEY, lang);
+    // [data-jp] / [data-en] 属性を持つすべての要素を切り替え
     document.querySelectorAll('[data-jp]').forEach(el => {
-      // data-html 属性がある要素は innerHTML で設定（<br>等を保持）
+      // data-html 属性がある場合は innerHTML で設定（<br> などを保持）
       if (el.dataset.html) {
         el.innerHTML = lang === 'jp' ? el.dataset.jp : el.dataset.en;
       } else {
+        // 通常のテキスト要素は textContent で設定
         el.textContent = lang === 'jp' ? el.dataset.jp : el.dataset.en;
       }
     });
+    // JP/EN ボタンの active 状態を更新
     document.querySelectorAll('.lang-toggle__item').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
-    // html lang 属性も更新
+    // SEO・アクセシビリティのため html 要素の lang 属性を更新
     document.documentElement.lang = lang === 'jp' ? 'ja' : 'en';
   }
+  // JP/EN ボタンにクリックリスナーを追加
   document.querySelectorAll('.lang-toggle__item').forEach(btn => {
     btn.addEventListener('click', () => setLang(btn.dataset.lang));
   });
-  // ページ読み込み時に保存済み言語を適用
+  // ページ読み込み時に保存済みの言語設定を適用
   setLang(currentLang);
 })();
 
-/* ---------- Fade-in (Intersection Observer) ---------- */
+/* ============================================================
+   Fade-in アニメーション制御（.fade-in クラス）
+
+   動作：
+   • .fade-in クラスを持つ要素が画面内に入ると自動的に .visible クラスを追加
+   • IntersectionObserver で効率的に管理
+   • 一度表示されたら再度非表示にはならない（unobserve）
+
+   対応要素：
+   • index.html: ニュースカード、section など
+   • CSS では opacity: 0 → 1 のアニメーションを定義
+   ============================================================ */
 (function initFadeIn() {
   const elements = document.querySelectorAll('.fade-in');
   if (!elements.length) return;
+  // threshold: 0.12 = 要素の 12% が見えたらトリガー（軽い効果）
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        // .visible クラスを追加してアニメーション開始
         entry.target.classList.add('visible');
+        // その後は監視から外す（効率化）
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.12 });
+  // すべての .fade-in 要素を監視開始
   elements.forEach(el => observer.observe(el));
 })();
 
