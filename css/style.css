@@ -2696,7 +2696,7 @@ body.home-page {
   flex: 0 0 10%;
   background: #F7F6F3;
   border-bottom: 0.5px solid #E5E3DC;
-  padding: 32px 32px 20px 32px;
+  padding: 72px 32px 20px 32px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -2899,7 +2899,8 @@ body.home-page {
 @media (max-width: 768px) {
 
   .home-tech-grid {
-    height: auto;
+    height: 100svh;
+    min-height: 600px;
   }
 
   /* デスクトップ用を非表示 */
@@ -2913,14 +2914,16 @@ body.home-page {
     flex-direction: column;
     gap: 1px;
     background: #333;
+    height: 100%;
   }
 
   /* テキストエリア（モバイル） */
   .htg-text {
-    flex: 0 0 auto;
+    flex: 0 0 180px;
+    min-height: 0;
     background: #F7F6F3;
     border-bottom: 0.5px solid #E5E3DC;
-    padding: 32px 20px 20px 20px;
+    padding: 72px 20px 20px 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -2929,8 +2932,8 @@ body.home-page {
 
   /* 03: 全幅大枠 */
   .htg-mob-cell--03 {
-    height: 52vw;
-    min-height: 200px;
+    flex: 0 0 calc((100svh - 181px) * 0.55);
+    min-height: 160px;
   }
 
   /* 02・01: 2列 */
@@ -2939,12 +2942,14 @@ body.home-page {
     grid-template-columns: 1fr 1fr;
     gap: 1px;
     background: #333;
+    flex: 1;
+    min-height: 0;
   }
 
   .htg-mob-cell--02,
   .htg-mob-cell--01 {
-    height: 38vw;
-    min-height: 140px;
+    height: 100%;
+    min-height: 0;
   }
 
   .htg-cell-meta {
