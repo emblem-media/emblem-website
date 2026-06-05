@@ -1899,6 +1899,7 @@ h2, .h2 {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  animation: htg-zoom 18s ease-in-out infinite alternate;
 }
 
 /* ── プレースホルダー ── */
@@ -2863,12 +2864,12 @@ body.home-page {
     transform: scale(1);
   }
   to {
-    transform: scale(1.08);
+    transform: scale(1.1);
   }
 }
 
 .htg-cell-image {
-  animation: htg-zoom 18s ease-in-out infinite alternate;
+  animation: htg-zoom 12s ease-in-out infinite alternate;
 }
 
 .htg-ph-desc {
