@@ -1,16 +1,42 @@
 /* ============================================================
    Emblem — tech.js
-   Technology ページのフルスクリーンセクションを管理するファイル。
+   Technology ページ＋ Home ページの Tech Grid を一元管理
 
-   【コンテンツを追加・更新するには】
-   TECH_ENTRIES 配列を編集するだけ。
-   - 新しいエントリを追加 → 配列に追記
-   - 表示/非表示の切り替え → visible: true/false を変更
-   - 素材の差し替え → media.src を変更
+   【データソース】
+   TECH_ENTRIES 配列が唯一の情報源：
+   • technology.html: すべての visible なエントリをセクションに変換
+   • index.html: 最新3つだけを tech grid に自動表示
+   • "NEXT UP" セクション: 4番目の visible エントリを自動表示
 
-   【表示制御変数】
-   SHOW_TECH_4 / SHOW_TECH_5 を true にすると④⑤が表示される。
-   SHOW_TEAM と同じ方式。
+   【新しい Tech を追加する際の流れ】
+   1. TECH_ENTRIES 配列の末尾に新エントリを追加
+   2. 既存の4番目の項目の visible を false に変更
+   3. 自動で反映：
+      → Technology ページに新エントリが追加
+      → Home page が最新3つに更新（だるま落とし）
+      → "NEXT UP" が新しい4番目の項目に更新
+
+   【テンプレート】新しいエントリを追加する時のコピペ用
+   {
+     id: 'new-id',
+     num: '05',  // または '06', '07'...
+     visible: true,
+     media: {
+       type: 'photo',  // or 'video'
+       src: 'assets/images/xxxxx.jpg',
+       alt: 'Description'
+     },
+     date_jp: 'Month Year',
+     date_en: 'Month Year',
+     title_jp: '日本語タイトル',
+     title_en: 'English Title',
+     body_jp: '...',
+     body_en: '...',
+     link: null  // or URL
+   },
+
+   【表示制御】
+   SHOW_TECH_4 / SHOW_TECH_5: 隠れた項目④⑤を全表示する時のフラグ
    ============================================================ */
 
 /* ── 表示制御 ─────────────────────────────────────────────── */
