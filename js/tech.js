@@ -141,7 +141,7 @@ It is an advance in human freedom.`,
     id: 'vision',
     num: 'NEXT UP',
     visible: true,
-    is_planned: false,
+    is_planned: true,
     media: {
       type: 'photo',
       src: 'assets/images/next_goggle_2.jpg',
@@ -154,25 +154,7 @@ It is an advance in human freedom.`,
     body_jp: 'See beyond what you see',
     body_en: 'See beyond what you see',
     link: null
-  },
-  {
-    id: 'xxxx',
-    num: 'NEXT UP',
-    visible: true,
-    is_planned: true,
-    media: {
-      type: 'photo',
-      src: 'assets/images/Test.jpg',
-      alt: 'xxxxの写真'
-    },
-    date_jp: 'month 2026',
-    date_en: 'month 2026',
-    title_jp: 'title in japanese',
-    title_en: 'title in english',
-    body_jp: 'body in japanese',
-    body_en: 'body in english',
-    link: null
-    }
+  }
 ];
 
 /* ── DOM生成 ────────────────────────────────────────────────── */
