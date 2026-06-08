@@ -3308,7 +3308,7 @@ body.home-page {
 .mission-content {
   position: relative;
   z-index: 1;
-  max-width: 50%;
+  max-width: 66.666%;
   margin-left: auto;
   padding: 140px 56px 120px;
   display: flex;
