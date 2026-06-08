@@ -1597,7 +1597,19 @@ h2, .h2 {
    RECRUIT PAGE
    ============================================================ */
 .mission-text { max-width: 680px; }
-.mission-body { color: var(--stone-600); margin-top: 20px; }
+
+/* Override mission-body color for recruit page (light background) */
+.section .mission-body {
+  color: var(--stone-600);
+  margin-top: 20px;
+}
+
+.section .mission-body p {
+  color: var(--stone-700);
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 400;
+}
 
 .roles-container {
   display: grid;
