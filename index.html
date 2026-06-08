@@ -134,36 +134,34 @@
 
     <!-- ========== HERO ========== -->
     <section class="hero hero--home">
-    <video class="hero__video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-      <source src="assets/videos/home_hero.mp4" type="video/mp4">
-    </video>
-    <!-- 読みやすさのための最小限オーバーレイ -->
-    <div class="hero__overlay hero__overlay--light"></div>
+      <video class="hero__video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="assets/videos/home_hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero__overlay hero__overlay--light"></div>
 
-    <div class="hero__content hero__content--split container">
-      <!-- 左：メインコピー -->
-      <div class="hero__left">
-        <div class="hero__badge">
-          <span class="hero__badge-dot"></span>
-          JAXA STARTUP
-          <span class="hero__badge-dot"></span>
-          NEDO ADOPTED
-        </div>
-        <h1 class="display hero__title" data-jp="empower heroes" data-en="empower heroes">empower heroes</h1>
-      </div>
+      <div class="hero__content container">
 
-      <!-- 右：日本語ミッションテキスト -->
-      <div class="hero__right">
-        <h2 class="hero__right-title" data-jp="ヒトが空を飛ぶ未来を創る。" data-en="Creating a future where humans fly.">ヒトが空を飛ぶ未来を創る。</h2>
-        <p class="hero__right-lead" data-jp="私たちは、人が空を飛ぶ「ウェアラブル飛行技術」を実現します。" data-en="We are making wearable flight technology a reality.">私たちは、人が空を飛ぶ「ウェアラブル飛行技術」を実現します。</p>
-        <div class="hero__right-body">
-          <p data-html="true" data-jp="いざという時、最前線で誰かの命を守る人たちがいます。<br>私たちは、彼らを「ヒーロー」と呼びます。<br>社会の安全・安心を支えるすべての現場に、ヒーローはいます。" data-en="When it matters most, there are people on the front lines protecting lives. <br>We call them heroes. <br>Heroes exist on every front that supports the safety and security of society.">いざという時、最前線で誰かの命を守る人たちがいます。<br>私たちは、彼らを「ヒーロー」と呼びます。<br>社会の安全・安心を支えるすべての現場に、ヒーローはいます。</p>
-          <p data-html="true" data-jp="私たちは、そのヒーローに&ldquo;飛ぶ力&rdquo;を届けます。" data-en="We deliver the power of flight to those heroes.">私たちは、そのヒーローに"飛ぶ力"を届けます。</p>
-          <p data-html="true" data-jp="必要な場所へ、すぐに行ける。<br>その当たり前を、空から実現します。" data-en="Get to where you're needed, immediately.<br>We make that a reality — from the sky.">必要な場所へ、すぐに行ける。<br>その当たり前を、空から実現します。</p>
-        </div>
+        <!-- メインタイトル（日英共通） -->
+        <h1 class="hero__title-new"
+            data-jp="The Future of Human Flight"
+            data-en="The Future of Human Flight">The Future of Human Flight</h1>
+
+        <!-- サブタイトル: JP時のみ表示 -->
+        <p class="hero__sub-jp" data-lang-show="jp">
+          人が身に着けて飛ぶ「ウェアラブル飛行技術」
+        </p>
+
+        <!-- サブタイトル: EN時のみ表示 -->
+        <p class="hero__sub-en" data-lang-show="en">
+          Wearable Flight Technology
+        </p>
+
+        <!-- Read more ボタン -->
+        <a href="mission.html" class="hero__read-more"
+           data-jp="Read more →" data-en="Read more →">Read more →</a>
+
       </div>
-    </div>
-  </section>
+    </section>
 
   <!-- ↓↓↓ TECH GRID（一時コメントアウト中・復活可能）↓↓↓
   <section class="home-tech-grid" id="home-tech-grid-legacy">

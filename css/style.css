@@ -3395,3 +3395,113 @@ body.home-page {
   position: relative;
   z-index: 1;
 }
+
+/* ============================================================
+   Hero — リニューアル版
+   ============================================================ */
+
+/* コンテンツコンテナ: 左下配置 */
+.hero--home .hero__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 56px 56px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+  .hero--home .hero__content {
+    padding: 0 24px 48px;
+  }
+}
+
+/* メインタイトル */
+.hero__title-new {
+  font-size: 36px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .hero__title-new {
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+}
+
+/* サブタイトル JP */
+.hero__sub-jp {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .hero__sub-jp {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+}
+
+/* サブタイトル EN */
+.hero__sub-en {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .hero__sub-en {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+}
+
+/* ── 言語出し分け ──
+   html[lang="ja"] = JP選択時 → JP表示・EN非表示
+   html[lang="en"] = EN選択時 → EN表示・JP非表示
+   main.js の setLang() が html 要素の lang 属性を切り替えるため
+   追加のJSは不要。CSSだけで制御できる。              */
+[data-lang-show="en"] { display: none; }   /* デフォルト（JP）はEN非表示 */
+[data-lang-show="jp"] { display: block; }  /* デフォルト（JP）はJP表示 */
+
+html[lang="en"] [data-lang-show="en"] { display: block; }  /* EN時はEN表示 */
+html[lang="en"] [data-lang-show="jp"] { display: none; }   /* EN時はJP非表示 */
+
+/* Read more ボタン */
+.hero__read-more {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: var(--radius-btn);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+
+.hero__read-more:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 768px) {
+  .hero__read-more {
+    font-size: 11px;
+    padding: 7px 14px;
+  }
+}
