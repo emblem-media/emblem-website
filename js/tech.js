@@ -107,7 +107,9 @@ We are not simply developing technology for flying.
 We are exploring what it means to create a body that can fly naturally.
 That journey begins here.`,
     link: null
-  },
+  }
+  /*
+  ,
   {
     id: 'hands',
     num: '03',
@@ -155,6 +157,7 @@ It is an advance in human freedom.`,
     body_en: 'See beyond what you see',
     link: null
   }
+    */
 ];
 
 /* ── DOM生成 ────────────────────────────────────────────────── */
