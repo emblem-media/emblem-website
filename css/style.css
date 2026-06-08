@@ -3231,3 +3231,155 @@ body.home-page {
   color: rgba(255, 255, 255, 0.25);
   letter-spacing: 0.14em;
 }
+
+/* ============================================================
+   Mission ページ
+   ============================================================ */
+
+.mission-page {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* 背景 */
+.mission-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.mission-bg__placeholder {
+  position: absolute;
+  inset: 0;
+  /* 素材がない間の暫定背景 */
+  background: linear-gradient(180deg,
+    #0a0a10 0%,
+    #111318 25%,
+    #0d1208 55%,
+    #0a0a0f 100%
+  );
+}
+
+/* 素材が入った時のスタイル */
+.mission-bg__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.mission-bg__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* オーバーレイ */
+.mission-bg__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.22) 30%,
+    rgba(0, 0, 0, 0.28) 65%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+}
+
+/* コンテンツ（背景の上に重なる） */
+.mission-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  padding: 140px 56px 120px;
+}
+
+@media (max-width: 768px) {
+  .mission-content {
+    padding: 100px 24px 80px;
+  }
+}
+
+/* eyebrow */
+.mission-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .mission-eyebrow {
+    font-size: 10px;
+    margin-bottom: 16px;
+  }
+}
+
+/* タイトル */
+.mission-title {
+  font-size: 52px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 768px) {
+  .mission-title {
+    font-size: 34px;
+    margin-bottom: 24px;
+  }
+}
+
+/* 区切り線 */
+.mission-divider {
+  width: 36px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.28);
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .mission-divider {
+    margin-bottom: 28px;
+  }
+}
+
+/* 本文 */
+.mission-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mission-body p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.95;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .mission-body p {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .mission-body {
+    gap: 20px;
+  }
+}
+
+/* Footerが背景の上に来るよう調整 */
+.mission-page ~ .footer {
+  position: relative;
+  z-index: 1;
+}
