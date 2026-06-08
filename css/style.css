@@ -3307,7 +3307,7 @@ body.home-page {
 .mission-content {
   position: relative;
   z-index: 1;
-  max-width: 70%;
+  max-width: 63%;
   margin-left: auto;
   padding: 140px 56px 120px;
   display: flex;
@@ -3545,6 +3545,8 @@ a.news-card-full:hover {
   text-decoration: none;
   margin-bottom: 20px;
   transition: color var(--transition-fast);
+  max-width: 720px;
+  width: 100%;
 }
 .news-detail__back:hover { color: var(--ink); }
 
@@ -3553,6 +3555,9 @@ a.news-card-full:hover {
   align-items: center;
   gap: 8px;
   margin-bottom: 14px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .news-detail__date {
@@ -3578,6 +3583,7 @@ a.news-card-full:hover {
   line-height: 1.4;
   letter-spacing: -0.01em;
   max-width: 720px;
+  margin: 0 auto 0;
 }
 
 @media (max-width: 768px) {
@@ -3606,9 +3612,7 @@ a.news-card-full:hover {
 }
 
 .news-detail__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  display: block;
   font-size: 13px;
   font-weight: 500;
   color: var(--ink);
@@ -3617,7 +3621,9 @@ a.news-card-full:hover {
   text-decoration: none;
   margin-bottom: 36px;
   transition: opacity var(--transition-fast);
-  margin-left: 0;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 .news-detail__link:hover { opacity: 0.65; }
 
