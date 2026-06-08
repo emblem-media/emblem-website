@@ -1648,9 +1648,7 @@ h2, .h2 {
   padding: 20px;
   border: var(--border);
   border-radius: var(--radius-card);
-  transition: border-color var(--transition-fast);
 }
-.role-item:hover { border-color: var(--stone-600); }
 .role-item__dot {
   width: 6px; height: 6px;
   border-radius: 50%;
