@@ -1744,7 +1744,8 @@ h2, .h2 {
 }
 .form-check-label { font-size: 14px; color: rgba(255,255,255,0.65); }
 
-.form-actions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+.form-actions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; justify-content: space-between; }
+.form-actions .btn--primary { margin-left: auto; }
 
 .thank-you {
   display: none;
@@ -3141,7 +3142,7 @@ body.home-page {
 
 /* eyebrow: "Technology" */
 .home-tech-full__eyebrow {
-  font-size: 28px;
+  font-size: 80px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -3307,7 +3308,7 @@ body.home-page {
   position: relative;
   z-index: 1;
   max-width: 66.666%;
-  margin-left: 0;
+  margin-left: auto;
   padding: 140px 56px 120px;
   display: flex;
   flex-direction: column;
