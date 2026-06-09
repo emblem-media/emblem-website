@@ -3997,12 +3997,12 @@ a.news-card-full:hover {
 }
 
 .news-milestones__label {
-  font-size: 10px;
+  font-size: 25px;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -4026,8 +4026,8 @@ a.news-card-full:hover {
   background: #fff;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 14px 24px;
+  gap: 20px;
+  padding: 18px 32px;
   text-decoration: none;
   cursor: pointer;
   transition: background var(--transition-fast);
@@ -4035,8 +4035,8 @@ a.news-card-full:hover {
 .news-ms-card:hover { background: var(--stone-50); }
 
 .news-ms-card__img {
-  width: 100px;
-  height: 75px;
+  width: 200px;
+  height: 150px;
   border-radius: 4px;
   overflow: hidden;
   flex-shrink: 0;
@@ -4100,7 +4100,7 @@ a.news-card-full:hover {
 }
 
 .news-updates__label {
-  font-size: 10px;
+  font-size: 25px;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -4109,7 +4109,7 @@ a.news-card-full:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0 var(--container-pad, 24px) 16px;
+  padding: 16px var(--container-pad, 24px);
 }
 .news-updates__label::after {
   content: '';
