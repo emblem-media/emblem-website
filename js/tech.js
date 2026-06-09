@@ -1,14 +1,16 @@
 /* ============================================================
-   emblem — tech.js
+   Emblem — tech.js
 
    役割：
    TECH_ENTRIES 配列が唯一のデータソース。このファイルのみ編集で、以下が自動更新される：
-   • index.html（HOME ページ）: Tech Grid に最新3つを表示（だるま落とし式）
-   • index.html（HOME ページ）: NEXT UP セクションに1つを薄く表示
    • technology.html: すべてのエントリを自動生成
 
-   ⚠️  index.html と technology.html は自動生成されます。
+   ⚠️  technology.html は自動生成されます。
        直接 HTML を編集しないでください。js/tech.js のみ編集してください。
+
+   ⚠️  index.html の Tech セクションは tech.js を参照しません。
+       現在は home-tech-full（フルスクリーン・02固定表示）を使用しています。
+       index.html を直接編集してください。
 
    ════════════════════════════════════════════════════════════
 
@@ -18,15 +20,15 @@
    ────────────────────────────────────────────────
    Step 1: 現在の NEXT UP エントリ（is_planned: true）を探す
    Step 2: 以下を変更:
-           - num: 'NEXT UP' → '03' など新しい番号に変更
+           - num: 'NEXT UP' → '04' など新しい番号に変更
            - is_planned: true → false に変更
            - 本文・素材を更新
 
    Step 3: 新しい NEXT UP を配列の末尾に追加（is_planned: true で）
-   結果: HOME ページ Tech Grid が新しい順に更新される
+   結果: technology.html が自動更新される
 
    📌 Tech 素材を差し替えたい（動画・写真を更新）:
-   ────────────────────────────────────────
+   ────────────────────────────────────────────────────────
    該当するエントリの media.src を変更するだけ。
    例: media: { type: 'video', src: 'assets/videos/new-flight.mp4', ... }
 
@@ -39,7 +41,7 @@
 
    各フィールドの説明:
 
-   • id             : ユニークな ID（英数字・ハイフンのみ）。後で個別ページを作る時に参照
+   • id             : ユニークな ID（英数字・ハイフンのみ）
    • num            : 表示番号。'01', '02', '03' ... または 'NEXT UP'
    • visible        : true=表示 / false=非表示（HTML に描画されない）
    • is_planned     : true=NEXT UP（準備中・薄い表示） / false=本番公開
@@ -57,7 +59,7 @@
    media.type:  'video' | 'photo'
    media.src:   素材のパス。未入手の場合は null（プレースホルダー表示）
    is_planned:  true=NEXT UP（準備中）/ false=本番エントリ
-   link:        「続きを読む」のリンク先。個別ページがあれば設定。
+   link:        個別ページがあれば設定。なければ null
 
    【新しいTechを追加する時の作業】
    1. 現在の NEXT UP エントリ（is_planned: true）を本番化：
@@ -65,26 +67,27 @@
       - is_planned を true → false に変更
       - 本文・素材を更新
    2. 配列末尾に新しい NEXT UP を追加（is_planned: true）
-   → HOME PAGE と TECHNOLOGY PAGE が自動更新される
-   ペースト用のテンプレート：","を前につけてペースト
+   → TECHNOLOGY PAGE が自動更新される
+
+   ペースト用テンプレート（","を前につけてペースト）:
    {
-    id: 'xxxx',
-    num: 'NEXT UP',
-    visible: true,
-    is_planned: true,
-    media: {
-      type: 'photo',
-      src: 'assets/images/xxxxx',
-      alt: 'xxxxの写真'
-    },
-    date_jp: 'month 2026',
-    date_en: 'month 2026',
-    title_jp: 'title in japanese',
-    title_en: 'title in english',
-    body_jp: 'body in japanese',
-    body_en: 'body in english',
-    link: null
-    }
+     id: 'xxxx',
+     num: 'NEXT UP',
+     visible: true,
+     is_planned: true,
+     media: {
+       type: 'photo',
+       src: null,
+       alt: 'xxxxの写真'
+     },
+     date_jp: 'Coming Soon',
+     date_en: 'Coming Soon',
+     title_jp: 'タイトル（日本語）',
+     title_en: 'Title (English)',
+     body_jp: '説明文（日本語）',
+     body_en: 'Description (English)',
+     link: null
+   }
    ─────────────────────────────────────────────────────────── */
 const TECH_ENTRIES = [
   {
@@ -455,28 +458,14 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
   });
 })();
 
-/* ============================================================
-   Home page Tech Grid 自動更新
+/*
+ * ============================================================
+ * Home page Tech Grid 自動更新（現在コメントアウト中）
+ *
+ * index.html の TECH GRID（コメントアウト中）を復活させる場合は
+ * このブロックのコメントアウトも解除すること。
+ * ============================================================
 
-   index.html の home-tech-grid 内の3セルに
-   TECH_ENTRIES の最新3件（is_planned: false）を自動で流し込む。
-
-   【対応するスロットID】
-   デスクトップ:
-     htg-slot-large  → 左下大枠（最新）
-     htg-slot-top    → 右上（2番目）
-     htg-slot-bottom → 右下（3番目）
-   モバイル:
-     htg-mob-slot-top   → 全幅大枠（最新）
-     htg-mob-slot-left  → 下段左（2番目）
-     htg-mob-slot-right → 下段右（3番目）
-
-   【次のtechを追加する時の作業】
-   js/tech.js の TECH_ENTRIES のみ編集すればよい:
-   1. 既存NEXT UPの is_planned を false に・num を '04' 等に変更
-   2. 新しいNEXT UPエントリを配列末尾に追加（is_planned: true）
-   → technology.html と index.html が自動で更新される
-   ============================================================ */
 (function syncHomeTechGrid() {
 
   /* index.html 以外では実行しない */
@@ -560,3 +549,5 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
   }
 
 })();
+
+*/
