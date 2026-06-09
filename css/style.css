@@ -3668,52 +3668,24 @@ a.news-card-full:hover {
 }
 
 /* ============================================================
-   Home — News セクション（Milestones + Updates）
-   ============================================================ */
-
-/* ============================================================
-   Home — News セクション（Milestones + Updates フルスクリーン）
-
+   Home — News セクション
    構造:
    .home-news-section（100svh・flex縦）
-   ├── .home-news__header（固定高さ）
-   ├── .home-news__milestones（固定高さ: 約30%）
-   └── .home-news__updates（残り全部: 約70%）
-       ├── section-label
-       └── .home-news__carousel（横スクロール・高さいっぱい）
-           └── .home-news__card × N（縦カード・高さいっぱい）
-
-   ★ 調整したい場合は以下の1箇所だけ変える:
-     .home-news__milestones { flex: 0 0 30% } の数値
-   ============================================================ */
-
-/* ── セクション本体 ── */
-/* ============================================================
-   Home — News セクション J案
-   構造:
-   .home-news-section（100svh・flex縦）
-   ├── .hnj__header（固定）
-   ├── .hnj__milestones（flex:0 0 58%・写真オーバーレイ2分割）
-   └── .hnj__updates（flex:1・縦スクロールリスト）
-   ============================================================ */
-
-/* ── セクション本体 ── */
-/* ============================================================
-   Home — News セクション（独立カード版）
-   構造:
-   .home-news-section（100svh・flex縦・background:#111）
-   ├── .hnj__header（固定）
+   ├── .hnj__header（Newsタイトル）
    ├── .hnj__sec-label--dark（Milestonesラベル）
-   ├── .hnj__cards（カード2枚横並び・左右余白56px）
-   ├── .hnj__sec-label--light（Updatesラベル）
-   └── .hnj__updates-list（flex:1・縦スクロール）
+   ├── .hnj__cards（Milestoneカード2枚・左右余白220px）
+   └── .hnj__updates-outer（Updates全体・flex:1）
+       ├── .hnj__updates-label（絶対配置・左余白）
+       ├── .hnj__updates-viewall（絶対配置・右余白）
+       ├── .hnj__updates-inner（縦スクロールリスト）
+       └── .hnj__scroll-hint（↓scrollヒント）
    ============================================================ */
 
 .home-news-section {
   width: 100%;
   height: 100svh;
   min-height: 600px;
-  background: #111111;
+  background: #F7F6F3;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -3727,8 +3699,7 @@ a.news-card-full:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 13px 32px 11px;
-  border-bottom: 0.5px solid #E5E3DC;
+  padding: 10px 32px 4px;
   background: #F7F6F3;
 }
 
@@ -3743,25 +3714,7 @@ a.news-card-full:hover {
   letter-spacing: -0.01em;
 }
 
-.hnj__link {
-  font-size: 14px;
-  font-weight: 500;
-  color: #1A1A1A;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  background: transparent;
-  border: 1px solid #1A1A1A;
-  padding: 8px 16px;
-  border-radius: 4px;
-  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
-}
-.hnj__link:hover {
-  background: #1A1A1A;
-  color: #fff;
-  border-color: #1A1A1A;
-}
-
-/* ── セクションラベル（Milestones / Updates）── */
+/* ── セクションラベル（Milestones）── */
 .hnj__sec-label {
   flex: 0 0 auto;
   font-size: 20px;
@@ -3780,39 +3733,19 @@ a.news-card-full:hover {
 
 .hnj__sec-label--dark {
   color: #B4B2AA;
-  padding: 7px 32px 4px;
+  padding: 3px 32px 1px;
   background: #F7F6F3;
 }
 .hnj__sec-label--dark::after { background: #E5E3DC; }
 
-.hnj__sec-label--light {
-  color: #B4B2AA;
-  padding: 6px 0 4px;
-  background: transparent;
-}
-.hnj__sec-label--light::after { background: #E5E3DC; }
-
-/* Updates ラベル行（ラベル + View all ボタン）*/
-.hnj__sec-label-row {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px 32px 0;
-  background: #F7F6F3;
-  border-top: 0.5px solid rgba(255, 255, 255, 0.06);
-}
-
 @media (max-width: 768px) {
   .hnj__sec-label--dark { padding: 6px 20px 4px; }
-  .hnj__sec-label--light { padding: 5px 20px 4px; }
-  .hnj__sec-label-row { padding: 0 20px; }
 }
 
 /* ── Milestone カードエリア ── */
 .hnj__cards {
   flex: 0 0 auto;
-  padding: 8px 220px 10px;
+  padding: 1px 220px 11px;
   display: flex;
   gap: 16px;
   background: #F7F6F3;
@@ -3825,7 +3758,7 @@ a.news-card-full:hover {
 /* Milestone カード1枚 */
 .hnj__ms-card {
   flex: 1;
-  background: #F7F6F3;   /* 両方とも白系で統一 */
+  background: #F7F6F3;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -3918,11 +3851,13 @@ a.news-card-full:hover {
   background: #F7F6F3;
   display: flex;
   flex-direction: column;
-  padding: 8px 220px 10px;
+  padding: 11px 220px 10px;
+  position: relative;
+  border-top: 0.5px solid #E5E3DC;
 }
 
 @media (max-width: 768px) {
-  .hnj__updates-outer { padding: 7px 24px 8px; }
+  .hnj__updates-outer { padding: 48px 24px 8px; }
 }
 
 /* Updates 内側スクロールエリア */
@@ -3952,13 +3887,51 @@ a.news-card-full:hover {
 }
 .hnj__updates-inner::-webkit-scrollbar { display: none; }
 
+/* Updates ラベル: 左余白に絶対配置 */
+.hnj__updates-label {
+  position: absolute;
+  top: 8px;
+  left: 32px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B4B2AA;
+  margin: 0;
+}
+
+/* View all ボタン: 右余白に絶対配置 */
+.hnj__updates-viewall {
+  position: absolute;
+  top: 10px;
+  right: 32px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1A1A1A;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  border: 1px solid #1A1A1A;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background 200ms ease, color 200ms ease;
+}
+.hnj__updates-viewall:hover {
+  background: #1A1A1A;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .hnj__updates-label { left: 24px; }
+  .hnj__updates-viewall { right: 24px; }
+}
+
 /* スクロールヒント */
 .hnj__scroll-hint {
   flex-shrink: 0;
   text-align: center;
   padding: 4px 0 0;
   font-size: 9px;
-  color: rgba(255, 255, 255, 0.2);
+  color: #C8C6BE;
   letter-spacing: 0.08em;
   font-weight: 400;
 }

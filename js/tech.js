@@ -1,18 +1,56 @@
 /* ============================================================
    Emblem — tech.js
-   Technology ページ + Home ページ Tech Grid の自動同期
 
-   【データソース】
-   TECH_ENTRIES 配列が唯一の情報源：
-   • technology.html: すべての visible なエントリをセクションに変換
-   • index.html: is_planned: false の最新3つを tech grid に自動表示
-   • NEXT UP セクション: is_planned: true のエントリを自動表示（暗くぼかし表示）
+   役割：
+   TECH_ENTRIES 配列が唯一のデータソース。このファイルのみ編集で、以下が自動更新される：
+   • index.html（HOME ページ）: Tech Grid に最新3つを表示（だるま落とし式）
+   • index.html（HOME ページ）: NEXT UP セクションに1つを薄く表示
+   • technology.html: すべてのエントリを自動生成
 
-   【コンテンツを追加・更新するには】
-   TECH_ENTRIES 配列のみ編集する。
-   - 新しいエントリを追加 → 配列に追記
-   - 素材の差し替え → media.src を変更
-   - Tech を本番化 → is_planned: true → false に変更
+   ⚠️  index.html と technology.html は自動生成されます。
+       直接 HTML を編集しないでください。js/tech.js のみ編集してください。
+
+   ════════════════════════════════════════════════════════════
+
+   【操作パターン別ガイド】
+
+   📌 新しい Tech を本番公開したい（NEXT UP → 本番化）:
+   ────────────────────────────────────────────────
+   Step 1: 現在の NEXT UP エントリ（is_planned: true）を探す
+   Step 2: 以下を変更:
+           - num: 'NEXT UP' → '03' など新しい番号に変更
+           - is_planned: true → false に変更
+           - 本文・素材を更新
+
+   Step 3: 新しい NEXT UP を配列の末尾に追加（is_planned: true で）
+   結果: HOME ページ Tech Grid が新しい順に更新される
+
+   📌 Tech 素材を差し替えたい（動画・写真を更新）:
+   ────────────────────────────────────────
+   該当するエントリの media.src を変更するだけ。
+   例: media: { type: 'video', src: 'assets/videos/new-flight.mp4', ... }
+
+   📌 Tech を非表示にしたい:
+   ──────────────────────
+   visible: false に変更するだけ。
+   削除する必要はありません（history として残しておくことを推奨）。
+
+   ════════════════════════════════════════════════════════════
+
+   各フィールドの説明:
+
+   • id             : ユニークな ID（英数字・ハイフンのみ）。後で個別ページを作る時に参照
+   • num            : 表示番号。'01', '02', '03' ... または 'NEXT UP'
+   • visible        : true=表示 / false=非表示（HTML に描画されない）
+   • is_planned     : true=NEXT UP（準備中・薄い表示） / false=本番公開
+   • media
+     - type        : 'photo' or 'video'
+     - src         : 素材パス（例: 'assets/images/xxx.jpg'）。未入手なら null
+     - alt         : 代替テキスト（画像説明）
+   • date_jp / date_en : 公開時期（日本語/英語）。NEXT UP の場合は 'Coming Soon'
+   • title_jp / title_en : Tech タイトル（日本語/英語）
+   • body_jp / body_en  : 説明文（日本語/英語。複数行 OK）
+   • link          : 個別ページのリンク先。未作成なら null
 
    ============================================================ */
 /* ── コンテンツデータ ──────────────────────────────────────
