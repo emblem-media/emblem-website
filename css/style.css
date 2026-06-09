@@ -3872,7 +3872,7 @@ a.news-card-full:hover {
 }
 
 .hnj__ms-title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   color: #1A1A1A;
   line-height: 1.45;
@@ -3942,7 +3942,7 @@ a.news-card-full:hover {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 13px 14px;
+  padding: 16px 17px;
   border-bottom: 0.5px solid #E5E3DC;
   text-decoration: none;
   background: #fff;
@@ -3953,7 +3953,7 @@ a.news-card-full:hover {
 .hnj__update-item:hover { background: #F7F6F3; }
 
 @media (max-width: 768px) {
-  .hnj__update-item { gap: 10px; padding: 11px 12px; }
+  .hnj__update-item { gap: 10px; padding: 13px 14px; }
 }
 
 /* サムネイル: 正方形 */
@@ -4014,7 +4014,7 @@ a.news-card-full:hover {
 }
 
 .hnj__update-title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   color: #1A1A1A;
   line-height: 1.4;
