@@ -3869,6 +3869,9 @@ a.news-card-full:hover {
 .hnj__ms-body {
   padding: 10px 14px 13px 14px;
   background: #fff;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .hnj__ms-meta {
