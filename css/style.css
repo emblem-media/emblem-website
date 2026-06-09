@@ -3783,7 +3783,6 @@ a.news-card-full:hover {
   display: block;
   object-fit: contain;
   object-position: center;
-  animation: fadeIn 600ms ease-out;
   transition: transform 400ms ease;
 }
 
