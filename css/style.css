@@ -3790,13 +3790,13 @@ a.news-card-full:hover {
 /* ── Milestone カードエリア ── */
 .hnj__cards {
   flex: 0 0 auto;
-  padding: 8px 80px 10px;
+  padding: 5px 96px 6px;
   display: flex;
-  gap: 16px;
+  gap: 14px;
 }
 
 @media (max-width: 768px) {
-  .hnj__cards { padding: 4px 20px 5px; gap: 10px; }
+  .hnj__cards { padding: 4px 24px 5px; gap: 10px; }
 }
 
 /* Milestone カード1枚 */
@@ -3884,29 +3884,64 @@ a.news-card-full:hover {
   .hnj__ms-body { padding: 6px 9px 8px; }
 }
 
-/* ── Updates 縦スクロールリスト ── */
-.hnj__updates-list {
+/* Updates 外側コンテナ */
+.hnj__updates-outer {
+  flex: 1;
+  min-height: 0;
+  background: #F7F6F3;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 96px 10px;
+}
+
+@media (max-width: 768px) {
+  .hnj__updates-outer { padding: 7px 24px 8px; }
+}
+
+/* Updates 内側スクロールエリア */
+.hnj__updates-inner {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  background: #fff;
+  border-radius: 8px;
+  border: 0.5px solid #E5E3DC;
+  /* 下フェード: コンテンツが途切れて「続きあり」を示す */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 65%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 65%,
+    transparent 100%
+  );
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   overscroll-behavior: contain;
-  background: #F7F6F3;
-  scrollbar-width: thin;
-  scrollbar-color: #D3D1C7 transparent;
 }
-.hnj__updates-list::-webkit-scrollbar { width: 3px; }
-.hnj__updates-list::-webkit-scrollbar-track { background: transparent; }
-.hnj__updates-list::-webkit-scrollbar-thumb {
-  background: #D3D1C7;
-  border-radius: 2px;
+.hnj__updates-inner::-webkit-scrollbar { display: none; }
+
+/* スクロールヒント */
+.hnj__scroll-hint {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 4px 0 0;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.08em;
+  font-weight: 400;
 }
 
 /* Update 1件 */
 .hnj__update-item {
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 22px 32px;
+  gap: 14px;
+  padding: 13px 14px;
   border-bottom: 0.5px solid #E5E3DC;
   text-decoration: none;
   background: #fff;
@@ -3917,7 +3952,7 @@ a.news-card-full:hover {
 .hnj__update-item:hover { background: #F7F6F3; }
 
 @media (max-width: 768px) {
-  .hnj__update-item { gap: 12px; padding: 13px 20px; }
+  .hnj__update-item { gap: 10px; padding: 11px 12px; }
 }
 
 /* サムネイル: 正方形 */
