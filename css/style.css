@@ -2659,11 +2659,9 @@ body.home-page {
 
 /* News: スナップするが always にしない
    （横カルーセルを読み終えてから自然に次へ進めるよう） */
-.home-scroll-container .section--stone {
+.home-scroll-container .home-news-section {
   scroll-snap-align: start;
-  scroll-snap-stop: normal;
-  /* Newsは内容量があるため min-height で高さを確保 */
-  min-height: 100svh;
+  scroll-snap-stop: always;
 }
 
 /* Recruit: 100vh・必ずスナップ */
