@@ -2905,6 +2905,15 @@ body.home-page {
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .htg-cell-image,
 .htg-cell-media {
   animation: htg-zoom 12s ease-in-out infinite alternate;
@@ -3762,13 +3771,23 @@ a.news-card-full:hover {
 .hnj__ms-photo {
   position: absolute;
   inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hnj__ms-photo img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
   object-fit: contain;
   object-position: center;
+  animation: fadeIn 600ms ease-out;
   transition: transform 400ms ease;
 }
-.hnj__ms-card:hover .hnj__ms-photo {
+
+.hnj__ms-card:hover .hnj__ms-photo img {
   transform: scale(1.03);
 }
 
