@@ -3736,25 +3736,26 @@ a.news-card-full:hover {
 }
 
 .hnj__title {
-  font-size: 18px;
+  font-size: 40px;
   font-weight: 500;
   color: #fff;
   letter-spacing: -0.01em;
 }
 
 .hnj__link {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.35);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   letter-spacing: 0.02em;
   transition: color 200ms ease;
 }
-.hnj__link:hover { color: rgba(255, 255, 255, 0.7); }
+.hnj__link:hover { color: #fff; }
 
 /* ── セクションラベル（Milestones / Updates）── */
 .hnj__sec-label {
   flex: 0 0 auto;
-  font-size: 11px;
+  font-size: 20px;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -3844,7 +3845,7 @@ a.news-card-full:hover {
 
 /* カードテキスト */
 .hnj__ms-body {
-  padding: 10px 14px 13px;
+  padding: 10px 14px 13px 14px;
 }
 
 .hnj__ms-meta {
