@@ -405,16 +405,7 @@ h2, .h2 {
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.08) 60%);
-}
-/* 軽いオーバーレイ: テキスト可読性のための最小限の暗さ */
-.hero__overlay--light {
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.45) 0%,
-    rgba(0,0,0,0.15) 50%,
-    rgba(0,0,0,0.55) 100%
-  );
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.0) 50%);
 }
 
 .hero__video {
@@ -846,7 +837,7 @@ h2, .h2 {
   align-items: center;
   justify-content: center;
   color: rgba(255,255,255,0.1);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1496,8 +1487,8 @@ h2, .h2 {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  align-items: flex-start;
-  padding: 20px var(--container-pad, 24px);
+  align-items: center;
+  padding: 12px var(--container-pad, 24px);
   transition: background 200ms ease;
 }
 .news-card-full:hover { background: var(--stone-50); }
@@ -1505,7 +1496,7 @@ h2, .h2 {
 .news-card-full__img {
   display: block;
   width: 140px;
-  height: 100px;
+  height: 140px;
   overflow: hidden;
   background: var(--stone-100);
   flex-shrink: 0;
@@ -1620,6 +1611,13 @@ h2, .h2 {
   font-size: 14px;
   line-height: 1.8;
   font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .section .mission-body p {
+    font-size: 13px;
+    line-height: 1.3;
+  }
 }
 
 .roles-container {
@@ -2049,7 +2047,7 @@ h2, .h2 {
 }
 
 @media (max-width: 768px) {
-  .tech-sec__title-en { font-size: 12px; margin-bottom: 16px; }
+  .tech-sec__title-en { font-size: 14px; margin-bottom: 20px; }
 }
 
 .tech-sec__body {
@@ -2062,7 +2060,7 @@ h2, .h2 {
 
 @media (max-width: 768px) {
   .tech-sec__body {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -3165,18 +3163,18 @@ body.home-page {
 
 /* eyebrow: "Technology" */
 .home-tech-full__eyebrow {
-  font-size: 30px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 14px;
+  margin-bottom: 2px;
 }
 
 @media (max-width: 768px) {
   .home-tech-full__eyebrow {
-    font-size: 10px;
-    margin-bottom: 10px;
+    font-size: 14px;
+    margin-bottom: 2px;
   }
 }
 
@@ -3313,16 +3311,22 @@ body.home-page {
   object-position: center;
 }
 
+@media (max-width: 768px) {
+  .mission-bg__video {
+    object-position: 40%;
+  }
+}
+
 /* オーバーレイ */
 .mission-bg__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.22) 30%,
-    rgba(0, 0, 0, 0.28) 65%,
-    rgba(0, 0, 0, 0.65) 100%
+    to right,
+    rgba(0, 0, 0, 0.0) 0%,
+    rgba(0, 0, 0, 0.0) 40%,
+    rgba(0, 0, 0, 0.0) 65%,
+    rgba(0, 0, 0, 0.0) 100%
   );
 }
 
@@ -3349,11 +3353,11 @@ body.home-page {
 
 /* eyebrow */
 .mission-eyebrow {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0.0, 0.0, 0.0, 0.4);
   margin-bottom: 20px;
 }
 
@@ -3361,6 +3365,7 @@ body.home-page {
   .mission-eyebrow {
     font-size: 10px;
     margin-bottom: 16px;
+    color: rgba(255, 255, 255, 0.9);
   }
 }
 
@@ -3368,7 +3373,7 @@ body.home-page {
 .mission-title {
   font-size: 52px;
   font-weight: 500;
-  color: #fff;
+  color:rgba(0.0, 0.0, 0.0, 0.7);
   line-height: 1.05;
   letter-spacing: -0.03em;
   margin-bottom: 36px;
@@ -3378,6 +3383,7 @@ body.home-page {
   .mission-title {
     font-size: 34px;
     margin-bottom: 24px;
+    color: rgba(255, 255, 255, 0.9);
   }
 }
 
@@ -3385,13 +3391,14 @@ body.home-page {
 .mission-divider {
   width: 36px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(0.0, 0.0, 0.0, 0.2);
   margin-bottom: 40px;
 }
 
 @media (max-width: 768px) {
   .mission-divider {
     margin-bottom: 28px;
+    background: rgba(255, 255, 255, 0.9);
   }
 }
 
@@ -3404,7 +3411,7 @@ body.home-page {
 
 .mission-body p {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(0.0, 0.0, 0.0, 0.6);
   line-height: 1.95;
   font-weight: 400;
 }
@@ -3413,10 +3420,21 @@ body.home-page {
   .mission-body p {
     font-size: 14px;
     line-height: 1.85;
+    color: rgba(255, 255, 255, 1.0);
   }
   .mission-body {
     gap: 20px;
   }
+  @media (max-width: 768px) {
+  .mission-bg__overlay {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(0, 0, 0, 0.0) 100%
+    );
+  }
+}
 }
 
 /* Footerが背景の上に来るよう調整 */
@@ -3820,7 +3838,7 @@ a.news-card-full:hover {
 }
 
 .hnj__ms-date {
-  font-size: 11px;
+  font-size: 15px;
   color: #B4B2AA;
   letter-spacing: 0.02em;
 }
@@ -3844,9 +3862,9 @@ a.news-card-full:hover {
 }
 
 @media (max-width: 768px) {
-  .hnj__ms-date { font-size: 8px; }
-  .hnj__ms-title { font-size: 9px; }
-  .hnj__ms-body { padding: 6px 9px 8px; }
+  .hnj__ms-date { font-size: 10px; }
+  .hnj__ms-title { font-size: 12px; }
+  .hnj__ms-body { padding: 6px 10px 8px; }
 }
 
 /* Updates 外側コンテナ */
@@ -3989,7 +4007,7 @@ a.news-card-full:hover {
 }
 
 @media (max-width: 768px) {
-  .hnj__update-thumb { width: 42px; height: 42px; }
+  .hnj__update-thumb { width: 75px; height: 75px; }
 }
 
 .hnj__update-body { flex: 1; min-width: 0; }
@@ -4030,8 +4048,8 @@ a.news-card-full:hover {
 }
 
 @media (max-width: 768px) {
-  .hnj__update-date { font-size: 8px; }
-  .hnj__update-title { font-size: 10px; }
+  .hnj__update-date { font-size: 10px; }
+  .hnj__update-title { font-size: 12px; }
 }
 
 .hnj__update-arr {
@@ -4155,13 +4173,14 @@ a.news-card-full:hover {
 }
 
 @media (max-width: 768px) {
-  .news-ms-card { gap: 12px; padding: 12px 20px; }
-  .news-ms-card__img { width: 56px; height: 42px; }
-  .news-ms-card__title { font-size: 12px; }
+  .news-ms-card { gap: 13px; padding: 8px 8px; }
+  .news-ms-card__img { width: 120px; height: 100px; }
+  .news-ms-card__title { font-size: 13px; }
+  .news-ms-card__desc { font-size: 11px; }
 }
 
 .news-updates {
-  padding-top: 24px;
+  padding-top: 20px;
 }
 
 .news-updates__label {
@@ -4174,7 +4193,7 @@ a.news-card-full:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 16px var(--container-pad, 24px);
+  padding: 5px var(--container-pad, 24px);
 }
 .news-updates__label::after {
   content: '';
@@ -4197,8 +4216,8 @@ a.news-card-full:hover { background: var(--stone-50); }
     padding: 12px 24px;
   }
   .news-card-full__img {
-    width: 100px;
-    height: 75px;
+    width: 120px;
+    height: 100px;
   }
   .news-card-full__title {
     font-size: 13px;

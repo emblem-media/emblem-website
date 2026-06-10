@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       // POST で送信（Netlify が自動処理）
-      const response = await fetch('/', {
+      const response = await fetch('/recruit.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encoded,
