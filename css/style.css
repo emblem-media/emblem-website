@@ -3741,7 +3741,7 @@ a.news-card-full:hover {
    .home-news-section（100svh・flex縦）
    ├── .hnj__header（Newsタイトル）
    ├── .hnj__sec-label--dark（Milestonesラベル）
-   ├── .hnj__cards（Milestoneカード2枚・左右余白220px）
+   ├── .hnj__cards（Milestoneカード・横スクロール）
    └── .hnj__updates-outer（Updates全体・flex:1）
        ├── .hnj__updates-label（絶対配置・左余白）
        ├── .hnj__updates-viewall（絶対配置・右余白）
@@ -3810,22 +3810,46 @@ a.news-card-full:hover {
   .hnj__sec-label--dark { padding: 6px 20px 4px; }
 }
 
-/* ── Milestone カードエリア ── */
+/* ── Milestone カードエリア（横スクロール） ── */
 .hnj__cards {
   flex: 0 0 auto;
-  padding: 1px 220px 11px;
+  padding: 1px 130px 11px;
   display: flex;
   gap: 16px;
   background: #F7F6F3;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge */
+  /* 右フェード: 横スクロールで「続きあり」を示す（左余白と同じ長さ） */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black calc(100% - 500px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    black calc(100% - 500px),
+    transparent 100%
+  );
 }
+.hnj__cards::-webkit-scrollbar { display: none; }  /* Chrome/Safari */
 
 @media (max-width: 768px) {
-  .hnj__cards { flex: 0 0 240px; padding: 6px 24px 20px; gap: 10px; }
+  .hnj__cards {
+    flex: 0 0 auto;
+    padding: 6px 20px 20px;
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 20px), transparent 100%);
+    mask-image: linear-gradient(to right, black calc(100% - 20px), transparent 100%);
+  }
 }
 
 /* Milestone カード1枚 */
 .hnj__ms-card {
-  flex: 1;
+  flex: 0 0 450px;
   background: #F7F6F3;
   border-radius: 8px;
   overflow: hidden;
@@ -3834,6 +3858,10 @@ a.news-card-full:hover {
   text-decoration: none;
   border: 0.5px solid #000000;
   transition: opacity 150ms ease;
+}
+
+@media (max-width: 768px) {
+  .hnj__ms-card { flex: 0 0 220px; }
 }
 .hnj__ms-card:hover { opacity: 0.85; }
 
@@ -3968,11 +3996,10 @@ a.news-card-full:hover {
   margin: 0;
 }
 
-/* View all ボタン: 右余白に絶対配置 */
+/* View all ボタン: Newsタイトルと同じ高さ（ヘッダー内・右寄せ） */
 .hnj__updates-viewall {
-  position: absolute;
-  top: 10px;
-  right: 32px;
+  flex: 0 0 auto;
+  margin-top: 30px;          /* ← 縦位置を少し下げる */
   font-size: 14px;
   font-weight: 500;
   color: #1A1A1A;
@@ -3990,7 +4017,6 @@ a.news-card-full:hover {
 
 @media (max-width: 768px) {
   .hnj__updates-label { left: 24px; }
-  .hnj__updates-viewall { right: 24px; }
 }
 
 /* スクロールヒント */

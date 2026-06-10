@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=70">
+  <link rel="stylesheet" href="css/style.css?v=71">
 
   <!-- 構造化データ: Googleの検索結果リッチ表示用 -->
   <script type="application/ld+json">
@@ -271,14 +271,35 @@
     <div class="hnj__header">
       <h2 class="hnj__title"
           data-jp="News" data-en="News">News</h2>
+      <!-- View all ボタン: Newsタイトルと同じ高さ -->
+      <a href="news.html" class="hnj__updates-viewall"
+         data-jp="View all →" data-en="View all →">View all →</a>
     </div>
 
     <!-- Milestones セクションラベル -->
     <p class="hnj__sec-label hnj__sec-label--dark"
        data-jp="Milestones" data-en="Milestones">Milestones</p>
 
-    <!-- Milestone カード2枚（独立・横並び） -->
+    <!-- Milestone カード（横スクロール） -->
     <div class="hnj__cards">
+
+      <!-- モザンビーク政府 -->
+      <a href="news/mozambique.html" class="hnj__ms-card">
+        <div class="hnj__ms-img">
+          <img src="assets/images/mozambique_LOI.jpg" alt="モザンビーク政府LOI調印">
+        </div>
+        <div class="hnj__ms-body">
+          <div class="hnj__ms-meta">
+            <span class="hnj__ms-date"
+                  data-jp="2025年5月" data-en="May 2025">2025年5月</span>
+            <span class="hnj__ms-badge"
+                  data-jp="連携" data-en="Partnership">連携</span>
+          </div>
+          <p class="hnj__ms-title"
+             data-jp="モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。"
+             data-en="LOI signed with the Government of Mozambique. Flight footage exhibited at Osaka Expo.">モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。</p>
+        </div>
+      </a>
 
       <!-- ブータン政府 -->
       <a href="news/bhutan.html" class="hnj__ms-card">
@@ -325,30 +346,8 @@
       <p class="hnj__updates-label"
          data-jp="Updates" data-en="Updates">Updates</p>
 
-      <!-- View all ボタン: 右余白に絶対配置 -->
-      <a href="news.html" class="hnj__updates-viewall"
-         data-jp="View all →" data-en="View all →">View all →</a>
-
       <!-- 内側スクロールエリア（角丸・ボーダー・下フェード）-->
       <div class="hnj__updates-inner">
-
-        <a href="news/mozambique.html" class="hnj__update-item">
-          <div class="hnj__update-thumb">
-            <img src="assets/images/mozambique_LOI.jpg" alt="モザンビーク政府LOI調印">
-          </div>
-          <div class="hnj__update-body">
-            <div class="hnj__update-meta">
-              <span class="hnj__update-date"
-                    data-jp="2025年5月" data-en="May 2025">2025年5月</span>
-              <span class="hnj__update-badge"
-                    data-jp="連携" data-en="Partnership">連携</span>
-            </div>
-            <p class="hnj__update-title"
-               data-jp="モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。"
-               data-en="LOI signed with the Government of Mozambique. Flight footage exhibited at Osaka Expo.">モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。</p>
-          </div>
-          <span class="hnj__update-arr" aria-hidden="true">→</span>
-        </a>
 
         <a href="news/kaga-report.html" class="hnj__update-item">
           <div class="hnj__update-thumb">
