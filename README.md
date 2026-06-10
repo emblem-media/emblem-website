@@ -213,7 +213,7 @@ const SHOW_MISSION = true;  // false にするとMissionページ・リンクが
 ディレクトリ（cd ...）は各自の設定に変更する。
 
 ```bash
-cd ~/Desktop/emblem/homepage　
+cd ~/Desktop/emblem/homepage
 git checkout main
 git add .
 git commit -m "変更内容"
