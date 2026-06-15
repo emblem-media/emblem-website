@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="icon" type="image/png" href="assets/images/favicon-32.png?v=1">
   <!-- ── SEO ── -->
   <title>emblem — ウェアラブル飛行技術 | JAXAスタートアップ</title>
   <meta name="description" content="emblemは日本発のウェアラブル飛行技術（ジェットパック／ジェットスーツ）を開発するJAXAスタートアップ。人が身に着けて空を飛ぶ装置の実用化に挑む。">
-  <meta name="keywords" content="ジェットパック,ジェットスーツ,日本 ジェットパック,ジェットパック 現実,ウェアラブル飛行,jetpack,jet suit,空を飛ぶ,JAXA スタートアップ,リアルアイアンマン,飛行装置,人類 飛行,emblem">
+  <meta name="keywords" content="ジェットパック,ジェットスーツ,日本初 ジェットパック,ジェットパック 現実,ウェアラブル飛行,jetpack,jet suit,空を飛ぶ,JAXA スタートアップ,リアルアイアンマン,飛行装置,人類 飛行,emblem">
   <link rel="canonical" href="https://emblemand.com/">
 
   <!-- ── OGP (Facebook / LINE / Slack等) ── -->
@@ -38,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=75">
+  <link rel="stylesheet" href="css/style.css?v=77">
 
   <!-- 構造化データ: Googleの検索結果リッチ表示用 -->
   <script type="application/ld+json">
@@ -169,6 +170,10 @@
            data-jp="Read more →" data-en="Read more →">Read more →</a>
 
       </div>
+
+      <!-- スクロールキュー -->
+      <a href="#home-tech" class="hero__scroll-cue" aria-label="Scroll"
+         data-jp="Scroll" data-en="Scroll">Scroll</a>
     </section>
 
   <!-- ↓↓↓ TECH GRID（一時コメントアウト中・復活可能）↓↓↓
@@ -251,16 +256,16 @@
     <div class="home-tech-full__overlay"></div>
 
     <!-- コンテンツ: 左下 -->
-    <div class="home-tech-full__content">
-      <p class="home-tech-full__eyebrow"
+    <div class="home-tech-full__content" data-reveal-group>
+      <p class="home-tech-full__eyebrow" data-reveal
          data-jp="Technology" data-en="Technology">Technology</p>
-      <h2 class="home-tech-full__title"
+      <h2 class="home-tech-full__title" data-reveal
           data-jp="身体と飛行"
           data-en="Flight Should Follow the Body">身体と飛行</h2>
-      <p class="home-tech-full__title-en"
+      <p class="home-tech-full__title-en" data-reveal
          data-jp="Flight Should Follow the Body"
          data-en="Flight Should Follow the Body">Flight Should Follow the Body</p>
-      <a href="technology.html" class="home-tech-full__btn"
+      <a href="technology.html" class="home-tech-full__btn" data-reveal
          data-jp="View all →" data-en="View all →">View all →</a>
     </div>
 
@@ -277,22 +282,22 @@
 
     <!-- セクションヘッダー -->
     <div class="hnj__header">
-      <h2 class="hnj__title"
+      <h2 class="hnj__title" data-reveal
           data-jp="News" data-en="News">News</h2>
       <!-- View all ボタン: Newsタイトルと同じ高さ -->
-      <a href="news.html" class="hnj__updates-viewall"
+      <a href="news.html" class="hnj__updates-viewall" data-reveal
          data-jp="View all →" data-en="View all →">View all →</a>
     </div>
 
     <!-- Milestones セクションラベル -->
-    <p class="hnj__sec-label hnj__sec-label--dark"
+    <p class="hnj__sec-label hnj__sec-label--dark" data-reveal
        data-jp="Milestones" data-en="Milestones">Milestones</p>
 
     <!-- Milestone カード（横スクロール） -->
-    <div class="hnj__cards">
+    <div class="hnj__cards" data-reveal-group>
 
       <!-- ブータン政府 -->
-      <a href="news/bhutan.html" class="hnj__ms-card">
+      <a href="news/bhutan.html" class="hnj__ms-card" data-reveal>
         <div class="hnj__ms-img">
           <img src="assets/images/bhutan_LOI.jpg" alt="ブータン政府LOI調印">
         </div>
@@ -310,7 +315,7 @@
       </a>
 
       <!-- モザンビーク政府 -->
-      <a href="news/mozambique.html" class="hnj__ms-card">
+      <a href="news/mozambique.html" class="hnj__ms-card" data-reveal>
         <div class="hnj__ms-img">
           <img src="assets/images/mozambique_LOI.jpg" alt="モザンビーク政府LOI調印">
         </div>
@@ -328,7 +333,7 @@
       </a>
 
       <!-- JAXA -->
-      <a href="news/jaxa.html" class="hnj__ms-card">
+      <a href="news/jaxa.html" class="hnj__ms-card" data-reveal>
         <div class="hnj__ms-img hnj__ms-img--contain">
           <img src="assets/images/js_logo__シグネチャー.png" alt="JAXAスタートアップ">
         </div>
@@ -356,6 +361,25 @@
 
       <!-- 内側スクロールエリア（角丸・ボーダー・下フェード）-->
       <div class="hnj__updates-inner">
+
+        <!-- 人とくるまのテクノロジー展 2026 NAGOYA -->
+        <a href="news/nagoya-2026.html" class="hnj__update-item">
+          <div class="hnj__update-thumb hnj__update-thumb--contain">
+            <img src="assets/images/nagoya_exhib.jpg" alt="人とくるまのテクノロジー展 2026 NAGOYA">
+          </div>
+          <div class="hnj__update-body">
+            <div class="hnj__update-meta">
+              <span class="hnj__update-date"
+                    data-jp="2026年6月" data-en="Jun 2026">2026年6月</span>
+              <span class="hnj__update-badge"
+                    data-jp="イベント" data-en="Event">イベント</span>
+            </div>
+            <p class="hnj__update-title"
+               data-jp="「人とくるまのテクノロジー展 2026 NAGOYA」に出展。飛行試験で使用した実機を展示します。"
+               data-en="Exhibiting at Automotive Engineering Exposition 2026 Nagoya. The actual aircraft used in our flight tests will be on display.">「人とくるまのテクノロジー展 2026 NAGOYA」に出展。飛行試験で使用した実機を展示します。</p>
+          </div>
+          <span class="hnj__update-arr" aria-hidden="true">→</span>
+        </a>
 
         <!-- UNIDO・モザンビーク政府 加賀視察（ストップのため一時非表示。復活する場合は下のコメントを外す） -->
         <!--
@@ -449,11 +473,11 @@
     </video>
     <div class="video-section__overlay"></div>
     <!-- 中央右寄り：ラベル + 見出し + 説明 + ボタン -->
-    <div class="video-section__center-right">
-      <p class="home-recruit__eyebrow" data-jp="Recruit" data-en="Recruit">Recruit</p>
-      <h2 class="h1 video-section__heading" data-jp="一緒に、世界初を作りませんか。" data-en="Let's build the world's first, together.">一緒に、世界初を作りませんか。</h2>
-      <p class="video-section__body" data-jp="誰も解いていない問題がある。それがemblemのフィールドです。" data-en="There are problems no one has solved yet. That is emblem's field.">誰も解いていない問題がある。それがemblemのフィールドです。</p>
-      <a href="recruit.html" class="btn btn--ghost-white">
+    <div class="video-section__center-right" data-reveal-group>
+      <p class="home-recruit__eyebrow" data-reveal data-jp="Recruit" data-en="Recruit">Recruit</p>
+      <h2 class="h1 video-section__heading" data-reveal data-jp="一緒に、世界初を作りませんか。" data-en="Let's build the world's first, together.">一緒に、世界初を作りませんか。</h2>
+      <p class="video-section__body" data-reveal data-jp="誰も解いていない問題がある。それがemblemのフィールドです。" data-en="There are problems no one has solved yet. That is emblem's field.">誰も解いていない問題がある。それがemblemのフィールドです。</p>
+      <a href="recruit.html" class="btn btn--ghost-white" data-reveal>
         <span data-jp="Join the mission →" data-en="Join the mission →">Join the mission →</span>
       </a>
     </div>
@@ -506,5 +530,6 @@
 
   <script src="js/tech.js?v=4"></script>
   <script src="js/main.js?v=19"></script>
+  <script src="js/polish.js?v=1"></script>
 </body>
 </html>

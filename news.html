@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="icon" type="image/png" href="assets/images/favicon-32.png?v=1">
   <title>News — emblem | 実績・ニュース</title>
   <meta name="description" content="emblemのニュースとJAXAスタートアップとしての実績。ウェアラブル飛行技術（ジェットパック）の開発で、NEDO採択、ブータン・モザンビーク政府との連携、加賀市との包括協定など。">
@@ -35,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=75">
+  <link rel="stylesheet" href="css/style.css?v=77">
 </head>
 <body>
 
@@ -82,9 +83,9 @@
 
   <!-- PAGE HEADER -->
   <div class="page-header">
-    <div class="container">
-      <p class="caption page-header__label" data-jp="実績・ニュース" data-en="News & Achievements">実績・ニュース</p>
-      <h1 class="h1 page-header__title" data-jp="実績・ニュース" data-en="News & Achievements">実績・ニュース</h1>
+    <div class="container" data-reveal-group>
+      <p class="caption page-header__label" data-reveal data-jp="実績・ニュース" data-en="News & Achievements">実績・ニュース</p>
+      <h1 class="h1 page-header__title" data-reveal data-jp="実績・ニュース" data-en="News & Achievements">実績・ニュース</h1>
     </div>
   </div>
 
@@ -203,6 +204,24 @@
         </a>
         -->
 
+        <!-- 人とくるまのテクノロジー展 2026 NAGOYA -->
+        <a href="news/nagoya-2026.html" class="news-card-full fade-in" data-category="イベント">
+          <div class="news-card-full__img news-card-full__img--white">
+            <img src="assets/images/nagoya_exhib.jpg" alt="人とくるまのテクノロジー展 2026 NAGOYA">
+          </div>
+          <div class="news-card-full__body">
+            <div class="news-card-full__meta">
+              <span class="news-card-full__date"
+                    data-jp="2026年6月" data-en="Jun 2026">2026年6月</span>
+              <span class="news-card-full__badge"
+                    data-jp="イベント" data-en="Event">イベント</span>
+            </div>
+            <p class="news-card-full__title"
+               data-jp="「人とくるまのテクノロジー展 2026 NAGOYA」に出展。飛行試験で使用した実機を展示します。"
+               data-en="Exhibiting at Automotive Engineering Exposition 2026 Nagoya. The actual aircraft used in our flight tests will be on display.">「人とくるまのテクノロジー展 2026 NAGOYA」に出展。飛行試験で使用した実機を展示します。</p>
+          </div>
+        </a>
+
         <!-- 「空への一歩」プロジェクト報告会 -->
         <a href="news/kaga-report.html" class="news-card-full fade-in" data-category="イベント">
           <div class="news-card-full__img news-card-full__img--photo">
@@ -306,6 +325,7 @@
 
 
   <script src="js/main.js?v=17"></script>
+  <script src="js/polish.js?v=1"></script>
   <script>
     document.querySelectorAll('.filter-tab').forEach(tab => {
       tab.addEventListener('click', () => {

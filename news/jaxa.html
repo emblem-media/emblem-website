@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="icon" type="image/png" href="../assets/images/favicon-32.png?v=1">
   <title>JAXAスタートアップ認定 — emblem News</title>
   <meta name="description" content="宇宙航空研究開発機構（JAXA）のスタートアップ認定プログラムに認定されました。">
@@ -12,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=75">
+  <link rel="stylesheet" href="../css/style.css?v=77">
 </head>
 <body>
 
@@ -59,15 +60,13 @@
 
     <div class="news-detail__header">
       <div class="container">
-        <a href="../news.html" class="news-detail__back"
-           data-jp="← News 一覧に戻る" data-en="← Back to News">← News 一覧に戻る</a>
-        <div class="news-detail__meta">
+        <div class="news-detail__meta" data-reveal style="--i:1">
           <span class="news-detail__date"
                 data-jp="2024年10月" data-en="Oct 2024">2024年10月</span>
           <span class="news-detail__badge"
                 data-jp="認定" data-en="Award / Certified">認定</span>
         </div>
-        <h1 class="news-detail__title"
+        <h1 class="news-detail__title" data-reveal style="--i:2"
             data-jp="JAXAスタートアップ認定。航空技術部門から2社目。"
             data-en="Certified as a JAXA Startup. Second company from the aviation technology division.">JAXAスタートアップ認定。航空技術部門から2社目。</h1>
       </div>
@@ -77,19 +76,24 @@
       <div class="container">
 
         <!-- 説明文: 後から追加可能。空の場合はそのままにする -->
-        <p class="news-detail__text"
+        <p class="news-detail__text" data-reveal style="--i:3"
            data-jp="宇宙航空研究開発機構（JAXA）のスタートアップ認定プログラムに認定された。航空技術部門からの認定は2社目。ウェアラブル飛行技術の実用化に向けたJAXAとの連携が正式に始動した。"
            data-en="Certified under JAXA's startup recognition program. emblem is the second company to receive certification from the aviation technology division. This marks the official start of collaboration with JAXA toward the practical application of wearable flight technology.">宇宙航空研究開発機構（JAXA）のスタートアップ認定プログラムに認定された。航空技術部門からの認定は2社目。ウェアラブル飛行技術の実用化に向けたJAXAとの連携が正式に始動した。</p>
 
         <!-- 外部リンク: 後から追加可能。hrefが空の場合は display:none で非表示 -->
         <a href=""
            target="_blank" rel="noopener noreferrer"
-           class="news-detail__link"
+           class="news-detail__link" data-reveal style="--i:4"
            data-jp="記事を読む ↗" data-en="Read Article ↗">記事を読む ↗</a>
 
         <!-- 写真: 後から追加可能。srcが空の場合は display:none で非表示 -->
-        <div class="news-detail__photo">
+        <div class="news-detail__photo" data-reveal style="--i:5">
           <img src="../assets/images/jaxa_startup_logo.png" alt="JAXAスタートアップ">
+        </div>
+
+        <div class="news-detail__back-wrap">
+          <a href="../news.html" class="news-detail__back news-detail__back--bottom"
+             data-jp="← News 一覧に戻る" data-en="← Back to News">← News 一覧に戻る</a>
         </div>
 
       </div>
@@ -137,5 +141,6 @@
   </footer>
 
   <script src="../js/main.js?v=19"></script>
+  <script src="../js/polish.js?v=1"></script>
 </body>
 </html>

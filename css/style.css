@@ -3074,3 +3074,516 @@ a.news-card-full:hover { background: var(--stone-50); }
   .display { font-size: clamp(32px, 8vw, 48px); }
 }
 
+/* ============================================================
+   ============================================================
+   REFINEMENT LAYER (v2) — "Cinematic Precision"
+   既存の世界観（余白・モノクローム・動画ヒーロー・JP/EN）は維持したまま、
+   タイポグラフィ／モーション／質感を一段引き上げる上書きレイヤー。
+   このブロックはファイル末尾に置くことで確実に最後に適用される。
+   ============================================================
+   ============================================================ */
+
+:root {
+  /* イージング */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft:      cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* シャドウ（紙のように軽く、温かみのある黒） */
+  --shadow-sm: 0 1px 2px rgba(20,19,16,.05), 0 2px 6px rgba(20,19,16,.05);
+  --shadow-md: 0 6px 16px rgba(20,19,16,.07), 0 16px 40px rgba(20,19,16,.08);
+  --shadow-lg: 0 10px 24px rgba(20,19,16,.10), 0 28px 60px rgba(20,19,16,.14);
+
+  /* モーション尺 */
+  --dur-1: .45s; --dur-2: .7s; --dur-3: 1s;
+}
+
+/* ---------- グローバルの質感 ---------- */
+html { -webkit-text-size-adjust: 100%; }
+body {
+  /* 日本語の約物アキを詰めて欧文と混植したときの間延びを抑える */
+  font-feature-settings: "palt" 1, "kern" 1;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* テキスト選択色 */
+::selection { background: rgba(26,26,26,.92); color: #fff; }
+.section--dark ::selection,
+.hero ::selection,
+.footer ::selection { background: rgba(255,255,255,.9); color: #111; }
+
+/* フォーカスリング（キーボード操作時のみ） */
+:focus-visible {
+  outline: 2px solid rgba(26,26,26,.55);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.hero :focus-visible,
+.section--dark :focus-visible,
+.home-tech-full :focus-visible,
+.video-section :focus-visible { outline-color: rgba(255,255,255,.8); }
+
+/* 薄いスクロールバー（対応ブラウザのみ・通常フローのページ） */
+body:not(.home-page):not(.tech-page) { scrollbar-width: thin; scrollbar-color: var(--stone-400) transparent; }
+body:not(.home-page):not(.tech-page)::-webkit-scrollbar { width: 10px; }
+body:not(.home-page):not(.tech-page)::-webkit-scrollbar-thumb {
+  background: var(--stone-200); border-radius: 999px; border: 3px solid var(--white);
+}
+body:not(.home-page):not(.tech-page)::-webkit-scrollbar-thumb:hover { background: var(--stone-400); }
+
+/* ============================================================
+   スクロールリビール（[data-reveal]）
+   head のインラインで <html class="js"> を付与し、
+   JS無効時はコンテンツが必ず見える状態を保証する。
+   ============================================================ */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity var(--dur-2) var(--ease-out-expo),
+    transform var(--dur-2) var(--ease-out-expo),
+    filter var(--dur-2) var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * 90ms);
+  will-change: opacity, transform;
+}
+html.js [data-reveal="fade"]  { transform: none; }
+html.js [data-reveal="left"]  { transform: translateX(-30px); }
+html.js [data-reveal="right"] { transform: translateX(30px); }
+html.js [data-reveal="scale"] { transform: scale(.965); }
+html.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* 既存 .fade-in のイージング/距離も上質化（マークアップ変更不要） */
+.fade-in {
+  transform: translateY(24px);
+  transition:
+    opacity var(--dur-2) var(--ease-out-expo),
+    transform var(--dur-2) var(--ease-out-expo);
+}
+
+/* ============================================================
+   NAV — フロスト化＋アンダーライン＋スクロール進捗
+   ============================================================ */
+.nav {
+  transition:
+    transform 420ms var(--ease-out-quint),
+    opacity 300ms ease,
+    background 500ms ease,
+    backdrop-filter 500ms ease,
+    border-color 500ms ease,
+    height 400ms var(--ease-out-quint);
+  border-bottom: 1px solid transparent;
+  background: transparent; /* スクリムは ::before に分離（枠内グラデの下端=線を無くす） */
+}
+
+/* ナビ可読性スクリム：64pxのナビ枠を超えて 140px までゆるやかにフェードさせる。
+   枠内で完結する従来グラデは下端が“線”に見えたため、枠外まで伸ばして
+   どの背景でもエッジが生じないようにする。 */
+.nav::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 140px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.32) 22%,
+    rgba(0, 0, 0, 0.14) 52%,
+    rgba(0, 0, 0, 0.04) 78%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  transition: opacity 500ms ease;
+}
+/* スクロール時はフロストバーが可読性を担うのでスクリムは消す */
+.nav--scrolled::before { opacity: 0; }
+.nav--scrolled {
+  background: rgba(17,17,17,.62);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  backdrop-filter: blur(16px) saturate(1.3);
+  border-bottom-color: rgba(255,255,255,.08);
+}
+
+/* ロゴの微ホバー */
+.nav__logo img { transition: opacity var(--transition-fast), transform var(--transition-fast); }
+.nav__logo:hover img { opacity: .82; }
+
+/* ナビリンクのアニメーション下線 */
+.nav__links .nav__link { position: relative; padding-bottom: 2px; }
+.nav__links .nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 360ms var(--ease-out-expo);
+}
+.nav__links .nav__link:hover::after,
+.nav__links .nav__link--active::after { transform: scaleX(1); transform-origin: left; }
+
+/* スクロール進捗バー（JSが幅を制御） */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  z-index: 1100;
+  pointer-events: none;
+  background: transparent;
+}
+.scroll-progress > i {
+  display: block;
+  height: 100%;
+  width: var(--p, 0%);
+  background: linear-gradient(90deg, rgba(255,255,255,.35), rgba(255,255,255,.9));
+  transition: width 120ms linear;
+}
+/* 明るい背景のページ（news/recruit等）では濃色のバーに */
+body:not(.home-page):not(.tech-page) .scroll-progress > i {
+  background: linear-gradient(90deg, rgba(26,26,26,.35), rgba(26,26,26,.9));
+}
+
+/* モバイルオーバーレイ：フェード＋リンクのスタッガー */
+.nav__overlay {
+  background: rgba(247,246,243,.94);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  transition: opacity 360ms var(--ease-out-expo);
+}
+.nav__overlay.open { opacity: 1; }
+.nav__overlay .nav__link {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 480ms var(--ease-out-expo), transform 480ms var(--ease-out-expo);
+}
+.nav__overlay.open .nav__link { opacity: 1; transform: none; }
+.nav__overlay.open .nav__link:nth-child(1){ transition-delay: 60ms; }
+.nav__overlay.open .nav__link:nth-child(2){ transition-delay: 110ms; }
+.nav__overlay.open .nav__link:nth-child(3){ transition-delay: 160ms; }
+.nav__overlay.open .nav__link:nth-child(4){ transition-delay: 210ms; }
+.nav__overlay.open .nav__link:nth-child(5){ transition-delay: 260ms; }
+.nav__overlay.open .nav__right { transition: opacity 480ms var(--ease-out-expo) 320ms; opacity: 1; }
+.nav__overlay .nav__right { opacity: 0; }
+
+/* ============================================================
+   BUTTONS & LINKS — マイクロインタラクション
+   ============================================================ */
+.btn {
+  position: relative;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform 320ms var(--ease-out-expo),
+    box-shadow 320ms var(--ease-out-expo);
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn--primary:hover { box-shadow: var(--shadow-md); }
+
+/* 矢印つきリンク：ホバーで矢印がにじり出る */
+.hero__read-more,
+.home-tech-full__btn,
+.hnj__updates-viewall,
+.htg-btn,
+.news-card-full__external-link {
+  transition:
+    background 220ms ease, color 220ms ease, border-color 220ms ease,
+    transform 320ms var(--ease-out-expo), box-shadow 320ms var(--ease-out-expo);
+}
+.hero__read-more:hover,
+.home-tech-full__btn:hover { transform: translateY(-1px); }
+
+/* ============================================================
+   HERO — シネマティック化（入場アニメ＋粒子＋ヴィネット）
+   ============================================================ */
+/* 動画をゆっくりズームインさせて“生きている”質感に */
+.hero__video {
+  transform: scale(1.06);
+  animation: heroKenBurns 14s var(--ease-soft) forwards;
+}
+@keyframes heroKenBurns {
+  0%   { transform: scale(1.08); }
+  100% { transform: scale(1.0); }
+}
+
+/* オーバーレイを深く：下からの可読グラデ＋四隅ヴィネット */
+.hero--home .hero__overlay,
+.hero--sub .hero__overlay {
+  background:
+    radial-gradient(120% 90% at 50% 18%, rgba(0,0,0,0) 40%, rgba(0,0,0,.28) 100%),
+    linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.28) 38%, rgba(0,0,0,0) 70%);
+}
+
+/* 微細なフィルムグレイン */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* タイトルを少し大きく・凛と。bottom-left の構図は維持 */
+.hero__title-new {
+  font-size: clamp(2.15rem, 5.4vw, 4.4rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin-bottom: 14px;
+  text-wrap: balance;
+}
+.hero__sub-jp, .hero__sub-en {
+  font-size: clamp(13px, 1.15vw, 15.5px);
+  color: rgba(255,255,255,.72);
+}
+
+/* 入場アニメーション（body.is-loaded で発火・JS有効時のみ隠す） */
+html.js .hero--home .hero__title-new,
+html.js .hero--home .hero__sub-jp,
+html.js .hero--home .hero__sub-en,
+html.js .hero--home .hero__read-more,
+html.js .hero--sub .hero__title {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(6px);
+  transition:
+    opacity 1s var(--ease-out-expo),
+    transform 1s var(--ease-out-expo),
+    filter 1s var(--ease-out-expo);
+}
+body.is-loaded .hero--home .hero__title-new,
+body.is-loaded .hero--home .hero__sub-jp,
+body.is-loaded .hero--home .hero__sub-en,
+body.is-loaded .hero--home .hero__read-more,
+body.is-loaded .hero--sub .hero__title {
+  opacity: 1; transform: none; filter: none;
+}
+body.is-loaded .hero--home .hero__title-new { transition-delay: .15s; }
+body.is-loaded .hero--home .hero__sub-jp,
+body.is-loaded .hero--home .hero__sub-en { transition-delay: .38s; }
+body.is-loaded .hero--home .hero__read-more { transition-delay: .54s; }
+
+/* スクロールキュー（縦方向・下中央。サイト既存のインジケータと統一） */
+.hero__scroll-cue {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.45);
+  font-size: 9px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 1s var(--ease-out-expo) .8s, color .3s ease;
+}
+body.is-loaded .hero__scroll-cue { opacity: 1; }
+.hero__scroll-cue:hover { color: rgba(255,255,255,.85); }
+.hero__scroll-cue::after {
+  content: "";
+  width: 1px; height: 28px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.55), rgba(255,255,255,0));
+  animation: cueDown 2.2s var(--ease-soft) infinite;
+}
+@keyframes cueDown {
+  0%   { transform: translateY(-6px); opacity: .25; }
+  50%  { transform: translateY(4px);  opacity: 1; }
+  100% { transform: translateY(-6px); opacity: .25; }
+}
+@media (max-width: 768px) { .hero__scroll-cue { display: none; } }
+
+/* ============================================================
+   HOME — Technology フルスクリーンの仕上げ
+   ============================================================ */
+.home-tech-full__media {
+  transform: scale(1.04);
+  transition: transform 6s var(--ease-soft);
+}
+.home-tech-full__eyebrow {
+  font-weight: 600;
+  letter-spacing: .26em;
+  font-size: 12px;
+  color: rgba(255,255,255,.62);
+}
+.home-tech-full__title {
+  font-size: clamp(28px, 4vw, 46px);
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+}
+@media (max-width: 768px){ .home-tech-full__eyebrow{ font-size: 11px; } }
+
+/* ============================================================
+   HOME — News（Milestones / Updates）カードの上質化
+   ============================================================ */
+.hnj__title { letter-spacing: -0.02em; font-weight: 600; }
+.hnj__sec-label { font-size: 12px; letter-spacing: .26em; font-weight: 600; }
+.hnj__updates-label { font-size: 12px; letter-spacing: .26em; }
+
+/* Milestone カード */
+.hnj__ms-card {
+  border: 0.5px solid var(--stone-200);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 420ms var(--ease-out-expo),
+    box-shadow 420ms var(--ease-out-expo),
+    border-color 420ms var(--ease-out-expo),
+    opacity 200ms ease;
+}
+.hnj__ms-card:hover {
+  opacity: 1;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--stone-400);
+}
+.hnj__ms-img img { transition: transform 800ms var(--ease-out-expo); }
+.hnj__ms-card:hover .hnj__ms-img img { transform: scale(1.045); }
+.hnj__ms-badge { letter-spacing: .08em; }
+
+/* Updates 1件：矢印スライド＋左の細いアクセント */
+.hnj__update-item { position: relative; }
+.hnj__update-item::before {
+  content: "";
+  position: absolute; left: 0; top: 14px; bottom: 14px;
+  width: 2px; background: var(--ink);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 360ms var(--ease-out-expo);
+}
+.hnj__update-item:hover::before { transform: scaleY(1); }
+.hnj__update-item:hover { background: #fff; padding-left: 22px; }
+.hnj__update-item { transition: background 220ms ease, padding-left 320ms var(--ease-out-expo); }
+.hnj__update-thumb img { transition: transform 700ms var(--ease-out-expo); }
+.hnj__update-item:hover .hnj__update-thumb img { transform: scale(1.07); }
+.hnj__update-arr { transition: transform 320ms var(--ease-out-expo), color 220ms ease; }
+.hnj__update-item:hover .hnj__update-arr { transform: translateX(4px); color: var(--ink); }
+
+/* マイルストーンカードの上下余白だけを詰める（カードサイズは従来のまま）。
+   デスクトップ・モバイル両方。特にモバイルは Updates 側の上パディングが
+   大きく、カード下に余白が出ていたのを縮める。 */
+.home-news-section .hnj__cards { padding-bottom: 4px; }
+.home-news-section .hnj__updates-outer { padding-top: 6px; }
+
+@media (max-width: 768px) {
+  .home-news-section .hnj__sec-label--dark { padding-top: 2px; padding-bottom: 2px; }
+  .home-news-section .hnj__cards { padding-top: 4px; padding-bottom: 8px; }
+  /* 70px → 34px：UPDATES ラベル(absolute / top:8・高さ約21px)の直下まで詰める */
+  .home-news-section .hnj__updates-outer { padding-top: 34px; }
+}
+
+/* ============================================================
+   HOME — Recruit CTA の仕上げ
+   ============================================================ */
+.video-section__bg { transform: scale(1.03); }
+.home-recruit__eyebrow { letter-spacing: .26em; font-size: 12px; font-weight: 600; }
+.video-section__heading { letter-spacing: -0.02em; }
+
+/* ============================================================
+   TECHNOLOGY ページ
+   ============================================================ */
+.tech-sec__num { letter-spacing: .26em; font-size: 12px; font-weight: 600; color: rgba(255,255,255,.62); }
+.tech-sec__title { letter-spacing: -0.03em; line-height: 1.04; }
+.tech-nav-dot { transition: background 300ms ease, transform 300ms var(--ease-out-expo), box-shadow .3s ease; }
+.tech-nav-dot.active { box-shadow: 0 0 0 4px rgba(255,255,255,.12); }
+
+/* ============================================================
+   MISSION ページ — エディトリアルに整える
+   ============================================================ */
+.mission-eyebrow { letter-spacing: .26em; font-weight: 600; }
+.mission-title {
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  font-weight: 500;
+  text-wrap: balance;
+}
+.mission-bg__video { transform: scale(1.04); animation: heroKenBurns 16s var(--ease-soft) forwards; }
+/* 各文がもっとゆっくり・間を置いて立ち上がるように（duration長め＋stagger広め） */
+html.js .mission-content [data-reveal] {
+  transition-duration: 1.25s;
+  transition-delay: calc(var(--i, 0) * 280ms);
+}
+
+/* ============================================================
+   NEWS ページ
+   ============================================================ */
+.page-header__title { letter-spacing: -0.02em; }
+.filter-tab { transition: background 260ms var(--ease-out-expo), color 260ms ease, border-color 260ms ease, transform 260ms var(--ease-out-expo); }
+.filter-tab:hover { transform: translateY(-1px); }
+
+.news-ms-card { border-radius: var(--radius-card); transition: background var(--transition-fast), transform 360ms var(--ease-out-expo), box-shadow 360ms var(--ease-out-expo); }
+.news-ms-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.news-ms-card__img img { transition: transform 700ms var(--ease-out-expo); }
+.news-ms-card:hover .news-ms-card__img--photo img { transform: scale(1.05); }
+.news-ms-card__arr, .news-card-full__title { transition: transform 320ms var(--ease-out-expo); }
+.news-ms-card:hover .news-ms-card__arr { transform: translateX(4px); }
+
+.news-card-full__img img { transition: transform 700ms var(--ease-out-expo); }
+.news-card-full:hover .news-card-full__img--photo img { transform: scale(1.05); }
+
+/* ニュース個別ページ：「News一覧に戻る」を写真の左下（記事下部）へ。
+   写真と同じ 720px 幅・中央寄せのラッパー内で左寄せにし、左端を写真と揃える。 */
+.news-detail__back-wrap { max-width: 720px; margin: 44px auto 0; }
+.news-detail__back--bottom { width: auto; margin: 0; }
+
+/* ============================================================
+   RECRUIT ページ — roles / form
+   ============================================================ */
+/* role-item はクリック不可のため、ホバーで見た目を変えない（誤認防止） */
+
+.chip { transition: all 220ms var(--ease-out-expo); }
+.chip:hover { border-color: rgba(255,255,255,.5); color: rgba(255,255,255,.9); transform: translateY(-1px); }
+.form-input, .form-select, .form-textarea {
+  transition: border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+.form-input:hover, .form-select:hover, .form-textarea:hover { border-color: rgba(255,255,255,.28); }
+
+/* ============================================================
+   FOOTER — 上部ヘアライン＋リンクの下線
+   ============================================================ */
+.footer { position: relative; }
+.footer::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.14) 20%, rgba(255,255,255,.14) 80%, transparent);
+}
+.footer__logo { letter-spacing: .06em; text-transform: none; }
+.footer__link { position: relative; }
+.footer__link::after {
+  content: ""; position: absolute; left: 0; bottom: -2px; width: 100%; height: 1px;
+  background: currentColor; transform: scaleX(0); transform-origin: right;
+  transition: transform 320ms var(--ease-out-expo);
+}
+.footer__link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* ============================================================
+   prefers-reduced-motion 対応：すべての装飾モーションを無効化
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  html.js [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .hero--home .hero__title-new,
+  .hero--home .hero__sub-jp,
+  .hero--home .hero__sub-en,
+  .hero--home .hero__read-more,
+  .hero--sub .hero__title { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .hero__video, .home-tech-full__media, .video-section__bg, .mission-bg__video { transform: none !important; }
+}
+

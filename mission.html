@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="icon" type="image/png" href="assets/images/favicon-32.png?v=1">
   <title>Mission — emblem | Our Mission</title>
   <meta name="description" content="emblemのミッション。ウェアラブル飛行技術（ジェットパック／ジェットスーツ）で最前線のヒーローたちに飛ぶ力を。地に縛られた世界を変える、日本発・JAXAスタートアップの思想。">
@@ -35,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=75">
+  <link rel="stylesheet" href="css/style.css?v=77">
 </head>
 <body>
 
@@ -93,34 +94,34 @@
     </div>
 
     <!-- コンテンツ -->
-    <div class="mission-content">
+    <div class="mission-content" data-reveal-group>
 
-      <p class="mission-eyebrow"
+      <p class="mission-eyebrow" data-reveal
          data-jp="Our Mission" data-en="Our Mission">Our Mission</p>
 
-      <h1 class="mission-title"
+      <h1 class="mission-title" data-reveal
           data-jp="ヒトが空を飛ぶ未来" data-en="The Future of Human Flight">ヒトが空を飛ぶ未来</h1>
 
-      <div class="mission-divider"></div>
+      <div class="mission-divider" data-reveal="left"></div>
 
       <div class="mission-body">
 
-        <p data-jp="私たちの世界は、地上を歩く人間によって形づくられてきました。"
+        <p data-reveal data-jp="私たちの世界は、地上を歩く人間によって形づくられてきました。"
            data-en="This human world was built by creatures bound to the ground.">私たちの世界は、地上を歩く人間によって形づくられてきました。</p>
 
-        <p data-jp="人の移動能力の限界は、暮らし方や働き方、そして「できること」の境界を決めてきました。"
+        <p data-reveal data-jp="人の移動能力の限界は、暮らし方や働き方、そして「できること」の境界を決めてきました。"
            data-en="For centuries, the limits of human movement have shaped how we live, work, and imagine what is possible.">人の移動能力の限界は、暮らし方や働き方、そして「できること」の境界を決めてきました。</p>
 
-        <p data-jp="私たちemblemは、その前提を変えたいと考えています。"
+        <p data-reveal data-jp="私たちemblemは、その前提を変えたいと考えています。"
            data-en="At emblem, we believe those limits can change.">私たちemblemは、その前提を変えたいと考えています。</p>
 
-        <p data-jp="私たちが挑戦するのは、人が身に着けて飛ぶ「ウェアラブル飛行技術」です。"
+        <p data-reveal data-jp="私たちが挑戦するのは、人が身に着けて飛ぶ「ウェアラブル飛行技術」です。"
            data-en="We are pioneering wearable flight technology—an extension of the human body that enables people to move through the world in an entirely new way.">私たちが挑戦するのは、人が身に着けて飛ぶ「ウェアラブル飛行技術」です。</p>
 
-        <p data-jp="それは単なる移動手段ではありません。"
+        <p data-reveal data-jp="それは単なる移動手段ではありません。"
            data-en="Flight is not merely a means of transportation.">それは単なる移動手段ではありません。</p>
 
-        <p data-jp="人と空間との関係そのものを変える、新しい身体能力です。人が空を飛ぶ未来は、移動のあり方だけでなく、世界の見え方そのものを変えていくと信じています。"
+        <p data-reveal data-jp="人と空間との関係そのものを変える、新しい身体能力です。人が空を飛ぶ未来は、移動のあり方だけでなく、世界の見え方そのものを変えていくと信じています。"
            data-en="It is a new relationship between people and space. A future where humans can fly will not simply change how we move. It will change how we see the world.">人と空間との関係そのものを変える、新しい身体能力です。人が空を飛ぶ未来は、移動のあり方だけでなく、世界の見え方そのものを変えていくと信じています。</p>
 
       </div>
@@ -169,5 +170,6 @@
   </footer>
 
   <script src="js/main.js?v=19"></script>
+  <script src="js/polish.js?v=1"></script>
 </body>
 </html>
