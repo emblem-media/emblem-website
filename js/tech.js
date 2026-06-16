@@ -94,8 +94,14 @@ const TECH_ENTRIES = [
     is_planned: false,
     media: {
       type: 'photo',
+      // src は単一表示時のフォールバック。srcs（2枚以上）を指定すると
+      // 時間で自動クロスフェードするスライドショーになる（ズームアニメは維持）。
       src: 'assets/images/truss_image.jpg',
-      alt: '加賀市試験フィールド 上空からの俯瞰写真'
+      srcs: [
+        'assets/images/truss_image.jpg',
+        'assets/images/field_image.jpeg'
+      ],
+      alt: '加賀市の試験フィールドの写真'
     },
     date_jp: 'October 2025',
     date_en: 'October 2025',
@@ -257,6 +263,16 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
                  preload="metadata" aria-hidden="true">
             <source src="${entry.media.src}" type="video/mp4">
           </video>`;
+      } else if (entry.media.srcs && entry.media.srcs.length > 1) {
+        /* 複数画像：時間で自動クロスフェード（各画像にズームアニメ） */
+        const loading = index === 0 ? 'eager' : 'lazy';
+        mediaHTML = `
+          <div class="tech-sec__slideshow" aria-hidden="true">
+            ${entry.media.srcs.map((s, i) =>
+              `<img class="tech-slide${i === 0 ? '' : ' tech-slide--over'}"
+                    src="${s}" alt="${entry.media.alt}" loading="${loading}">`
+            ).join('')}
+          </div>`;
       } else {
         mediaHTML = `
           <img class="tech-sec__media" src="${entry.media.src}"

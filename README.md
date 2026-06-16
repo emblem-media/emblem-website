@@ -225,7 +225,7 @@ const SHOW_MISSION = true;  // false にするとMissionページ・リンクが
 ディレクトリ（cd ...）は各自の設定に変更する。
 
 ```bash
-cd ~/Desktop/emblem/homepage
+cd ~/Desktop/emblem/xxx
 git checkout main
 git add .
 git commit -m "変更内容"
@@ -242,7 +242,7 @@ GitHub Pagesで確認完了後、上の方法でpush。そして`main` の内容
 
 ```bash
 
-cd ~/Desktop/emblem/homepage
+cd ~/Desktop/emblem/xxx
 git checkout production
 git pull origin production
 git merge main
