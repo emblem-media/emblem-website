@@ -94,13 +94,7 @@ const TECH_ENTRIES = [
     is_planned: false,
     media: {
       type: 'photo',
-      // src は単一表示時のフォールバック。srcs（2枚以上）を指定すると
-      // 時間で自動クロスフェードするスライドショーになる（ズームアニメは維持）。
-      src: 'assets/images/truss_image.jpg',
-      srcs: [
-        'assets/images/truss_image.jpg',
-        'assets/images/field_image.jpeg'
-      ],
+      src: 'assets/images/field_image.jpeg',
       alt: '加賀市の試験フィールドの写真'
     },
     date_jp: 'October 2025',
