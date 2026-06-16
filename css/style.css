@@ -1913,6 +1913,31 @@ body.home-page {
   animation: htg-zoom 18s ease-in-out infinite alternate;
 }
 
+/* モバイルでは 01 の画像は右側を見せる（デスクトップは中央のまま） */
+@media (max-width: 768px) {
+  .tech-sec[data-index="0"] .tech-sec__media {
+    object-position: 85% center;
+  }
+
+  /* モバイルの 01 だけ、文字ブロックを下→上にまとめて移動 */
+  .tech-sec[data-index="0"] {
+    align-items: flex-start;
+  }
+  .tech-sec[data-index="0"] .tech-sec__content {
+    padding: 100px 24px 0;
+  }
+  /* 文字が上に来るので、オーバーレイも上を濃くする（可読性確保） */
+  .tech-sec[data-index="0"] .tech-sec__overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.88) 0%,
+      rgba(0,0,0,0.55) 35%,
+      rgba(0,0,0,0.15) 65%,
+      rgba(0,0,0,0.05) 100%
+    );
+  }
+}
+
 /* ── プレースホルダー ── */
 .tech-sec__placeholder {
   position: absolute;
