@@ -146,7 +146,6 @@ We are exploring what it means to create a body that can fly naturally.
 That journey begins here.`,
     link: null
   }
-  /*
   ,
   {
     id: 'hands',
@@ -155,7 +154,7 @@ That journey begins here.`,
     is_planned: false,
     media: {
       type: 'video',
-      src: null,
+      src: 'assets/videos/handsfree.mp4',
       alt: 'ハンズフリーホバリング映像'
     },
     date_jp: 'May 2026',
@@ -176,7 +175,9 @@ Hands-free flight is one step in that direction.
 It is not simply an advance in flight technology.
 It is an advance in human freedom.`,
     link: null
-  },
+  }
+/*
+  ,
   {
     id: 'vision',
     num: 'NEXT UP',
