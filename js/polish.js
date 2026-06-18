@@ -117,10 +117,126 @@
     if (!cue) return;
     cue.addEventListener('click', function (e) {
       e.preventDefault();
-      var amount = scroller ? scroller.clientHeight : window.innerHeight;
-      if (scroller) scroller.scrollTo({ top: amount, behavior: 'smooth' });
-      else window.scrollTo({ top: amount, behavior: 'smooth' });
+      /* デスクトップはスムーズページャー、それ以外はネイティブのsmoothスクロール */
+      if (smoothSnap.active) {
+        smoothSnap.toIndex(smoothSnap.currentIndex() + 1);
+      } else {
+        var amount = scroller ? scroller.clientHeight : window.innerHeight;
+        if (scroller) scroller.scrollTo({ top: amount, behavior: 'smooth' });
+        else window.scrollTo({ top: amount, behavior: 'smooth' });
+      }
     });
+  })();
+
+  /* ============================================================
+     3.6 ホームのスムーズ・セクションスナップ（マウス/トラックパッド）
+     ------------------------------------------------------------
+     ネイティブの scroll-snap はスナップ速度を制御できず動きが急。
+     マウス/トラックパッド環境では native snap を無効化し、
+     1ホイール操作ごとに次/前のセクションへ自前でゆっくり移動する。
+     タッチ端末や reduce-motion はネイティブ挙動のまま。
+
+     ▼ スピード調整: SNAP_DURATION（ミリ秒）を変えるだけ。
+        大きいほどゆっくり・なめらか。
+     ============================================================ */
+  var smoothSnap = (function initSmoothSnap() {
+    var SNAP_DURATION = 1150; /* ← スナップ移動の所要時間(ms)。お好みで調整 */
+    var COOLDOWN = 120;       /* 連続発火を防ぐ待機(ms) */
+
+    var noop = { active: false, toIndex: function () {}, currentIndex: function () { return 0; } };
+    var container = homeContainer;
+    if (!container) return noop;
+
+    var finePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+    if (prefersReduced || !finePointer) return noop;
+
+    /* native snap を切って自前で制御。
+       scroll-behavior:smooth のままだと scrollTop 代入もブラウザ側で
+       スムーズ補間され、自前の rAF イージングと競合するので auto にする。 */
+    container.style.scrollSnapType = 'none';
+    container.style.scrollBehavior = 'auto';
+
+    var locked = false;
+
+    function snapPoints() {
+      var max = container.scrollHeight - container.clientHeight;
+      var pts = [];
+      [].slice.call(container.children).forEach(function (el) {
+        if (el.nodeType !== 1 || el.offsetHeight <= 0) return;
+        var top = Math.min(el.offsetTop, max);
+        if (pts.indexOf(top) === -1) pts.push(top);
+      });
+      pts.sort(function (a, b) { return a - b; });
+      return pts;
+    }
+
+    function nearestIndex(pts) {
+      var top = container.scrollTop, best = 0, bd = Infinity;
+      for (var i = 0; i < pts.length; i++) {
+        var d = Math.abs(pts[i] - top);
+        if (d < bd) { bd = d; best = i; }
+      }
+      return best;
+    }
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function animateTo(target, done) {
+      var start = container.scrollTop;
+      var dist = target - start;
+      if (Math.abs(dist) < 1) { if (done) done(); return; }
+      var t0 = performance.now();
+      (function step(now) {
+        var p = Math.min(1, (now - t0) / SNAP_DURATION);
+        container.scrollTop = start + dist * easeInOutCubic(p);
+        if (p < 1) requestAnimationFrame(step);
+        else if (done) done();
+      })(t0);
+    }
+
+    function toIndex(i) {
+      var pts = snapPoints();
+      var next = Math.max(0, Math.min(pts.length - 1, i));
+      if (Math.abs(container.scrollTop - pts[next]) < 1) return;
+      locked = true;
+      animateTo(pts[next], function () {
+        setTimeout(function () { locked = false; }, COOLDOWN);
+      });
+    }
+
+    /* イベント発生位置〜container の間に独自の縦スクロール領域
+       （例: News の Updates 一覧）があるか。あればその領域は
+       「独自スクロール専用ゾーン」とし、ページ送りは一切しない。
+       端での連鎖は CSS の overscroll-behavior:contain が抑止する。 */
+    function inInnerScroll(node) {
+      while (node && node !== container && node.nodeType === 1) {
+        if (node.scrollHeight > node.clientHeight + 1) {
+          var oy = getComputedStyle(node).overflowY;
+          if (oy === 'auto' || oy === 'scroll') return true;
+        }
+        node = node.parentNode;
+      }
+      return false;
+    }
+
+    container.addEventListener('wheel', function (e) {
+      /* 横方向ジェスチャー（Newsカルーセル等）はそのまま通す */
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (!e.deltaY) return;
+      /* 独自スクロール領域上ではネイティブスクロールのみ（snapしない） */
+      if (inInnerScroll(e.target)) return;
+      e.preventDefault();
+      if (locked) return;
+      toIndex(nearestIndex(snapPoints()) + (e.deltaY > 0 ? 1 : -1));
+    }, { passive: false });
+
+    return {
+      active: true,
+      toIndex: toIndex,
+      currentIndex: function () { return nearestIndex(snapPoints()); }
+    };
   })();
 
   /* ============================================================
