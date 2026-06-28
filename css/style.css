@@ -2331,6 +2331,52 @@ body.home-page {
   color: var(--stone-400);
 }
 
+/* ── 写真がないイベント告知用のデザインプレースホルダー ──
+   濃色タイルにイベント名を載せ、空白の画像枠に見えないようにする。
+   .hnj__update-thumb（64px）/ .news-card-full__img（140px）/
+   .news-detail__photo（バナー）の各サイズに自動でなじむ。 */
+.event-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 4px;
+  padding: 6px;
+  background: radial-gradient(125% 125% at 28% 18%, #2b2a28 0%, #1a1a1a 58%, #111 100%);
+  color: #fff;
+}
+.event-ph__name {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.02;
+  font-size: 11px;
+}
+.event-ph__sub {
+  font-size: 7px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+}
+/* ホームUpdatesのサムネ(64px)枠：はみ出さないよう小さめに */
+.hnj__update-thumb .event-ph { padding: 4px; gap: 2px; }
+.hnj__update-thumb .event-ph__name { font-size: 9px; letter-spacing: 0.01em; }
+.hnj__update-thumb .event-ph__sub  { font-size: 6px; letter-spacing: 0.16em; }
+/* Newsカード(140px)枠 */
+.news-card-full__img .event-ph__name { font-size: 18px; }
+.news-card-full__img .event-ph__sub  { font-size: 9px; }
+/* 詳細ページ photo 枠（横長バナー） */
+.news-detail__photo .event-ph {
+  aspect-ratio: 16 / 6;
+  min-height: 200px;
+  gap: 8px;
+}
+.news-detail__photo .event-ph__name { font-size: clamp(24px, 5vw, 38px); letter-spacing: 0.01em; }
+.news-detail__photo .event-ph__sub  { font-size: clamp(11px, 1.6vw, 14px); }
+
 .news-card-full__body { padding: 0; flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .news-card-full__meta { display: flex; align-items: center; gap: 8px; }
 .news-card-full__date { font-size: 12px; color: var(--stone-600); }
