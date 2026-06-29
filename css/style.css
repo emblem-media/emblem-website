@@ -427,6 +427,47 @@ h2, .h2 {
 .nav__overlay .lang-toggle__sep { color: var(--stone-400); }
 
 /* ============================================================
+   SNS リンク（X / Instagram）
+   ヘッダー：JP/EN の左 / オーバーレイ：JP/EN の右
+   フッター：デスクトップは中央上部、モバイルは emblem 直下
+   ============================================================ */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+.social-link svg { width: 17px; height: 17px; fill: currentColor; display: block; }
+
+.nav__social { display: inline-flex; align-items: center; gap: 14px; }
+
+/* ヘッダー（暗い背景に白アイコン） */
+.nav__inner .nav__social .social-link { color: rgba(255, 255, 255, 0.7); }
+.nav__inner .nav__social .social-link:hover { color: #fff; }
+
+/* モバイルオーバーレイ（明るい背景）：JP/EN と横並び */
+.nav__overlay-toprow { display: flex; align-items: center; gap: 18px; }
+.nav__overlay .nav__social .social-link { color: var(--stone-600); }
+.nav__overlay .nav__social .social-link:hover { color: var(--ink); }
+
+/* フッター上部・中央（デスクトップ） */
+.footer__social-bar { display: flex; justify-content: center; gap: 18px; padding-bottom: 28px; }
+.footer__social-bar .social-link { color: var(--stone-400); }
+.footer__social-bar .social-link:hover { color: #fff; }
+.footer__social-bar .social-link svg { width: 19px; height: 19px; }
+
+/* フッター・モバイル（emblem の下／ナビの上）。デスクトップでは非表示 */
+.footer__social-inline { display: none; gap: 16px; }
+.footer__social-inline .social-link { color: var(--stone-400); }
+.footer__social-inline .social-link:hover { color: #fff; }
+
+@media (max-width: 768px) {
+  .footer__social-bar { display: none; }
+  .footer__social-inline { display: flex; }
+}
+
+/* ============================================================
    HERO
    ============================================================ */
 .hero {
