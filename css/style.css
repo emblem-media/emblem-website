@@ -3042,6 +3042,12 @@ a.news-card-full:hover { background: var(--stone-50); }
 }
 .footer__center-link:hover { color: var(--white); }
 .footer__center-sep { font-size: 13px; color: var(--stone-700); }
+/* 会社住所（中央カラム内の Address 行） */
+.footer__address {
+  font-size: 12px;
+  color: var(--stone-400);
+  line-height: 1.65;
+}
 /* LinkedInアイコンリンク */
 .footer__li-link {
   display: inline-flex;
