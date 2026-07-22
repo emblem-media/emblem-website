@@ -129,26 +129,30 @@
   })();
 
   /* ============================================================
-     3.6 ホームのスムーズ・セクションスナップ（マウス/トラックパッド）
+     3.6 ホームのスムーズ・セクションスナップ
      ------------------------------------------------------------
      ネイティブの scroll-snap はスナップ速度を制御できず動きが急。
-     マウス/トラックパッド環境では native snap を無効化し、
-     1ホイール操作ごとに次/前のセクションへ自前でゆっくり移動する。
-     タッチ端末や reduce-motion はネイティブ挙動のまま。
+     native snap を無効化し、自前のイージングで次/前のセクションへ
+     ゆっくり移動する。
+     • マウス/トラックパッド: 1ホイール操作ごとにページ送り
+     • タッチ（モバイル）: 指に追従してドラッグ→離した時に
+       スワイプ方向のセクションへ PC と同じ速度でスナップ
+     reduce-motion はネイティブ挙動のまま。
 
      ▼ スピード調整: SNAP_DURATION（ミリ秒）を変えるだけ。
-        大きいほどゆっくり・なめらか。
+        大きいほどゆっくり・なめらか（PC・モバイル共通）。
      ============================================================ */
   var smoothSnap = (function initSmoothSnap() {
     var SNAP_DURATION = 1150; /* ← スナップ移動の所要時間(ms)。お好みで調整 */
     var COOLDOWN = 120;       /* 連続発火を防ぐ待機(ms) */
+    var SWIPE_DIST = 50;      /* ページ送り判定のドラッグ量(px) */
+    var SWIPE_VEL = 0.3;      /* ページ送り判定のスワイプ速度(px/ms) */
 
     var noop = { active: false, toIndex: function () {}, currentIndex: function () { return 0; } };
     var container = homeContainer;
     if (!container) return noop;
 
-    var finePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
-    if (prefersReduced || !finePointer) return noop;
+    if (prefersReduced) return noop;
 
     /* native snap を切って自前で制御。
        scroll-behavior:smooth のままだと scrollTop 代入もブラウザ側で
@@ -157,6 +161,8 @@
     container.style.scrollBehavior = 'auto';
 
     var locked = false;
+    /* タッチ開始でアニメーションを中断できるようにするトークン */
+    var animToken = 0;
 
     function snapPoints() {
       var max = container.scrollHeight - container.clientHeight;
@@ -183,27 +189,47 @@
       return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
 
-    function animateTo(target, done) {
+    /* v0(px/ms) 省略時: 通常のease-in-out（ホイール用）。
+       v0 指定時: 指を離した瞬間の速度を初速として引き継ぎ、
+       そのまま滑らかに減速して目標へ吸い付く（速度連続のHermite曲線）。
+       これにより「一瞬止まってから動き出す」違和感がなくなる。 */
+    function animateTo(target, done, v0) {
       var start = container.scrollTop;
       var dist = target - start;
       if (Math.abs(dist) < 1) { if (done) done(); return; }
       var t0 = performance.now();
+      var token = animToken; /* タッチ開始で中断される */
+
+      /* 正規化した初速（曲線の初期勾配）。0=静止スタート。
+         過大なフリック速度は 3 までにクランプ（行き過ぎ防止） */
+      var m0 = 0;
+      if (typeof v0 === 'number' && isFinite(v0)) {
+        m0 = Math.max(0, Math.min(3, v0 * SNAP_DURATION / dist));
+      }
+
+      function curve(t) {
+        if (m0 <= 0.01) return easeInOutCubic(t);
+        /* Hermite: h(0)=0, h(1)=1, h'(0)=m0, h'(1)=0 */
+        return m0 * (t * t * t - 2 * t * t + t) + (3 * t * t - 2 * t * t * t);
+      }
+
       (function step(now) {
+        if (token !== animToken) { locked = false; return; }
         var p = Math.min(1, (now - t0) / SNAP_DURATION);
-        container.scrollTop = start + dist * easeInOutCubic(p);
+        container.scrollTop = start + dist * curve(p);
         if (p < 1) requestAnimationFrame(step);
         else if (done) done();
       })(t0);
     }
 
-    function toIndex(i) {
+    function toIndex(i, v0) {
       var pts = snapPoints();
       var next = Math.max(0, Math.min(pts.length - 1, i));
       if (Math.abs(container.scrollTop - pts[next]) < 1) return;
       locked = true;
       animateTo(pts[next], function () {
         setTimeout(function () { locked = false; }, COOLDOWN);
-      });
+      }, v0);
     }
 
     /* イベント発生位置〜container の間に独自の縦スクロール領域
@@ -231,6 +257,69 @@
       if (locked) return;
       toIndex(nearestIndex(snapPoints()) + (e.deltaY > 0 ? 1 : -1));
     }, { passive: false });
+
+    /* ── タッチ（モバイル）: 指に追従→離した時にPCと同じ速度でスナップ ──
+       ネイティブの momentum + mandatory snap は急激で、描画が追いつかず
+       白いフラッシュ（チカチカ）の原因にもなるため、JS で制御する。 */
+    var tTracking = false;  /* このスワイプをJSが制御中か */
+    var tNative = false;    /* このスワイプはネイティブに任せるか */
+    var tStartX = 0, tStartY = 0, tStartTop = 0, tOriginIdx = 0;
+    var tLastY = 0, tLastT = 0, tVel = 0;
+
+    container.addEventListener('touchstart', function (e) {
+      if (e.touches.length !== 1) { tTracking = false; tNative = true; return; }
+      animToken++;            /* 進行中のスナップアニメを中断して指を優先 */
+      locked = false;
+      var t = e.touches[0];
+      tStartX = t.clientX;
+      tStartY = t.clientY;
+      tLastY = t.clientY;
+      tLastT = performance.now();
+      tVel = 0;
+      tStartTop = container.scrollTop;
+      tOriginIdx = nearestIndex(snapPoints());
+      tTracking = false;      /* 方向が確定するまで未決 */
+      tNative = false;
+    }, { passive: true });
+
+    container.addEventListener('touchmove', function (e) {
+      if (tNative) return;
+      if (e.touches.length !== 1) { tNative = true; return; }
+      var t = e.touches[0];
+      var dy = tStartY - t.clientY;          /* 正=下へスクロール */
+      var dx = tStartX - t.clientX;
+
+      if (!tTracking) {
+        /* 微小な指ブレでは方向判定しない（デッドゾーン） */
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+        /* 初動で判定: 横ジェスチャー（Newsカルーセル等）と
+           独自スクロール領域（Updates一覧）はネイティブに任せる */
+        if (Math.abs(dx) > Math.abs(dy)) { tNative = true; return; }
+        if (inInnerScroll(e.target)) { tNative = true; return; }
+        tTracking = true;
+      }
+
+      e.preventDefault();                     /* ネイティブスクロールを止める */
+      container.scrollTop = tStartTop + dy;   /* 指に追従 */
+
+      var now = performance.now();
+      /* 瞬間速度をEMAで平滑化（サンプルのブレを吸収） */
+      var inst = (tLastY - t.clientY) / Math.max(1, now - tLastT);
+      tVel = tVel * 0.4 + inst * 0.6;
+      tLastY = t.clientY;
+      tLastT = now;
+    }, { passive: false });
+
+    container.addEventListener('touchend', function () {
+      if (!tTracking || tNative) { tTracking = false; return; }
+      tTracking = false;
+      var disp = container.scrollTop - tStartTop;
+      var next = tOriginIdx;
+      if (disp > SWIPE_DIST || tVel > SWIPE_VEL) next = tOriginIdx + 1;
+      else if (disp < -SWIPE_DIST || tVel < -SWIPE_VEL) next = tOriginIdx - 1;
+      /* 指を離した速度を初速として渡し、流れのままスナップへ */
+      toIndex(next, tVel);
+    }, { passive: true });
 
     return {
       active: true,

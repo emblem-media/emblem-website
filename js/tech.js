@@ -94,7 +94,7 @@ const TECH_ENTRIES = [
     is_planned: false,
     media: {
       type: 'photo',
-      src: 'assets/images/field_image.jpeg',
+      src: 'assets/images/field_image.jpeg?v=2',
       alt: '加賀市の試験フィールドの写真'
     },
     date_jp: 'October 2025',
@@ -201,6 +201,20 @@ It is an advance in human freedom.`,
 
 /* ── DOM生成 ────────────────────────────────────────────────── */
 
+/* 本文を段落ブロックに変換：
+   改行（\n）区切りの各文を1段落として <span class='tsb-p'> で包む。
+   CSSで「行間は詰め、段落間は空ける」ことで段落を明確にする。
+   ※data-jp/data-en 属性内で使うため class は単一引用符にする。 */
+function toParagraphs(text) {
+  return text
+    .split('\n')
+    .filter(line => line.trim() !== '')
+    .map(line => "<span class='tsb-p'>" +
+      line.replace(/`/g, '&#96;').replace(/"/g, '&quot;') +
+      "</span>")
+    .join('');
+}
+
 /* visible=true のエントリのみ抽出 */
 const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
 
@@ -298,9 +312,10 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
         ${mediaHTML}
         <div class="tech-sec__overlay"></div>
         <div class="tech-sec__content">
+          <!-- アイブラウ: 番号 — 日付 -->
           <p class="tech-sec__num tech-sec__anim tech-sec__anim--num"
-             data-jp="${entry.num} — Technology"
-             data-en="${entry.num} — Technology">${entry.num} — Technology</p>
+             data-jp="${entry.num} — ${entry.date_jp}"
+             data-en="${entry.num} — ${entry.date_en}">${entry.num} — ${entry.date_jp}</p>
 
           <!-- タイトル: 日本語と英語を縦に重ねて表示 -->
           <h2 class="tech-sec__title tech-sec__anim tech-sec__anim--title"
@@ -310,17 +325,12 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
              data-jp="${entry.title_en}"
              data-en="">${entry.title_en}</p>
 
-          <!-- 本文 -->
-          <p class="tech-sec__body tech-sec__anim tech-sec__anim--body"
-             data-jp="${entry.body_jp.replace(/`/g, '&#96;').replace(/"/g, '&quot;').replace(/\n/g, '<br>')}"
-             data-en="${entry.body_en.replace(/`/g, '&#96;').replace(/"/g, '&quot;').replace(/\n/g, '<br>')}"
+          <!-- 本文（各文＝1段落） -->
+          <div class="tech-sec__body tech-sec__anim tech-sec__anim--body"
+             data-jp="${toParagraphs(entry.body_jp)}"
+             data-en="${toParagraphs(entry.body_en)}"
              data-html="true"
-             >${entry.body_jp.replace(/\n/g, '<br>')}</p>
-
-          <!-- 日付 -->
-          <p class="tech-sec__date tech-sec__anim tech-sec__anim--body"
-             data-jp="${entry.date_jp}"
-             data-en="${entry.date_en}">${entry.date_jp}</p>
+             >${toParagraphs(entry.body_jp)}</div>
 
           ${linkHTML}
         </div>
