@@ -1,92 +1,85 @@
 /* ============================================================
    emblem — form.js
 
-   recruit.html の Contact Form を管理：
-   • 職種チップ（.chip）の選択/非選択トグル
+   recruit.html / contact.html のフォームを管理（共通）：
+   • 職種チップ（.chip）の選択トグル（recruit のみ）
+   • referral 詳細欄の出し分け（recruit のみ）
    • フォーム送信処理（Netlify Forms 統合）
    • 送信後のサンキューメッセージ表示
+
+   複数の Netlify フォームに対応：
+   form[data-netlify] を全て対象にし、各フォームは自ページへ POST する。
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ============================================================
-     チップ選択制御（職種選択）
-
-     動作：
-     • .chip 要素をクリックで .selected クラスをトグル
-     • 複数選択可能（職種は最大3個程度推奨）
-     • 選択内容は後で form submit 時に hidden field に反映
-   ============================================================ */
+  /* ── 職種チップ（recruit）: クリックで選択トグル ── */
   document.querySelectorAll('.chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      chip.classList.toggle('selected');
+    chip.addEventListener('click', () => chip.classList.toggle('selected'));
+  });
+
+  /* ── きっかけ（recruit）: 特定選択肢のときだけ詳細欄を表示 ── */
+  const referral = document.getElementById('referral');
+  const referralDetail = document.getElementById('referral-detail-group');
+  if (referral && referralDetail) {
+    const showFor = ['job_site', 'event', 'news', 'other'];
+    referral.addEventListener('change', () => {
+      const show = showFor.includes(referral.value);
+      referralDetail.style.display = show ? '' : 'none';
+      if (!show) {
+        const inp = referralDetail.querySelector('input');
+        if (inp) inp.value = '';
+      }
+    });
+  }
+
+  /* ============================================================
+     Netlify フォーム送信（recruit / contact 共通）
+     フロー：
+     1. submit を preventDefault（ネイティブ検証は通過済み＝required満たす）
+     2. チップ選択を hidden field に反映（存在する場合のみ）
+     3. FormData を URL エンコードして自ページへ fetch POST
+     4. 成功で同じ .contact-form-inner 内の .thank-you を表示
+     5. 失敗はボタンを戻してアラート
+   ============================================================ */
+  document.querySelectorAll('form[data-netlify]').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const btn = form.querySelector('[type="submit"]');
+      const btnHtml = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.textContent = '送信中…'; }
+
+      /* チップ選択 → hidden specialty（recruit のみ） */
+      const hiddenSpecialty = form.querySelector('[name="specialty"]');
+      if (hiddenSpecialty) {
+        hiddenSpecialty.value = [...form.querySelectorAll('.chip.selected')]
+          .map(c => c.textContent.trim()).join(', ');
+      }
+
+      const encoded = new URLSearchParams(new FormData(form)).toString();
+      const action = form.getAttribute('action') || window.location.pathname;
+
+      try {
+        const res = await fetch(action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encoded,
+        });
+
+        if (res.ok) {
+          const inner = form.closest('.contact-form-inner') || form.parentNode;
+          const ty = inner.querySelector('.thank-you');
+          form.style.display = 'none';
+          if (ty) ty.classList.add('visible');
+        } else {
+          if (btn) { btn.disabled = false; btn.innerHTML = btnHtml; }
+          alert('送信に失敗しました。時間をおいて再度お試しください。');
+        }
+      } catch (err) {
+        if (btn) { btn.disabled = false; btn.innerHTML = btnHtml; }
+        alert('通信エラーが発生しました。時間をおいて再度お試しください。');
+      }
     });
   });
-
-  /* ============================================================
-     Form 送信処理（Netlify Forms 統合）
-
-     フロー：
-     1. フォーム送信イベントを取得（preventDefault で通常送信を阻止）
-     2. 選択中のチップをテキストに変換して hidden field に格納
-     3. FormData を Netlify Forms が要求する URL エンコード形式に変換
-     4. fetch で POST 送信（Netlify のフォーム処理エンドポイント）
-     5. 成功時は showThankYou() でサンキューメッセージ表示
-     6. 失敗時はボタンを再度有効にしてエラーアラート表示
-
-     Netlify Forms:
-     - 設定: recruit.html の form に name="contact-form" と netlify 属性が必須
-     - 送信先: Netlify が自動で受け取り、メール通知・ダッシュボード保存
-     - エラー処理: network/server エラー時はユーザーにアラート表示
-   ============================================================ */
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('[type="submit"]');
-    btn.disabled = true;
-    btn.textContent = '送信中…';
-
-    // 選択中のチップをテキスト化して hidden field に格納
-    const selected = [...document.querySelectorAll('.chip.selected')]
-      .map(c => c.textContent.trim()).join(', ');
-    const hiddenSpecialty = form.querySelector('[name="specialty"]');
-    if (hiddenSpecialty) hiddenSpecialty.value = selected;
-
-    // Netlify Forms が要求する URL エンコード形式に変換
-    const formData = new FormData(form);
-    const encoded = new URLSearchParams(formData).toString();
-
-    try {
-      // POST で送信（Netlify が自動処理）
-      const response = await fetch('/recruit.html', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encoded,
-      });
-
-      if (response.ok) {
-        // 送信成功 → サンキューメッセージ表示
-        showThankYou();
-      } else {
-        // サーバーエラー → ボタンを再度有効に
-        btn.disabled = false;
-        btn.textContent = '送信する →';
-        alert('送信に失敗しました。時間をおいて再度お試しください。');
-      }
-    } catch (err) {
-      // ネットワークエラー → ボタンを再度有効に
-      btn.disabled = false;
-      btn.textContent = '送信する →';
-      alert('通信エラーが発生しました。時間をおいて再度お試しください。');
-    }
-  });
-
-  function showThankYou() {
-    const form = document.getElementById('contact-form');
-    const ty = document.getElementById('thank-you');
-    if (form) form.style.display = 'none';
-    if (ty) ty.classList.add('visible');
-  }
 });

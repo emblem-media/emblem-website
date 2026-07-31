@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=93">
+  <link rel="stylesheet" href="css/style.css?v=96">
 </head>
 <body>
 
@@ -49,6 +49,7 @@
         <a href="news.html" class="nav__link" data-jp="News" data-en="News">News</a>
         <a href="recruit.html" class="nav__link nav__link--active" data-jp="Recruit" data-en="Recruit">Recruit</a>
         <a href="team.html" class="nav__link" data-team-link data-jp="Team" data-en="Team">Team</a>
+        <a href="contact.html" class="nav__link" data-jp="Contact" data-en="Contact">Contact</a>
       </div>
       <div class="nav__right">
         <div class="nav__social"><!-- Instagram: 一時非表示。復活する場合は下のコメントを外す -->
@@ -74,6 +75,7 @@
     <a href="news.html" class="nav__link" data-jp="News" data-en="News">News</a>
     <a href="recruit.html" class="nav__link" data-jp="Recruit" data-en="Recruit">Recruit</a>
     <a href="team.html" class="nav__link" data-team-link data-jp="Team" data-en="Team">Team</a>
+    <a href="contact.html" class="nav__link" data-jp="Contact" data-en="Contact">Contact</a>
     <div class="nav__right">
       <div class="nav__overlay-toprow"><div class="lang-toggle">
         <button class="lang-toggle__item active" data-lang="jp">JP</button>
@@ -263,6 +265,30 @@
           </div>
 
           <div class="form-group">
+            <label class="form-label" for="referral"
+                   data-jp='<span style="text-transform:none">emblem</span>を知ったきっかけ *'
+                   data-en="How did you hear about us? *"
+                   data-html="true"><span style="text-transform:none">emblem</span>を知ったきっかけ *</label>
+            <select class="form-select" id="referral" name="referral_source" required>
+              <option value="" disabled selected data-jp="選択してください" data-en="Select">選択してください</option>
+              <option value="job_site" data-jp="求人サイト" data-en="Job board / recruiting site">求人サイト</option>
+              <option value="referral" data-jp="知人・社員の紹介" data-en="Referral (friend / employee)">知人・社員の紹介</option>
+              <option value="website" data-jp="弊社ウェブサイト" data-en="Our website">弊社ウェブサイト</option>
+              <option value="x" data-jp="X（旧Twitter）" data-en="X (Twitter)">X（旧Twitter）</option>
+              <option value="instagram" data-jp="Instagram" data-en="Instagram">Instagram</option>
+              <option value="event" data-jp="イベント・展示会" data-en="Event / exhibition">イベント・展示会</option>
+              <option value="news" data-jp="ニュース・記事" data-en="News / article">ニュース・記事</option>
+              <option value="search" data-jp="検索エンジン" data-en="Search engine">検索エンジン</option>
+              <option value="other" data-jp="その他" data-en="Other">その他</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="referral-detail-group" style="display:none;">
+            <label class="form-label" for="referral-detail" data-jp="差し支えなければ詳しく（サイト名・媒体名など）" data-en="If you don't mind, please specify (site / media name, etc.)">差し支えなければ詳しく（サイト名・媒体名など）</label>
+            <input class="form-input" type="text" id="referral-detail" name="referral_detail" placeholder="例: Wantedly / ○○展示会 / ○○の記事">
+          </div>
+
+          <div class="form-group">
             <label class="form-label" for="bio">
               <span data-jp="あなたについて教えてください。以下を自由にご記入ください" data-en="Tell us about yourself. Please freely fill in the following:">あなたについて教えてください。以下を自由にご記入ください</span>
               <div style="font-size:12px;color:var(--stone-600);font-weight:400;margin-top:8px;text-transform:none;">
@@ -274,6 +300,14 @@
             </label>
             <textarea class="form-textarea" id="bio" name="bio" required></textarea>
           </div>
+
+          <label class="form-check">
+            <input type="checkbox" name="privacy_agreed" value="yes" required>
+            <span class="form-check-label"
+                  data-jp='<a href="privacy.html" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">プライバシーポリシー</a>に同意します *'
+                  data-en='I agree to the <a href="privacy.html" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Privacy Policy</a> *'
+                  data-html="true"><a href="privacy.html" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">プライバシーポリシー</a>に同意します *</span>
+          </label>
 
           <div class="form-actions">
             <button type="submit" class="btn btn--ghost-white" data-jp="送信する →" data-en="Submit →">送信する →</button>
@@ -340,7 +374,7 @@
   </footer>
 
   <script src="js/main.js?v=3"></script>
-  <script src="js/form.js"></script>
+  <script src="js/form.js?v=3"></script>
   <script src="js/polish.js?v=7"></script>
 </body>
 </html>
