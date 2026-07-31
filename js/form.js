@@ -18,6 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
     chip.addEventListener('click', () => chip.classList.toggle('selected'));
   });
 
+  /* ── 現在のご状況（recruit）: 所属先がある状況のときだけ「所属」欄を表示 ── */
+  const status = document.getElementById('status');
+  const affiliation = document.getElementById('affiliation-group');
+  if (status && affiliation) {
+    const showFor = ['employed', 'self_employed', 'university', 'student_other', 'other'];
+    status.addEventListener('change', () => {
+      const show = showFor.includes(status.value);
+      affiliation.style.display = show ? '' : 'none';
+      if (!show) {
+        const inp = affiliation.querySelector('input');
+        if (inp) inp.value = '';
+      }
+    });
+  }
+
   /* ── きっかけ（recruit）: 特定選択肢のときだけ詳細欄を表示 ── */
   const referral = document.getElementById('referral');
   const referralDetail = document.getElementById('referral-detail-group');
