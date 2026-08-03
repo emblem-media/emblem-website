@@ -1377,15 +1377,6 @@ html[lang="en"] [data-lang-show="jp"] { display: none; }   /* EN時はJP非表�
   letter-spacing: 0.02em;
 }
 
-.hnj__ms-badge {
-  font-size: 9px;
-  font-weight: 500;
-  padding: 2px 7px;
-  border-radius: 2px;
-  background: #1A1A1A;
-  color: #fff;
-  letter-spacing: 0.03em;
-}
 
 .hnj__ms-title {
   font-size: 15px;
@@ -1559,15 +1550,6 @@ html[lang="en"] [data-lang-show="jp"] { display: none; }   /* EN時はJP非表�
   letter-spacing: 0.02em;
 }
 
-.hnj__update-badge {
-  font-size: 9px;
-  font-weight: 500;
-  padding: 2px 6px;
-  border-radius: 2px;
-  background: #F0EFEB;
-  color: #6B6A63;
-  letter-spacing: 0.03em;
-}
 
 .hnj__update-title {
   font-size: 15px;
@@ -2284,29 +2266,6 @@ body.home-page {
 /* ============================================================
    NEWS PAGE
    ============================================================ */
-.filter-tabs {
-  display: flex;
-  gap: 8px;
-  padding: 32px 0;
-  border-bottom: var(--border);
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-.filter-tab {
-  padding: 6px 16px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border-radius: 2px;
-  border: var(--border);
-  background: transparent;
-  color: var(--stone-600);
-  transition: all var(--transition-fast);
-  cursor: pointer;
-}
-.filter-tab:hover,
-.filter-tab.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
 
 /* news.html grid layout */
 .news-grid {
@@ -2423,17 +2382,6 @@ body.home-page {
 .news-card-full__body { padding: 0; flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .news-card-full__meta { display: flex; align-items: center; gap: 8px; }
 .news-card-full__date { font-size: 12px; color: var(--stone-600); }
-.news-card-full__badge {
-  display: inline-block;
-  background: var(--stone-100);
-  color: var(--stone-600);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 2px;
-}
 .news-card-full__title { font-size: 14px; font-weight: 500; line-height: 1.6; }
 .news-card-full__desc  { font-size: 13px; line-height: 1.75; color: var(--stone-600); margin-top: 4px; }
 .news-card-full__external-link {
@@ -2531,15 +2479,6 @@ a.news-card-full:hover {
   letter-spacing: 0.04em;
 }
 
-.news-detail__badge {
-  font-size: 11px;
-  font-weight: 500;
-  padding: 2px 8px;
-  border-radius: 3px;
-  background: var(--stone-100);
-  color: var(--stone-600);
-  letter-spacing: 0.04em;
-}
 
 .news-detail__title {
   font-size: 24px;
@@ -2695,14 +2634,6 @@ a.news-card-full:hover {
   letter-spacing: 0.04em;
 }
 
-.news-ms-card__badge {
-  font-size: 9px;
-  font-weight: 500;
-  padding: 1px 6px;
-  border-radius: 2px;
-  background: var(--ink);
-  color: #fff;
-}
 
 .news-ms-card__title {
   font-size: 16px;
@@ -3149,6 +3080,17 @@ a.news-card-full:hover { background: var(--stone-50); }
   transition: color var(--transition-fast);
 }
 .footer__privacy:hover { color: var(--stone-400); }
+/* Cookie設定は「操作」なので button。見た目は他のフッターリンクに揃える */
+.footer__cookie-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
 .footer__copy {
   font-size: 12px;
   color: var(--stone-600);
@@ -3681,7 +3623,6 @@ body.is-loaded .hero__scroll-cue { opacity: 1; }
 }
 .hnj__ms-img img { transition: transform 800ms var(--ease-out-expo); }
 .hnj__ms-card:hover .hnj__ms-img img { transform: scale(1.045); }
-.hnj__ms-badge { letter-spacing: .08em; }
 
 /* Updates 1件：矢印スライド＋左の細いアクセント */
 .hnj__update-item { position: relative; }
@@ -3778,8 +3719,6 @@ html.js .mission-content [data-reveal] {
    NEWS ページ
    ============================================================ */
 .page-header__title { letter-spacing: 0; }
-.filter-tab { transition: background 260ms var(--ease-out-expo), color 260ms ease, border-color 260ms ease, transform 260ms var(--ease-out-expo); }
-.filter-tab:hover { transform: translateY(-1px); }
 
 .news-ms-card { border-radius: var(--radius-card); transition: background var(--transition-fast), transform 360ms var(--ease-out-expo), box-shadow 360ms var(--ease-out-expo); }
 .news-ms-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
@@ -3859,3 +3798,88 @@ html.js .mission-content [data-reveal] {
 .hero__video,
 .home-tech-full__media,
 .video-section__bg { background-color: #000; }
+
+/* ============================================================
+   Cookie 同意バナー（js/consent.js が動的に生成）
+   • 画面下部に固定。同意 / 拒否を同等の目立ち方で並べる（EU要件）
+   • 未回答のときのみ表示。フッターの「Cookie設定」で再表示できる
+   ============================================================ */
+.cookie-banner {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 9999;
+  background: var(--void-black);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding: 20px 0;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 320ms cubic-bezier(0.22,1,0.36,1), opacity 240ms ease;
+}
+.cookie-banner.visible { transform: translateY(0); opacity: 1; }
+
+.cookie-banner__inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.cookie-banner__text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.72);
+  margin: 0;
+  max-width: 720px;
+}
+.cookie-banner__link {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cookie-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.cookie-btn {
+  padding: 9px 22px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+/* 拒否も同意と同じ大きさ・同じ視認性にする */
+.cookie-btn--reject {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.55);
+}
+.cookie-btn--reject:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+.cookie-btn--accept {
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--white);
+}
+.cookie-btn--accept:hover { background: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.85); }
+
+@media (max-width: 768px) {
+  .cookie-banner { padding: 16px 0; }
+  .cookie-banner__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 0 20px;
+  }
+  .cookie-banner__text { font-size: 12px; line-height: 1.65; }
+  .cookie-banner__actions { gap: 8px; }
+  .cookie-btn { flex: 1; padding: 11px 12px; }
+}

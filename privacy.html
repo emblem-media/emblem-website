@@ -9,18 +9,13 @@
   <meta name="description" content="emblem株式会社のプライバシーポリシーおよびサイトポリシー。個人情報の取扱い、Googleアナリティクスの利用、Netlifyへのデータ送信について。">
   <link rel="canonical" href="https://emblemand.com/privacy.html">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R1NQ5L1PSE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-R1NQ5L1PSE');
-  </script>
+  <!-- Cookie同意管理: 同意が得られた場合のみ Google Analytics を読み込む -->
+  <script src="js/consent.js?v=2"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=97">
+  <link rel="stylesheet" href="css/style.css?v=99">
   <style>
     .privacy-body {
       max-width: 760px;
@@ -140,44 +135,69 @@
     <p>「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報（個人識別情報）を指します。</p>
 
     <h2>第2条（個人情報の収集方法および収集項目）</h2>
-    <p>当社は，採用応募フォームへの入力，またはお問い合わせ・商談・名刺交換等を通じて，以下の個人情報を取得することがあります。</p>
+    <p>当社は，本ウェブサイトのフォームへの入力，または商談・名刺交換等を通じて，以下の個人情報を取得することがあります。</p>
+
+    <h3>お問い合わせフォームを通じて取得する項目</h3>
+    <ul>
+      <li>ご用件の種別</li>
+      <li>お名前</li>
+      <li>会社・団体名</li>
+      <li>メールアドレス</li>
+      <li>電話番号</li>
+      <li>お問い合わせ内容（自由記述にてご入力いただいた内容）</li>
+    </ul>
+
+    <h3>採用応募フォームを通じて取得する項目</h3>
     <ul>
       <li>氏名</li>
       <li>メールアドレス</li>
-      <li>居住地（都道府県）</li>
+      <li>居住地（都道府県または国）</li>
+      <li>現在の状況（就業，就学，離職中等の別）</li>
+      <li>所属（会社名・学校名）</li>
+      <li>年齢</li>
       <li>専門性・技術分野</li>
       <li>希望雇用形態</li>
-      <li>経歴概要（最終学歴・職歴・専門性・応募動機等，自由記述にてご入力いただいた内容）</li>
-      <li>石川県加賀市での試験活動への参加意向</li>
+      <li>当社を知ったきっかけおよびその詳細</li>
+      <li>経歴等（経歴の概要・専門性・実績・応募動機等，自由記述にてご入力いただいた内容）</li>
     </ul>
-    <p>上記のほか，商談や名刺交換等を通じて会社名，部署名，役職，電話番号等を取得する場合があります。</p>
-    <p>なお，本ウェブサイトのフォームから送信されたデータは，当社が利用するフォーム処理サービス（Netlify, Inc.）のサーバーを経由して当社に届きます。詳細は第7条をご参照ください。</p>
+
+    <h3>商談・名刺交換等を通じて取得する項目</h3>
+    <ul>
+      <li>会社名，部署名，役職，氏名，電話番号，メールアドレス等</li>
+    </ul>
+
+    <p>なお，本ウェブサイトのフォームから送信されたデータは，当社が利用するフォーム処理サービス（Netlify, Inc.）のサーバーを経由して当社に届きます。詳細は第8条および第9条をご参照ください。</p>
 
     <h2>第3条（個人情報を収集・利用する目的）</h2>
     <p>当社が個人情報を収集・利用する目的は，以下のとおりです。</p>
     <ol>
-      <li>製品・サービスの提供および運営のため
+      <li>お問い合わせへの対応のため
         <ol type="a">
-          <li>製品の発送、納品、設置、および保守メンテナンスの実施</li>
-          <li>契約の履行、商談、および打ち合わせの実施</li>
-        </ol>
-      </li>
-      <li>お問い合わせへの回答・対応のため
-        <ol type="a">
-          <li>製品に関するお問い合わせ、資料請求への対応</li>
+          <li>取材・メディア掲載に関するご連絡および対応</li>
+          <li>協業・アライアンスに関するご連絡，協議および検討</li>
+          <li>展示会・イベントに関するご連絡および対応</li>
+          <li>投資・ファイナンスに関するご連絡および協議</li>
+          <li>その他のお問い合わせへの回答および対応</li>
           <li>本人確認の実施</li>
-        </ol>
-      </li>
-      <li>営業活動および情報提供のため
-        <ol type="a">
-          <li>新製品、サービス、展示会等のご案内</li>
-          <li>アンケートの実施および分析</li>
         </ol>
       </li>
       <li>採用活動のため
         <ol type="a">
-          <li>採用選考の判定、面接等の連絡、合否の通知</li>
-          <li>入社手続きの案内および管理</li>
+          <li>採用選考の実施および判定</li>
+          <li>面接等の日程調整その他のご連絡</li>
+          <li>選考結果（合否）の通知</li>
+          <li>採用に至った場合の入社手続きの案内および管理</li>
+        </ol>
+      </li>
+      <li>事業上の連絡および関係の構築・維持のため
+        <ol type="a">
+          <li>契約の締結・履行，商談および打ち合わせの実施</li>
+          <li>展示会，イベントその他当社の活動に関するご案内</li>
+        </ol>
+      </li>
+      <li>本ウェブサイトの改善のため
+        <ol type="a">
+          <li>アクセス状況の分析および利用状況の把握（詳細は第6条およびCookieポリシーをご参照ください）</li>
         </ol>
       </li>
       <li>上記の利用目的に付随する目的</li>
@@ -192,13 +212,30 @@
     <p>保管期間経過後は，速やかに削除または匿名化処理を行います。</p>
 
     <h2>第5条（安全管理措置）</h2>
-    <p>当社は、個人情報の漏洩、滅失または毀損の防止その他の個人情報の安全管理のために、SSL（Secure Socket Layer）による通信の暗号化、デバイスのセキュリティ対策、従業員教育等の必要かつ適切な措置を講じます。</p>
+    <p>当社は，取り扱う個人データの漏えい，滅失または毀損の防止その他の個人データの安全管理のために，以下のとおり必要かつ適切な措置を講じています。</p>
+
+    <h3>組織的安全管理措置</h3>
+    <p>個人データの取扱いに関する責任者を定めるとともに，個人データを取り扱う従業者および当該従業者が取り扱う個人データの範囲を明確化しています。また，個人データの取扱状況について定期的に点検を行うほか，法令または本ポリシーに違反する事実もしくはその兆候を把握した場合に備え，責任者への報告連絡体制を整備しています。</p>
+
+    <h3>人的安全管理措置</h3>
+    <p>従業者に対し，個人データの取扱いに関する留意事項について定期的に教育を実施するとともに，秘密保持に関する事項を含む誓約書の提出を求めています。</p>
+
+    <h3>物理的安全管理措置</h3>
+    <p>個人データを取り扱う区域における入退室の管理および機器の管理を行うとともに，個人データを取り扱う機器，電子媒体および書類等の盗難または紛失等を防止するための措置を講じています。また，これらを持ち運ぶ場合には，容易に個人データが判明しないよう措置を講じています。</p>
+
+    <h3>技術的安全管理措置</h3>
+    <p>個人データを取り扱う情報システムについて，アクセス制御を実施し，担当者および取り扱う個人データの範囲を限定しています。また，SSL/TLSによる通信の暗号化を行うとともに，外部からの不正アクセスまたは不正ソフトウェアから保護する仕組みを導入し，デバイスのセキュリティ対策を実施しています。</p>
+
+    <h3>外的環境の把握</h3>
+    <p>当社は，個人データの取扱いの一部をアメリカ合衆国に所在する事業者（Netlify, Inc. および Google LLC）に委託しており，同国において個人データが取り扱われます。当社は，同国における個人情報の保護に関する制度を把握したうえで，安全管理のために必要かつ適切な措置を講じています。同国の制度および移転先が講じている措置の詳細については，第9条をご参照ください。</p>
 
     <h2>第6条（ローカルストレージおよびアクセス解析ツールの利用）</h2>
     <h3>ローカルストレージの利用</h3>
     <p>本ウェブサイトでは，ユーザーの利便性向上（言語設定の保持等）のため，ブラウザのローカルストレージに設定情報を保存しています。保存される情報はユーザーの言語設定（日本語/英語）であり，個人を特定する情報は含まれません。ブラウザの設定によりローカルストレージを無効にすることも可能ですが，その場合一部機能が正常に動作しないことがあります。</p>
     <h3>Googleアナリティクスの利用</h3>
     <p>本ウェブサイトでは，サイトの利用状況の分析と改善のためにGoogleによるアクセス解析ツール「Googleアナリティクス」を利用しています。Googleアナリティクスはデータの収集のためにCookieを使用しますが，収集されるデータは匿名であり，個人を特定するものではありません。</p>
+    <p>分析のためのCookieは，お客様が同意された場合にのみ使用します。同意されない場合，当社はGoogleアナリティクスを読み込みません。同意はページ下部の「Cookie設定」からいつでも撤回できます。</p>
+    <p>本ウェブサイトで使用するCookieの種類，目的，保存期間および同意の撤回方法の詳細については，<a href="cookie.html" style="color:var(--ink);text-decoration:underline;">Cookieポリシー</a>をご参照ください。</p>
     <p>Googleアナリティクスによるデータの収集・処理については，<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;">Googleのサービスを使用するサイトやアプリから収集した情報のGoogleによる使用</a>をご参照ください。Googleアナリティクスのオプトアウトについては，<a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;">Googleアナリティクス オプトアウト アドオン</a>をご利用ください。</p>
 
     <h2>第7条（利用目的の変更）</h2>
@@ -234,7 +271,31 @@
       </li>
     </ol>
 
-    <h2>第9条（個人情報の開示）</h2>
+    <h2>第9条（外国にある第三者への個人データの提供）</h2>
+    <p>当社は，個人データの取扱いの一部を外国にある事業者に委託しており，これに伴い個人データが当該外国において取り扱われます。個人情報の保護に関する法律第28条に基づき，以下のとおり情報を提供します。</p>
+
+    <h3>1. Netlify, Inc.</h3>
+    <ul>
+      <li>所在する外国の名称：アメリカ合衆国</li>
+      <li>提供する個人データの項目：本ウェブサイトのお問い合わせフォームおよび採用応募フォームに入力された情報（第2条に掲げる項目）</li>
+      <li>提供の目的：フォーム送信データの受信および当社への転送</li>
+    </ul>
+
+    <h3>2. Google LLC</h3>
+    <ul>
+      <li>所在する外国の名称：アメリカ合衆国</li>
+      <li>提供する個人データの項目：閲覧されたページのURL，参照元のURL，ブラウザおよびOSの種別，匿名化されたIPアドレス，Cookie識別子等（分析のためのCookieに同意いただいた場合に限ります）。ならびに，Webフォントの配信に伴い送信されるIPアドレス，User-Agent，リファラ等</li>
+      <li>提供の目的：アクセス解析（Googleアナリティクス）およびWebフォント（Google Fonts）の配信</li>
+    </ul>
+
+    <h3>当該外国における個人情報の保護に関する制度</h3>
+    <p>アメリカ合衆国においては，日本の個人情報保護法に相当する分野横断的な包括的連邦法は制定されておらず，分野別の連邦法および各州の法律により個人情報の保護が図られています。カリフォルニア州をはじめとする一部の州においては，包括的な個人情報保護法が制定されています。なお，同国は，個人情報保護委員会規則に定める「我が国と同等の水準にあると認められる個人情報の保護に関する制度を有している外国」には指定されていません。</p>
+
+    <h3>移転先が講じている個人情報の保護のための措置</h3>
+    <p>Netlify, Inc. および Google LLC は，いずれも個人データの取扱いに関する契約条項（データ処理契約および標準契約条項を含みます）を公表しており，これに基づく保護措置を講じています。当社は，これらの事業者との間で個人データの取扱いに関する契約を締結したうえで，取扱いを委託した個人データの安全管理が図られるよう，必要かつ適切な監督を行っています。</p>
+    <p>各社における個人情報の取扱いの詳細については，<a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;">Netlifyのプライバシーポリシー</a>および<a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;">Googleのプライバシーポリシー</a>をご参照ください。</p>
+
+    <h2>第10条（個人情報の開示）</h2>
     <ol>
       <li>当社は，本人から個人情報の開示を求められたときは，本人に対し，遅滞なくこれを開示します。ただし，開示することにより次のいずれかに該当する場合は，その全部または一部を開示しないこともあり，開示しない決定をした場合には，その旨を遅滞なく通知します。なお，個人情報の開示に際しては，1件あたり1,000円の手数料を申し受けます。
         <ol type="a">
@@ -243,31 +304,74 @@
           <li>その他法令に違反することとなる場合</li>
         </ol>
       </li>
-      <li>前項の定めにかかわらず，履歴情報および特性情報などの個人情報以外の情報については，原則として開示いたしません。</li>
+      <li>開示の求めにあたっては，電磁的記録の提供による方法，書面の交付による方法その他当社の定める方法のうち，ご本人が希望される方法をお申し出いただくことができます。当社は，当該方法による開示に多額の費用を要する場合その他当該方法による開示が困難である場合を除き，ご希望の方法により開示します。当該方法による開示が困難である場合には，書面の交付による方法により開示します。</li>
+      <li>前各項の定めにかかわらず，履歴情報および特性情報などの個人情報以外の情報については，原則として開示いたしません。</li>
     </ol>
 
-    <h2>第10条（個人情報の訂正および削除）</h2>
+    <h2>第11条（個人情報の訂正および削除）</h2>
     <ol>
       <li>ユーザーは，当社の保有する自己の個人情報が誤った情報である場合には，当社に対して個人情報の訂正，追加または削除（以下，「訂正等」といいます。）を請求することができます。</li>
       <li>当社は，ユーザーから前項の請求を受けてその請求に応じる必要があると判断した場合には，遅滞なく，当該個人情報の訂正等を行うものとします。</li>
       <li>当社は，前項の規定に基づき訂正等を行った場合，または訂正等を行わない旨の決定をしたときは遅滞なく，これをユーザーに通知します。</li>
     </ol>
 
-    <h2>第11条（個人情報の利用停止等）</h2>
+    <h2>第12条（個人情報の利用停止等）</h2>
     <ol>
-      <li>当社は，本人から，個人情報が，利用目的の範囲を超えて取り扱われているという理由，または不正の手段により取得されたものであるという理由により，その利用の停止または消去（以下，「利用停止等」といいます。）を求められた場合には，遅滞なく必要な調査を行います。</li>
+      <li>当社は，本人から，次のいずれかの理由により当該個人データの利用の停止または消去（以下，「利用停止等」といいます。）を求められた場合には，遅滞なく必要な調査を行います。
+        <ol type="a">
+          <li>利用目的の範囲を超えて取り扱われているとき</li>
+          <li>不正の手段により取得されたものであるとき</li>
+          <li>当社が当該個人データを利用する必要がなくなったとき</li>
+          <li>当該個人データに係る重大な漏えい等が生じたとき</li>
+          <li>その他当該個人データの取扱いにより本人の権利または正当な利益が害されるおそれがあるとき</li>
+        </ol>
+      </li>
       <li>前項の調査結果に基づき，その請求に応じる必要があると判断した場合には，遅滞なく，当該個人情報の利用停止等を行います。</li>
       <li>当社は，前項の規定に基づき利用停止等を行った場合，または利用停止等を行わない旨の決定をしたときは，遅滞なく，これをユーザーに通知します。</li>
-      <li>前2項にかかわらず，利用停止等に多額の費用を有する場合その他利用停止等を行うことが困難な場合であって，ユーザーの権利利益を保護するために必要なこれに代わるべき措置をとれる場合は，この代替策を講じるものとします。</li>
+      <li>前2項にかかわらず，利用停止等に多額の費用を要する場合その他利用停止等を行うことが困難な場合であって，ユーザーの権利利益を保護するために必要なこれに代わるべき措置をとれる場合は，この代替策を講じるものとします。</li>
     </ol>
 
-    <h2>第12条（プライバシーポリシーの変更）</h2>
+    <h2>第13条（EU／EEAおよび英国にお住まいの方の権利）</h2>
+    <p>当社がEU／EEAまたは英国にお住まいの方の個人データを取り扱う場合において，EU一般データ保護規則（GDPR）または英国GDPRが適用される限りにおいて，以下のとおり取り扱います。本条の定めは，本ポリシーの他の条項と抵触する範囲において優先して適用されます。</p>
+
+    <h3>1. 処理の法的根拠</h3>
+    <ul>
+      <li>採用応募に関する情報の処理：ご本人の求めに応じて契約の締結に先立って講じる措置として必要な処理（GDPR第6条第1項(b)）</li>
+      <li>お問い合わせへの対応：お問い合わせに回答し，事業上の関係を構築・維持するという当社の正当な利益（同項(f)）</li>
+      <li>分析のためのCookieの利用：ご本人の同意（同項(a)）。詳細は<a href="cookie.html" style="color:var(--ink);text-decoration:underline;">Cookieポリシー</a>をご参照ください。</li>
+    </ul>
+
+    <h3>2. 保存期間</h3>
+    <p>個人データは，第4条に定める期間保存します。保存期間の経過後は，速やかに削除または匿名化処理を行います。</p>
+
+    <h3>3. データ主体の権利</h3>
+    <p>ご本人は，適用される法令に基づき，当社に対して以下を求める権利を有します。</p>
+    <ul>
+      <li>ご自身の個人データへのアクセス</li>
+      <li>不正確な個人データの訂正</li>
+      <li>個人データの消去</li>
+      <li>処理の制限</li>
+      <li>処理に対する異議の申立て</li>
+      <li>データポータビリティ（構造化され，一般的に利用され，機械可読な形式での個人データの受領および移転）</li>
+      <li>同意を法的根拠とする処理について，いつでも同意を撤回すること（撤回は，撤回前の処理の適法性に影響しません）</li>
+    </ul>
+
+    <h3>4. 監督機関への苦情の申立て</h3>
+    <p>ご本人は，当社による個人データの取扱いについて，お住まいの国もしくは常居所地の国の監督機関，または権利侵害が生じたとされる国の監督機関に対して，苦情を申し立てる権利を有します。</p>
+
+    <h3>5. 日本への移転および補完的ルールの適用</h3>
+    <p>当社が取得した個人データは，日本において取り扱われます。日本は，欧州委員会および英国政府により，個人データについて十分な保護の水準を確保している国として認定されています。当社は，EU／EEAまたは英国から移転を受けた個人データについて，個人情報保護委員会が定める「個人情報の保護に関する法律に係るEU及び英国域内から十分性認定により移転を受けた個人データの取扱いに関する補完的ルール」に従って取り扱います。</p>
+
+    <h3>6. 権利行使の窓口</h3>
+    <p>本条に定める権利の行使その他本条に関するお問い合わせは，第15条に定めるお問い合わせ窓口までご連絡ください。当社は，ご本人であることを確認したうえで，法令に定める期間内に対応します。</p>
+
+    <h2>第14条（プライバシーポリシーの変更）</h2>
     <ol>
       <li>本ポリシーの内容は，法令その他本ポリシーに別段の定めのある事項を除いて，ユーザーに通知することなく，変更することができるものとします。</li>
       <li>当社が別途定める場合を除いて，変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。</li>
     </ol>
 
-    <h2>第13条（お問い合わせ窓口）</h2>
+    <h2>第15条（お問い合わせ窓口）</h2>
     <p>本ポリシーに関するお問い合わせ，個人情報の開示・訂正・削除・利用停止等のご請求は，下記の窓口までお願いいたします。</p>
     <p>
       住所：〒181-0015 東京都三鷹市大沢6-13-1<br>
@@ -280,9 +384,10 @@
 
     <h2>第1条（免責事項）</h2>
     <ol>
-      <li>本ウェブサイトに掲載されている情報の正確性には万全を期しておりますが、当社は利用者が本ウェブサイトの情報を用いて行う一切の行為について、何ら責任を負うものではありません。</li>
-      <li>当社は、本ウェブサイトの利用により発生した利用者の損害および利用者が第三者に与えた損害に対し、いかなる責任も負わないものとします。</li>
-      <li>本ウェブサイトからリンクやバナーなどによって他のサイトに移動された場合、移動先サイトで提供される情報、サービス等について一切の責任を負いません。</li>
+      <li>当社は，本ウェブサイトに掲載する情報の正確性および有用性について合理的な注意を払いますが，これを保証するものではありません。</li>
+      <li>当社は，本ウェブサイトの利用に関連して利用者に生じた損害について，当社の故意または重大な過失による場合を除き，責任を負いません。</li>
+      <li>前項にかかわらず当社が責任を負う場合であっても，当社の軽過失による場合には，通常生ずべき損害の範囲に限るものとし，逸失利益その他の特別の事情によって生じた損害については責任を負いません。</li>
+      <li>本ウェブサイトからリンクされた第三者のウェブサイトの内容について，当社は責任を負いません。</li>
     </ol>
 
     <h2>第2条（著作権・肖像権）</h2>
@@ -291,7 +396,7 @@
     <h2>第3条（リンクについて）</h2>
     <p>本ウェブサイトへのリンクは原則として自由です。ただし、Webサイトの内容等によってはリンク設置をお断りすることがあります。</p>
 
-    <p class="enforcement">附則<br>本規定は2026年6月1日より施行します。</p>
+    <p class="enforcement">附則<br>本規定は2026年8月3日より施行します。</p>
     </div>
 
     <div data-lang-show="en">
@@ -305,44 +410,69 @@
     <p>"Personal information" means "personal information" as defined in the Act on the Protection of Personal Information, namely information about a living individual that can identify the specific individual by name, date of birth, address, telephone number, contact details, or other descriptions contained in such information (including personal identification information).</p>
 
     <h2>Article 2 (Method and Items of Collection)</h2>
-    <p>The Company may obtain the following personal information through entries in the recruitment application form, or through inquiries, business meetings, exchange of business cards, and the like.</p>
+    <p>The Company may obtain the following personal information through entries in the forms on this website, or through business meetings, exchange of business cards, and the like.</p>
+
+    <h3>Items collected through the contact form</h3>
+    <ul>
+      <li>Type of inquiry</li>
+      <li>Name</li>
+      <li>Company / organization name</li>
+      <li>Email address</li>
+      <li>Telephone number</li>
+      <li>Content of the inquiry (entered in a free-text field)</li>
+    </ul>
+
+    <h3>Items collected through the recruitment application form</h3>
     <ul>
       <li>Name</li>
       <li>Email address</li>
-      <li>Place of residence (prefecture)</li>
+      <li>Place of residence (prefecture or country)</li>
+      <li>Current status (employed, studying, between jobs, and the like)</li>
+      <li>Affiliation (company or school name)</li>
+      <li>Age</li>
       <li>Expertise / technical field</li>
       <li>Preferred type of employment</li>
-      <li>Summary of background (final education, work history, expertise, motivation for applying, and other content entered in free-text fields)</li>
-      <li>Willingness to participate in test activities in Kaga City, Ishikawa Prefecture</li>
+      <li>How you heard about the Company, and the details thereof</li>
+      <li>Background and related information (career overview, expertise, achievements, motivation for applying, and other content entered in free-text fields)</li>
     </ul>
-    <p>In addition to the above, we may obtain company name, department, job title, telephone number, and the like through business meetings, exchange of business cards, and similar occasions.</p>
-    <p>Data submitted through forms on this website reaches the Company via the servers of the form-processing service we use (Netlify, Inc.). Please see Article 8 for details.</p>
+
+    <h3>Items collected through business meetings, exchange of business cards, and the like</h3>
+    <ul>
+      <li>Company name, department, job title, name, telephone number, email address, and the like</li>
+    </ul>
+
+    <p>Data submitted through forms on this website reaches the Company via the servers of the form-processing service we use (Netlify, Inc.). Please see Articles 8 and 9 for details.</p>
 
     <h2>Article 3 (Purposes of Collection and Use)</h2>
     <p>The Company collects and uses personal information for the following purposes.</p>
     <ol>
-      <li>To provide and operate our products and services
+      <li>To respond to inquiries
         <ol type="a">
-          <li>Shipping, delivery, installation, and maintenance of products</li>
-          <li>Performance of contracts, business meetings, and discussions</li>
-        </ol>
-      </li>
-      <li>To respond to and handle inquiries
-        <ol type="a">
-          <li>Responding to product inquiries and requests for materials</li>
+          <li>Communications and responses regarding press coverage and media publication</li>
+          <li>Communications, discussions, and consideration regarding partnerships and alliances</li>
+          <li>Communications and responses regarding exhibitions and events</li>
+          <li>Communications and discussions regarding investment and finance</li>
+          <li>Responding to and handling other inquiries</li>
           <li>Identity verification</li>
-        </ol>
-      </li>
-      <li>For sales activities and provision of information
-        <ol type="a">
-          <li>Providing information on new products, services, exhibitions, and the like</li>
-          <li>Conducting and analyzing surveys</li>
         </ol>
       </li>
       <li>For recruitment activities
         <ol type="a">
-          <li>Screening of applicants, communications regarding interviews, and notification of results</li>
-          <li>Guidance and management of onboarding procedures</li>
+          <li>Conducting and evaluating the selection process</li>
+          <li>Scheduling interviews and other communications</li>
+          <li>Notification of selection results</li>
+          <li>Guidance and management of onboarding procedures where employment results</li>
+        </ol>
+      </li>
+      <li>For business communications and building and maintaining relationships
+        <ol type="a">
+          <li>Conclusion and performance of contracts, business meetings, and discussions</li>
+          <li>Providing information on exhibitions, events, and other activities of the Company</li>
+        </ol>
+      </li>
+      <li>To improve this website
+        <ol type="a">
+          <li>Analyzing access and understanding usage of the site (for details, please see Article 6 and our Cookie Policy)</li>
         </ol>
       </li>
       <li>Purposes incidental to the above purposes of use</li>
@@ -357,13 +487,30 @@
     <p>After the retention period has elapsed, we will promptly delete or anonymize the information.</p>
 
     <h2>Article 5 (Security Management Measures)</h2>
-    <p>The Company takes necessary and appropriate measures to prevent leakage, loss, or damage of personal information and to otherwise manage personal information safely, including encryption of communications via SSL (Secure Socket Layer), device security measures, and employee training.</p>
+    <p>The Company takes the following necessary and appropriate measures to prevent leakage, loss, or damage of the personal data it handles and to otherwise manage personal data safely.</p>
+
+    <h3>Organizational Security Management Measures</h3>
+    <p>We appoint a person responsible for the handling of personal data and clarify the employees who handle personal data and the scope of the personal data they handle. We also conduct periodic inspections of the status of the handling of personal data, and have established a system for reporting to the responsible person in the event that a violation of laws and regulations or of this Policy, or any sign thereof, is identified.</p>
+
+    <h3>Human Security Management Measures</h3>
+    <p>We provide employees with periodic training on matters requiring attention in the handling of personal data, and require employees to submit written pledges that include confidentiality obligations.</p>
+
+    <h3>Physical Security Management Measures</h3>
+    <p>We control entry to and exit from areas where personal data is handled and manage the equipment used there, and we take measures to prevent the theft or loss of equipment, electronic media, and documents that handle personal data. When such items are carried, we take measures to ensure that personal data cannot be readily identified.</p>
+
+    <h3>Technical Security Management Measures</h3>
+    <p>For information systems that handle personal data, we implement access controls to limit the persons in charge and the scope of personal data handled. We also encrypt communications using SSL/TLS, have introduced mechanisms to protect against unauthorized external access and malicious software, and implement device security measures.</p>
+
+    <h3>Understanding of the External Environment</h3>
+    <p>The Company entrusts part of the handling of personal data to companies located in the United States (Netlify, Inc. and Google LLC), and personal data is handled in that country. Having ascertained the system for the protection of personal information in that country, the Company implements necessary and appropriate measures for security management. For details of that country's system and the measures taken by the transferees, please see Article 9.</p>
 
     <h2>Article 6 (Use of Local Storage and Access Analysis Tools)</h2>
     <h3>Use of Local Storage</h3>
     <p>To improve user convenience (such as retaining language settings), this website stores setting information in the browser's local storage. The information stored is the user's language setting (Japanese / English) and does not include information that identifies an individual. You can disable local storage in your browser settings, but in that case some functions may not work properly.</p>
     <h3>Use of Google Analytics</h3>
     <p>This website uses "Google Analytics," an access analysis tool provided by Google, to analyze and improve the usage of the site. Google Analytics uses cookies to collect data, but the data collected is anonymous and does not identify individuals.</p>
+    <p>Analytics cookies are used only with your consent. If you do not consent, the Company does not load Google Analytics. You may withdraw your consent at any time via "Cookie Settings" at the bottom of the page.</p>
+    <p>For details on the types of cookies used on this website, their purposes, retention periods, and how to withdraw consent, please refer to our <a href="cookie.html" style="color:var(--ink);text-decoration:underline;">Cookie Policy</a>.</p>
     <p>For the collection and processing of data by Google Analytics, please refer to <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;">How Google uses information from sites or apps that use its services</a>. To opt out of Google Analytics, please use the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;">Google Analytics Opt-out Browser Add-on</a>.</p>
 
     <h2>Article 7 (Changes to the Purpose of Use)</h2>
@@ -399,7 +546,31 @@
       </li>
     </ol>
 
-    <h2>Article 9 (Disclosure of Personal Information)</h2>
+    <h2>Article 9 (Provision of Personal Data to Third Parties in Foreign Countries)</h2>
+    <p>The Company entrusts part of the handling of personal data to companies located in foreign countries, and accordingly personal data is handled in those countries. Pursuant to Article 28 of the Act on the Protection of Personal Information, the Company provides the following information.</p>
+
+    <h3>1. Netlify, Inc.</h3>
+    <ul>
+      <li>Name of the foreign country: United States of America</li>
+      <li>Items of personal data provided: Information entered in the contact form and the recruitment application form on this website (the items listed in Article 2)</li>
+      <li>Purpose of provision: Receipt of form submission data and forwarding thereof to the Company</li>
+    </ul>
+
+    <h3>2. Google LLC</h3>
+    <ul>
+      <li>Name of the foreign country: United States of America</li>
+      <li>Items of personal data provided: URL of the page viewed, referrer URL, browser and OS type, anonymized IP address, cookie identifiers, and the like (only where you have consented to analytics cookies); and the IP address, User-Agent, referrer, and the like transmitted in connection with the delivery of web fonts</li>
+      <li>Purpose of provision: Access analysis (Google Analytics) and delivery of web fonts (Google Fonts)</li>
+    </ul>
+
+    <h3>System for the Protection of Personal Information in the Relevant Foreign Country</h3>
+    <p>In the United States of America, there is no comprehensive, cross-sectoral federal law equivalent to Japan's Act on the Protection of Personal Information; personal information is protected through sector-specific federal laws and the laws of individual states. Some states, including California, have enacted comprehensive personal information protection laws. The United States is not designated, under the rules of the Personal Information Protection Commission, as a foreign country having a system for the protection of personal information recognized as being at a level equivalent to that of Japan.</p>
+
+    <h3>Measures Taken by the Transferees for the Protection of Personal Information</h3>
+    <p>Netlify, Inc. and Google LLC each publish contractual terms concerning the handling of personal data (including data processing agreements and standard contractual clauses) and implement protective measures on that basis. The Company has entered into agreements with these companies concerning the handling of personal data and exercises necessary and appropriate supervision to ensure the secure management of the personal data whose handling has been entrusted to them.</p>
+    <p>For details of how each company handles personal information, please see the <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;">Netlify Privacy Policy</a> and the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;">Google Privacy Policy</a>.</p>
+
+    <h2>Article 10 (Disclosure of Personal Information)</h2>
     <ol>
       <li>When requested by the individual to disclose personal information, the Company will disclose it to the individual without delay. However, if disclosure falls under any of the following, the Company may not disclose all or part of it, and if it decides not to disclose, it will notify the individual to that effect without delay. A fee of 1,000 yen per request will be charged for the disclosure of personal information.
         <ol type="a">
@@ -408,31 +579,74 @@
           <li>Where it would otherwise violate laws and regulations</li>
         </ol>
       </li>
-      <li>Notwithstanding the preceding paragraph, information other than personal information, such as history information and characteristic information, will not, in principle, be disclosed.</li>
+      <li>When making a request for disclosure, you may specify your preferred method from among provision by electromagnetic record, delivery of a written document, or other methods designated by the Company. The Company will make the disclosure by the method you request, except where disclosure by that method would require substantial costs or would otherwise be difficult. Where disclosure by the requested method is difficult, the Company will make the disclosure by delivery of a written document.</li>
+      <li>Notwithstanding the preceding paragraphs, information other than personal information, such as history information and characteristic information, will not, in principle, be disclosed.</li>
     </ol>
 
-    <h2>Article 10 (Correction and Deletion of Personal Information)</h2>
+    <h2>Article 11 (Correction and Deletion of Personal Information)</h2>
     <ol>
       <li>Where the personal information held by the Company is incorrect, the user may request the Company to correct, add to, or delete (hereinafter, "correction, etc.") the personal information.</li>
       <li>If the Company receives a request under the preceding paragraph and determines that it is necessary to comply, it will make the correction, etc. of the personal information without delay.</li>
       <li>If the Company makes a correction, etc. under the preceding paragraph, or decides not to make a correction, etc., it will notify the user without delay.</li>
     </ol>
 
-    <h2>Article 11 (Suspension of Use of Personal Information)</h2>
+    <h2>Article 12 (Suspension of Use of Personal Information)</h2>
     <ol>
-      <li>Where the Company is requested by the individual to suspend or erase (hereinafter, "suspension of use, etc.") personal information on the grounds that it is being handled beyond the scope of the purpose of use, or that it was obtained by improper means, it will conduct the necessary investigation without delay.</li>
+      <li>Where the Company is requested by the individual to suspend or erase (hereinafter, "suspension of use, etc.") the personal data on any of the following grounds, it will conduct the necessary investigation without delay.
+        <ol type="a">
+          <li>Where it is being handled beyond the scope of the purpose of use</li>
+          <li>Where it was obtained by improper means</li>
+          <li>Where the Company no longer needs to use the personal data</li>
+          <li>Where a serious leakage or similar incident involving the personal data has occurred</li>
+          <li>Where there is otherwise a risk that the rights or legitimate interests of the individual will be harmed by the handling of the personal data</li>
+        </ol>
+      </li>
       <li>Based on the results of the investigation in the preceding paragraph, if the Company determines it is necessary to comply with the request, it will suspend the use, etc. of the personal information without delay.</li>
       <li>If the Company suspends use, etc. under the preceding paragraph, or decides not to suspend use, etc., it will notify the user without delay.</li>
       <li>Notwithstanding the preceding two paragraphs, where suspension of use, etc. requires substantial costs or is otherwise difficult, and alternative measures necessary to protect the rights and interests of the user can be taken, the Company will take such alternative measures.</li>
     </ol>
 
-    <h2>Article 12 (Changes to the Privacy Policy)</h2>
+    <h2>Article 13 (Rights of Residents of the EU/EEA and the United Kingdom)</h2>
+    <p>Where the Company handles the personal data of residents of the EU/EEA or the United Kingdom, and to the extent that the EU General Data Protection Regulation (GDPR) or the UK GDPR applies, the following shall apply. The provisions of this Article prevail to the extent they conflict with other provisions of this Policy.</p>
+
+    <h3>1. Legal Bases for Processing</h3>
+    <ul>
+      <li>Processing of information relating to job applications: processing necessary in order to take steps at the request of the data subject prior to entering into a contract (GDPR Article 6(1)(b))</li>
+      <li>Responding to inquiries: the Company's legitimate interests in responding to inquiries and in building and maintaining business relationships (Article 6(1)(f))</li>
+      <li>Use of analytics cookies: the data subject's consent (Article 6(1)(a)). For details, please see our <a href="cookie.html" style="color:var(--ink);text-decoration:underline;">Cookie Policy</a>.</li>
+    </ul>
+
+    <h3>2. Retention Period</h3>
+    <p>Personal data is retained for the periods set out in Article 4. After the retention period has elapsed, we promptly delete or anonymize the data.</p>
+
+    <h3>3. Rights of Data Subjects</h3>
+    <p>Under applicable law, you have the right to request that the Company:</p>
+    <ul>
+      <li>provide access to your personal data;</li>
+      <li>rectify inaccurate personal data;</li>
+      <li>erase your personal data;</li>
+      <li>restrict processing;</li>
+      <li>consider your objection to processing;</li>
+      <li>provide data portability (receipt and transmission of your personal data in a structured, commonly used, and machine-readable format); and</li>
+      <li>where processing is based on consent, allow you to withdraw that consent at any time (withdrawal does not affect the lawfulness of processing carried out before the withdrawal).</li>
+    </ul>
+
+    <h3>4. Right to Lodge a Complaint with a Supervisory Authority</h3>
+    <p>You have the right to lodge a complaint regarding the Company's handling of personal data with the supervisory authority of your country of residence or habitual residence, or of the country where the alleged infringement occurred.</p>
+
+    <h3>5. Transfers to Japan and Application of the Supplementary Rules</h3>
+    <p>Personal data obtained by the Company is handled in Japan. Japan has been recognized by the European Commission and by the United Kingdom as a country ensuring an adequate level of protection for personal data. With respect to personal data transferred from the EU/EEA or the United Kingdom on the basis of that adequacy recognition, the Company handles such data in accordance with the "Supplementary Rules under the Act on the Protection of Personal Information for the Handling of Personal Data Transferred from the EU and the UK based on an Adequacy Decision" established by the Personal Information Protection Commission.</p>
+
+    <h3>6. Contact Point for Exercising Rights</h3>
+    <p>To exercise the rights set out in this Article, or for any inquiries regarding this Article, please contact the contact point set out in Article 15. The Company will respond within the period prescribed by law after verifying your identity.</p>
+
+    <h2>Article 14 (Changes to the Privacy Policy)</h2>
     <ol>
       <li>The content of this policy may be changed without notice to users, except for matters otherwise stipulated by laws and regulations or in this policy.</li>
       <li>Unless otherwise specified by the Company, the changed privacy policy takes effect from the time it is posted on this website.</li>
     </ol>
 
-    <h2>Article 13 (Contact Point)</h2>
+    <h2>Article 15 (Contact Point)</h2>
     <p>For inquiries regarding this policy, and requests for the disclosure, correction, deletion, or suspension of use of personal information, please contact the point below.</p>
     <p>
       Address: 6-13-1 Osawa, Mitaka-shi, Tokyo 181-0015, Japan<br>
@@ -445,9 +659,10 @@
 
     <h2>Article 1 (Disclaimer)</h2>
     <ol>
-      <li>While we make every effort to ensure the accuracy of the information posted on this website, the Company assumes no responsibility whatsoever for any actions taken by users using the information on this website.</li>
-      <li>The Company assumes no responsibility whatsoever for any damage incurred by users arising from the use of this website, or for any damage users cause to third parties.</li>
-      <li>If you move to another site via a link or banner from this website, we assume no responsibility for the information, services, or the like provided on the destination site.</li>
+      <li>The Company exercises reasonable care with respect to the accuracy and usefulness of the information posted on this website, but does not warrant the same.</li>
+      <li>The Company shall not be liable for any damage incurred by users in connection with the use of this website, except in cases of the Company's intentional misconduct or gross negligence.</li>
+      <li>Notwithstanding the preceding paragraph, even where the Company bears liability, in cases of the Company's slight negligence such liability shall be limited to the scope of ordinarily arising damages, and the Company shall not be liable for lost profits or other damages arising from special circumstances.</li>
+      <li>The Company shall not be liable for the content of third-party websites linked from this website.</li>
     </ol>
 
     <h2>Article 2 (Copyright and Portrait Rights)</h2>
@@ -456,7 +671,7 @@
     <h2>Article 3 (Links)</h2>
     <p>Links to this website are, in principle, free. However, depending on the content of a website, we may decline the placement of a link.</p>
 
-    <p class="enforcement">Supplementary Provisions<br>These provisions take effect on June 1, 2026.</p>
+    <p class="enforcement">Supplementary Provisions<br>These provisions take effect on August 3, 2026.</p>
     </div>
   </main>
 
@@ -504,6 +719,8 @@
         <!-- 右：privacy + copyright -->
         <div class="footer__meta">
           <a href="privacy.html" class="footer__privacy">Privacy Policy</a>
+          <a href="cookie.html" class="footer__privacy">Cookie Policy</a>
+          <button type="button" class="footer__privacy footer__cookie-btn" data-cookie-settings data-jp="Cookie設定" data-en="Cookie Settings">Cookie設定</button>
           <p class="footer__copy">&copy; 2026 emblem Inc.</p>
         </div>
       </div>

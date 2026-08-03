@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="assets/images/favicon-32.png?v=1">
   <title>News — emblem | 実績・ニュース</title>
   <meta name="description" content="emblemのニュースとJAXAスタートアップとしての実績。ウェアラブル飛行技術（ジェットパック）の開発で、NEDO採択、ブータン・モザンビーク政府との連携、加賀市との包括協定など。">
-  <meta name="keywords" content="ジェットパック,ジェットスーツ,日本 ジェットパック,ジェットパック 現実,ウェアラブル飛行,jetpack,jet suit,空を飛ぶ,JAXA スタートアップ,リアルアイアンマン,飛行装置,人類 飛行,emblem">
+  <meta name="keywords" content="ジェットパック,ジェットスーツ,日本 ジェットパック,ジェットパック 現実,ウェアラブル飛行,jetpack,jet suit,空を飛ぶ,JAXA スタートアップ,飛行装置,人類 飛行,emblem">
   <link rel="canonical" href="https://emblemand.com/news.html">
 
   <meta property="og:type" content="website">
@@ -25,18 +25,13 @@
   <meta name="twitter:description" content="NEDO採択、ブータン・モザンビーク政府との連携、加賀市との包括協定など、emblemの最新実績。">
   <meta name="twitter:image" content="https://emblemand.com/assets/images/og-image.jpg">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R1NQ5L1PSE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-R1NQ5L1PSE');
-  </script>
+  <!-- Cookie同意管理: 同意が得られた場合のみ Google Analytics を読み込む -->
+  <script src="js/consent.js?v=2"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=97">
+  <link rel="stylesheet" href="css/style.css?v=99">
 </head>
 <body>
 
@@ -111,8 +106,6 @@
               <div class="news-ms-card__meta">
                 <span class="news-ms-card__date"
                       data-jp="2026年1月" data-en="Jan 2026">2026年1月</span>
-                <span class="news-ms-card__badge"
-                      data-jp="連携" data-en="Partnership">連携</span>
               </div>
               <p class="news-ms-card__title"
                  data-jp="ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。"
@@ -133,8 +126,6 @@
               <div class="news-ms-card__meta">
                 <span class="news-ms-card__date"
                       data-jp="2025年5月" data-en="May 2025">2025年5月</span>
-                <span class="news-ms-card__badge"
-                      data-jp="連携" data-en="Partnership">連携</span>
               </div>
               <p class="news-ms-card__title"
                  data-jp="モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。"
@@ -155,8 +146,6 @@
               <div class="news-ms-card__meta">
                 <span class="news-ms-card__date"
                       data-jp="2024年10月" data-en="Oct 2024">2024年10月</span>
-                <span class="news-ms-card__badge"
-                      data-jp="認定" data-en="Certified">認定</span>
               </div>
               <p class="news-ms-card__title"
                  data-jp="JAXAスタートアップ認定。航空技術部門から2社目。"
@@ -176,20 +165,10 @@
         <p class="news-updates__label"
            data-jp="Updates" data-en="Updates">Updates</p>
 
-        <!-- FILTER TABS: Updates のみを分類 -->
-        <div class="filter-tabs" role="tablist">
-          <button class="filter-tab active" data-filter="all" role="tab" data-jp="すべて" data-en="All">すべて</button>
-          <button class="filter-tab" data-filter="連携" role="tab" data-jp="連携" data-en="Partnership">連携</button>
-          <button class="filter-tab" data-filter="採択" role="tab" data-jp="採択・認定" data-en="Award / Certified">採択・認定</button>
-          <button class="filter-tab" data-filter="メディア" role="tab" data-jp="メディア" data-en="Media">メディア</button>
-          <button class="filter-tab" data-filter="イベント" role="tab" data-jp="イベント" data-en="Event">イベント</button>
-        </div>
 
-        <!-- フィルター対象はUpdatesのみ -->
-        <!-- 以下のカードに data-category を付ける -->
 
         <!-- ROBOMECH 2026 in Fukuoka -->
-        <a href="news/robomech-2026.html" class="news-card-full fade-in" data-category="イベント">
+        <a href="news/robomech-2026.html" class="news-card-full fade-in">
           <div class="news-card-full__img">
             <div class="event-ph" aria-hidden="true">
               <span class="event-ph__name">ROBOMECH</span>
@@ -200,8 +179,6 @@
             <div class="news-card-full__meta">
               <span class="news-card-full__date"
                     data-jp="2026年6月" data-en="Jun 2026">2026年6月</span>
-              <span class="news-card-full__badge"
-                    data-jp="イベント" data-en="Event">イベント</span>
             </div>
             <p class="news-card-full__title"
                data-jp="「ROBOMECH 2026 in Fukuoka」に出展しました。実際の飛行試験映像などを展示。"
@@ -210,7 +187,7 @@
         </a>
 
         <!-- 人とくるまのテクノロジー展 2026 NAGOYA -->
-        <a href="news/nagoya-2026.html" class="news-card-full fade-in" data-category="イベント">
+        <a href="news/nagoya-2026.html" class="news-card-full fade-in">
           <div class="news-card-full__img news-card-full__img--white">
             <img src="assets/images/nagoya_exhib.jpg" alt="人とくるまのテクノロジー展 2026 NAGOYA">
           </div>
@@ -218,8 +195,6 @@
             <div class="news-card-full__meta">
               <span class="news-card-full__date"
                     data-jp="2026年6月" data-en="Jun 2026">2026年6月</span>
-              <span class="news-card-full__badge"
-                    data-jp="イベント" data-en="Event">イベント</span>
             </div>
             <p class="news-card-full__title"
                data-jp="「人とくるまのテクノロジー展 2026 NAGOYA」に出展。"
@@ -228,7 +203,7 @@
         </a>
 
         <!-- UNIDO・モザンビーク政府 加賀視察 -->
-        <a href="news/mozambique-visit.html" class="news-card-full fade-in" data-category="連携">
+        <a href="news/mozambique-visit.html" class="news-card-full fade-in">
           <div class="news-card-full__img news-card-full__img--photo">
             <img src="assets/images/mozambique_visit.jpg" alt="UNIDO・モザンビーク政府 加賀視察">
           </div>
@@ -236,8 +211,6 @@
             <div class="news-card-full__meta">
               <span class="news-card-full__date"
                     data-jp="2026年6月" data-en="Jun 2026">2026年6月</span>
-              <span class="news-card-full__badge"
-                    data-jp="連携" data-en="Partnership">連携</span>
             </div>
             <p class="news-card-full__title"
                data-jp="UNIDO・モザンビーク政府、加賀市の開発拠点を視察。飛行試験を見学。"
@@ -246,7 +219,7 @@
         </a>
 
         <!-- 「空への一歩」プロジェクト報告会 -->
-        <a href="news/kaga-report.html" class="news-card-full fade-in" data-category="イベント">
+        <a href="news/kaga-report.html" class="news-card-full fade-in">
           <div class="news-card-full__img news-card-full__img--photo">
             <!-- 写真が用意できたら src に追加 -->
             <img src="assets/images/sora_kaga.jpg" alt="「空への一歩」プロジェクト報告会">
@@ -255,8 +228,6 @@
             <div class="news-card-full__meta">
               <span class="news-card-full__date"
                     data-jp="2024年12月" data-en="Dec 2024">2024年12月</span>
-              <span class="news-card-full__badge"
-                    data-jp="イベント" data-en="Event">イベント</span>
             </div>
             <p class="news-card-full__title"
                data-jp="「空への一歩」プロジェクト報告会を加賀市で開催。JAXAスタートアップ認定・NEDO採択を報告。"
@@ -265,7 +236,7 @@
         </a>
 
         <!-- NEDO採択 -->
-        <a href="news/nedo.html" class="news-card-full fade-in" data-category="採択">
+        <a href="news/nedo.html" class="news-card-full fade-in">
           <div class="news-card-full__img news-card-full__img--white">
             <img src="assets/images/NEDO_logo.svg" alt="NEDO">
           </div>
@@ -273,8 +244,6 @@
             <div class="news-card-full__meta">
               <span class="news-card-full__date"
                     data-jp="2024年5月" data-en="May 2024">2024年5月</span>
-              <span class="news-card-full__badge"
-                    data-jp="採択" data-en="Award / Certified">採択</span>
             </div>
             <p class="news-card-full__title"
                data-jp="NEDO先導研究プログラム採択（2024–26）。JAXA・ミズノ・SOMと連携。"
@@ -283,7 +252,7 @@
         </a>
 
         <!-- 加賀市連携協定 -->
-        <a href="news/kaga.html" class="news-card-full fade-in" data-category="連携">
+        <a href="news/kaga.html" class="news-card-full fade-in">
           <div class="news-card-full__img news-card-full__img--white news-card-full__img--fill">
             <img src="assets/images/kagashi_mark_mono.jpg" alt="加賀市">
           </div>
@@ -291,8 +260,6 @@
             <div class="news-card-full__meta">
               <span class="news-card-full__date"
                     data-jp="2024年2月" data-en="Feb 2024">2024年2月</span>
-              <span class="news-card-full__badge"
-                    data-jp="連携" data-en="Partnership">連携</span>
             </div>
             <p class="news-card-full__title"
                data-jp="石川県加賀市と包括連携協定締結。国家戦略特区内に試験拠点整備。"
@@ -348,6 +315,8 @@
         <!-- 右：privacy + copyright -->
         <div class="footer__meta">
           <a href="privacy.html" class="footer__privacy">Privacy Policy</a>
+          <a href="cookie.html" class="footer__privacy">Cookie Policy</a>
+          <button type="button" class="footer__privacy footer__cookie-btn" data-cookie-settings data-jp="Cookie設定" data-en="Cookie Settings">Cookie設定</button>
           <p class="footer__copy">&copy; 2026 emblem Inc.</p>
         </div>
       </div>
@@ -355,24 +324,7 @@
   </footer>
 
 
-  <script src="js/main.js?v=17"></script>
+  <script src="js/main.js?v=20"></script>
   <script src="js/polish.js?v=7"></script>
-  <script>
-    document.querySelectorAll('.filter-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const filter = tab.dataset.filter;
-        /* Updatesのみフィルタリング対象（Milestonesは常に表示） */
-        document.querySelectorAll('.news-card-full').forEach(row => {
-          if (filter === 'all' || row.dataset.category === filter) {
-            row.style.display = '';
-          } else {
-            row.style.display = 'none';
-          }
-        });
-      });
-    });
-  </script>
 </body>
 </html>
