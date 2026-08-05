@@ -3489,6 +3489,11 @@ body:not(.home-page):not(.tech-page) .scroll-progress > i {
 .hero--contact { height: 36vh; min-height: 240px; }
 .hero--contact .hero__overlay { background: none; }
 .hero--contact .hero__title { color: var(--ink); }
+
+/* Recruit / Contact のヒーロー見出し（Join the mission / Contact）:
+   英語表示時は News「実績・ニュース」と同サイズ。日本語表示時は写真背景の余白があるぶん、やや大きめに調整 */
+.hero--sub .hero__title.display { font-size: clamp(24px, 3.5vw, 36px); }
+html[lang="ja"] .hero--sub .hero__title.display { font-size: clamp(26px, 4vw, 48px); }
 @media (max-width: 768px) {
   .hero--contact .hero__video { object-position: 67% center; }
 }
