@@ -215,8 +215,8 @@ function toParagraphs(text) {
     .join('');
 }
 
-/* visible=true のエントリのみ抽出 */
-const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
+/* visible=true のエントリのみ抽出し、最新（末尾）が先頭に来るよう反転 */
+const visibleEntries = TECH_ENTRIES.filter(e => e.visible).reverse();
 
 /* メインセクション群を生成 */
 (function buildSections() {
