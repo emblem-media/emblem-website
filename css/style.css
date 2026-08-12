@@ -1940,9 +1940,10 @@ body.home-page {
   object-position: center;
 }
 
-/* 01 セクション（index 0）のみズームアニメーション。
+/* 01「フィールド」セクションのみズームアニメーション。
+   ※表示順は js/tech.js で反転するため data-index ではなく data-id で指定すること。
    デスクトップは中央揃え（object-position/transform-origin とも center）。 */
-.tech-sec[data-index="0"] .tech-sec__media {
+.tech-sec[data-id="field"] .tech-sec__media {
   animation: htg-zoom 18s ease-in-out infinite alternate;
   object-position: center center;
   transform-origin: center center;
@@ -1950,7 +1951,7 @@ body.home-page {
 
 /* モバイルは 01 の画像を右下に寄せて下端を合わせる */
 @media (max-width: 768px) {
-  .tech-sec[data-index="0"] .tech-sec__media {
+  .tech-sec[data-id="field"] .tech-sec__media {
     object-position: 85% bottom;
     transform-origin: 85% bottom;
   }
