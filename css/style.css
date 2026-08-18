@@ -3889,3 +3889,95 @@ html.js .mission-content [data-reveal] {
   .cookie-banner__actions { gap: 8px; }
   .cookie-btn { flex: 1; padding: 11px 12px; }
 }
+
+/* ============================================================
+   動画のクリック再生型埋め込み（YouTube facade）
+
+   ・初期表示はサムネイル画像のみ。YouTube への通信は発生しない
+   ・再生ボタンをクリックした時点で初めて iframe を差し込む
+   ・そのため Cookie 同意の対象外（同意前に third-party Cookie が飛ばない）
+   ・iframe は youtube-nocookie.com を使用
+   ============================================================ */
+.video-embed {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto 36px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--void-black);
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  width: 100%;
+  display: block;
+}
+
+.video-embed__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity var(--transition-fast);
+}
+
+.video-embed:hover .video-embed__thumb { transform: scale(1.03); opacity: 0.9; }
+
+/* 再生ボタン */
+.video-embed__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.video-embed:hover .video-embed__play {
+  background: #fff;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.video-embed__play::after {
+  content: '';
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  border-style: solid;
+  border-width: 11px 0 11px 18px;
+  border-color: transparent transparent transparent var(--void-black);
+}
+
+/* 再生後は iframe が中身を置き換える */
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* 「クリックするとYouTubeを読み込みます」の注記 */
+.video-embed-note {
+  max-width: 720px;
+  margin: -24px auto 36px;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--stone-600);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .video-embed { margin-bottom: 28px; }
+  .video-embed__play { width: 54px; height: 54px; }
+  .video-embed__play::after { border-width: 9px 0 9px 14px; }
+  .video-embed-note { margin: -20px auto 28px; }
+}
