@@ -3993,25 +3993,35 @@ html.js .mission-content [data-reveal] {
 }
 
 /* ============================================================
-   モバイル: ページ本体をスクロールさせる（スナップは維持）
+   モバイル: スクロールの仕組み（2026-08 再設計）
 
-   home / tech は body に overflow:hidden を掛け、内側の
-   position:fixed なコンテナをスクロールさせている。
-   この構成だと iOS Safari が「ページはスクロールしていない」と
-   判断するため、下部ツールバーが縮小も半透明化もせず、
-   常に不透明なまま画面を圧迫する。
+   ■ 前提となるiOS Safariの制約
+   ツールバーは「ドキュメントがスクロールした時」だけ縮む。そして
+   縮むと表示領域の高さが変わる。つまり「ツールバーが縮む」ことと
+   「セクションが常にちょうど1画面」は、単一の固定高では両立しない。
+   どちらの状態にピッタリ合わせるかを選ぶ必要がある。
 
-   モバイルではコンテナを通常フローに戻し、ドキュメント自体を
-   スクロールさせる。スクロールスナップはドキュメント（html）側へ
-   移すことで維持する。
+   ■ 採用した構成
+   1. ドキュメント自体をスクロールさせる（ツールバーが縮む・透ける）
+   2. セクション高は lvh ＝「ツールバーが引っ込んだ時の高さ」で固定
+      - スクロール中は表示領域と完全一致する
+      - ツールバーが出ている間はセクションが表示領域より高いので、
+        次のセクションの頭がのぞくことがない
+      - 高さが固定なので dvh のようなスクロール中の再レイアウトが起きない
+   3. スナップは proximity。mandatory ＋ scroll-behavior:smooth の
+      組み合わせは、スクロールが引っかかる・意図しない位置へ飛ぶ
+      既知の不具合があるため使わない
+   4. モバイルでは scroll-behavior を auto に戻す（同上）
+   5. scroll-snap-stop は normal。always だと1フリックで必ず1つずつ
+      止まるため、速く弾いた時に不自然に感じる
 
-   あわせてフルスクリーンのセクションを svh から dvh に変える。
-   svh は「ツールバーが出ている時の高さ」で固定されるため、
-   ツールバーが引っ込むとセクションが視野より短くなり、
-   次のセクションの頭がのぞいてしまう。dvh は現在の表示領域に
-   追従するので、常にちょうど1画面に収まる。
+   ※ svh を使うと、ツールバーが引っ込んだ分だけ次のセクションが
+     のぞく。dvh を使うと高さがスクロール中に変わり続けて跳ねる。
+     lvh はそのどちらの問題も起こさない。
    ============================================================ */
 @media (max-width: 768px) {
+
+  /* ── 1. ドキュメントをスクロール主体にする ── */
   body.home-page,
   .tech-page {
     overflow: visible;
@@ -4023,36 +4033,51 @@ html.js .mission-content [data-reveal] {
     position: static;
     overflow: visible;
     height: auto;
-    /* コンテナはスクロールしないので、スナップ指定はここでは無効 */
-    scroll-snap-type: none;
+    scroll-snap-type: none; /* コンテナはもうスクロールしない */
   }
 
-  /* スナップの主体をドキュメントに移す。
-     セクション側の scroll-snap-align はそのまま効く。 */
+  /* ── 2. スナップの主体をドキュメントへ ── */
   html {
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
+    scroll-behavior: auto;
+    overscroll-behavior-y: none;
   }
 
-  /* フルスクリーンのセクションを、現在の表示領域ちょうどに合わせる */
-  .hero--home,
-  .home-tech-full,
-  .home-news-section,
-  .video-section--tall,
-  .tech-sec {
-    height: 100dvh;
-    min-height: 100dvh;
+  /* ── 3. セクション高を lvh で固定 ── */
+  .home-scroll-container .hero--home,
+  .home-scroll-container .home-tech-full,
+  .home-scroll-container .home-news-section,
+  .home-scroll-container .video-section--tall,
+  .tech-scroll-container .tech-sec {
+    height: 100lvh;
+    min-height: 100lvh;
+    scroll-snap-stop: normal;
   }
 
-  /* フッターは1画面に満たないのでスナップ対象から外す
-     （最後のセクションから自然に続けて読めるようにする） */
-  .home-scroll-container .footer {
+  /* フッターは1画面に満たないのでスナップ対象から外す */
+  .home-scroll-container .footer,
+  .tech-scroll-container .footer {
     scroll-snap-align: none;
+    scroll-snap-stop: normal;
   }
 
-  /* Mission も、本文セクションを表示領域ちょうどに合わせる。
-     100vh はツールバーが引っ込んだ時の高さで固定されるため、
-     ツールバーが出ている間はセクションが画面より高くなる。 */
+  /* ── 4. ツールバーが出ている間に隠れる分の余白 ──
+     セクション下端に置いたテキストがツールバーに隠れないようにする。
+     lvh と svh の差＝ツールバーの高さ。 */
+  .home-scroll-container .hero--home .hero__content,
+  .tech-scroll-container .tech-sec__content {
+    padding-bottom: calc(100lvh - 100svh);
+  }
+
+  /* ── 5. Mission ──
+     全画面の position:fixed な背景があると、iOS Safari が
+     ツールバーを半透明で合成できずに不透明の黒になることがある。
+     モバイルではセクション内の absolute に切り替える。 */
   .mission-page {
-    min-height: 100dvh;
+    position: relative;
+    min-height: 100lvh;
+  }
+  .mission-bg {
+    position: absolute;
   }
 }
