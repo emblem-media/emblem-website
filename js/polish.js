@@ -18,9 +18,21 @@
   var prefersReduced = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* スクロール主体（home/tech は専用コンテナ、その他は window） */
+  /* スクロール主体（home/tech は専用コンテナ、その他は window）
+
+     モバイルでは CSS でコンテナを通常フローに戻し、ドキュメント自体を
+     スクロールさせている（iOS Safari の下部ツールバーを縮小・半透明化
+     させるため）。そのため要素の実際の overflow を見て判定し、
+     スクロールしていなければ window にフォールバックする。 */
+  function isScrollerEl(el) {
+    if (!el) return false;
+    var oy = window.getComputedStyle(el).overflowY;
+    return oy === 'scroll' || oy === 'auto';
+  }
   var homeContainer = document.getElementById('homeScrollContainer');
   var techContainer = document.getElementById('techScrollContainer');
+  if (!isScrollerEl(homeContainer)) homeContainer = null;
+  if (!isScrollerEl(techContainer)) techContainer = null;
   var scroller = homeContainer || techContainer || null; // null = window
 
   function getScrollTop() {

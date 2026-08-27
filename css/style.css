@@ -3991,3 +3991,39 @@ html.js .mission-content [data-reveal] {
   .video-embed__play::after { border-width: 9px 0 9px 14px; }
   .video-embed-note { margin: -20px auto 28px; }
 }
+
+/* ============================================================
+   モバイル: ページ本体をスクロールさせる
+
+   home / tech は body に overflow:hidden を掛け、内側の
+   position:fixed なコンテナをスクロールさせている。
+   この構成だと iOS Safari が「ページはスクロールしていない」と
+   判断するため、下部ツールバーが縮小も半透明化もせず、
+   常に不透明なまま画面を圧迫する。
+
+   モバイルではコンテナを通常フローに戻し、ドキュメント自体を
+   スクロールさせる。あわせてスクロールスナップも解除する
+   （ツールバーの伸縮でビューポート高が変わるとスナップ位置が
+   ずれて跳ねるため）。
+   ============================================================ */
+@media (max-width: 768px) {
+  body.home-page,
+  .tech-page {
+    overflow: visible;
+    height: auto;
+  }
+
+  .home-scroll-container,
+  .tech-scroll-container {
+    position: static;
+    overflow: visible;
+    height: auto;
+    scroll-snap-type: none;
+  }
+
+  .home-scroll-container > *,
+  .tech-scroll-container > * {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+}
