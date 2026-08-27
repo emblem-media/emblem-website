@@ -90,8 +90,10 @@ const SHOW_MISSION = true; // ← true で Mission リンク・ページが公�
 
   /* ページ最上部からこのpx以内は常に表示 */
   const TOP_THRESHOLD = 80;
-  /* この量以上スクロールしたら判定（小さい揺れを無視） */
-  const DELTA = 6;
+  /* この量以上スクロールしたら判定（小さい揺れを無視）。
+     小さすぎると指のわずかな動きで表示/非表示が切り替わり、
+     せわしなく見えるため余裕を持たせる。 */
+  const DELTA = 12;
 
   function setupListener(scrollTarget) {
     let lastTop = 0;
