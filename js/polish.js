@@ -4,7 +4,6 @@
 
    役割（main.js / tech.js を補完する純粋な追加機能）：
    • スクロールリビール（[data-reveal] / [data-reveal-group]）
-   • Nav のフロスト化（スクロール時に .nav--scrolled）
    • スクロール進捗バー
    • Hero の入場アニメ発火（body.is-loaded）
    • prefers-reduced-motion を尊重
@@ -77,37 +76,17 @@
   })();
 
   /* ============================================================
-     2. Nav フロスト化 + 3. スクロール進捗バー
+     2. Nav の背景
+
+     ナビの可読性は .nav::before のスクリム（グラデーション）だけで担う。
+     以前はスクロール時に .nav--scrolled でフロストバーへ切り替えていたが、
+     スクロール中に「スクリム → フロスト → 非表示」と見た目が二度変わり
+     落ち着かないため、スクリムに一本化した。
+     （position:fixed 内の backdrop-filter は iOS Safari でスクロールが
+     重くなる要因でもある）
+
+     スクロール進捗バーも廃止した。
      ============================================================ */
-  (function initNavAndProgress() {
-    var nav = document.querySelector('.nav');
-
-    /* 進捗バーを生成 */
-    var bar = document.createElement('div');
-    bar.className = 'scroll-progress';
-    var fill = document.createElement('i');
-    bar.appendChild(fill);
-    document.body.appendChild(bar);
-
-    var ticking = false;
-    function update() {
-      var top = getScrollTop();
-      var range = getScrollRange();
-      var p = range > 0 ? Math.min(1, Math.max(0, top / range)) : 0;
-      fill.style.setProperty('--p', (p * 100).toFixed(2) + '%');
-      if (nav) nav.classList.toggle('nav--scrolled', top > 40);
-      ticking = false;
-    }
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(update);
-    }
-
-    (scroller || window).addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    update();
-  })();
 
   /* ============================================================
      3.5 Hero スクロールキュー：固定コンテナを次のセクションへ
