@@ -199,28 +199,6 @@ It is an advance in human freedom.`,
     */
 ];
 
-/* スクロール主体を返す。モバイルではコンテナを通常フローに戻し
-   ドキュメント自体をスクロールさせているため、実際の overflow を見て
-   スクロールしていなければ window を返す。 */
-function techScroller() {
-  const el = document.getElementById('techScrollContainer');
-  if (!el) return null;
-  const oy = window.getComputedStyle(el).overflowY;
-  return (oy === 'scroll' || oy === 'auto') ? el : window;
-}
-
-/* 指定要素の位置までスクロールする */
-function scrollToTech(target) {
-  const sc = techScroller();
-  if (!target || !sc) return;
-  if (sc === window) {
-    window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset,
-                      behavior: 'smooth' });
-  } else {
-    sc.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
-  }
-}
-
 /* ── DOM生成 ────────────────────────────────────────────────── */
 
 /* 本文を段落ブロックに変換：
@@ -389,8 +367,12 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible).reverse();
       const target = document.querySelector(
         `.tech-sec[data-index="${idx}"]`
       );
-      if (target) {
-        scrollToTech(target);
+      const scrollContainer = document.getElementById('techScrollContainer');
+      if (target && scrollContainer) {
+        scrollContainer.scrollTo({
+          top: target.offsetTop,
+          behavior: 'smooth'
+        });
       }
     });
   });
@@ -477,12 +459,19 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible).reverse();
   const hash = window.location.hash;
   if (!hash) return;
 
-  if (!document.getElementById('techScrollContainer')) return;
+  const scrollContainer = document.getElementById('techScrollContainer');
+  if (!scrollContainer) return;
 
   /* DOMが完全に構築されてからスクロール */
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      scrollToTech(document.querySelector(hash));
+      const target = document.querySelector(hash);
+      if (target) {
+        scrollContainer.scrollTo({
+          top: target.offsetTop,
+          behavior: 'smooth'
+        });
+      }
     });
   });
 })();

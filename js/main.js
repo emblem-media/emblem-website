@@ -124,21 +124,18 @@ const SHOW_MISSION = true; // ← true で Mission リンク・ページが公�
     }, { passive: true });
   }
 
-  /* home/tech は専用のスクロールコンテナを持つが、モバイルでは
-     CSS で通常フローに戻してドキュメント自体をスクロールさせている。
-     実際の overflow を見て、スクロール主体を決める。 */
-  const isScrollerEl = (el) => {
-    if (!el) return false;
-    const oy = window.getComputedStyle(el).overflowY;
-    return oy === 'scroll' || oy === 'auto';
-  };
-
+  /* homeScrollContainer（index.html） */
   const homeContainer = document.getElementById('homeScrollContainer');
-  const techContainer = document.getElementById('techScrollContainer');
+  if (homeContainer) setupListener(homeContainer);
 
-  if (isScrollerEl(homeContainer)) setupListener(homeContainer);
-  else if (isScrollerEl(techContainer)) setupListener(techContainer);
-  else setupListener(window);
+  /* techScrollContainer（technology.html） */
+  const techContainer = document.getElementById('techScrollContainer');
+  if (techContainer) setupListener(techContainer);
+
+  /* 上記どちらもないページ（news/recruit/team/privacy）*/
+  if (!homeContainer && !techContainer) {
+    setupListener(window);
+  }
 })();
 
 /* ============================================================
