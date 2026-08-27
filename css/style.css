@@ -2512,6 +2512,23 @@ a.news-card-full:hover {
   margin: 0 auto 28px;
 }
 
+/* 補足（※ではじまる注記）。本文より一段落とす */
+.news-detail__note {
+  font-size: 13px;
+  color: var(--stone-600);
+  line-height: 1.8;
+  max-width: 680px;
+  margin: -14px auto 28px;
+}
+.news-detail__note a {
+  color: inherit;
+  border-bottom: 0.5px solid currentColor;
+}
+
+@media (max-width: 768px) {
+  .news-detail__note { font-size: 12px; margin: -10px auto 22px; }
+}
+
 /* 本文中のインラインリンク（「こちら」など） */
 .news-detail__text a {
   color: var(--ink);
