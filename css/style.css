@@ -404,8 +404,15 @@ h2, .h2 {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 48px 32px;
+  /* 中央揃えのまま、上下の余白差ぶんだけ内容を下へずらす。
+     ずれる量 =（padding-top − padding-bottom）÷ 2。
+     ロゴは nav 側にあるため位置は変わらず、
+     ロゴとMissionの間が開き、Apply now下の余白が縮む。 */
+  padding: 160px 32px 48px;
   gap: 32px;
+  /* 小さい端末で内容が収まらない場合の保険。通常はスクロールしない */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .nav__overlay.open { display: flex; }
 .nav__overlay .nav__link {
