@@ -155,7 +155,21 @@ const SHOW_MISSION = true; // ← true で Mission リンク・ページが公�
    ============================================================ */
 (function initLang() {
   const LANG_KEY = 'emblem-lang';
-  let currentLang = localStorage.getItem(LANG_KEY) || 'jp';
+
+  /* URLに ?lang=en / ?lang=jp が付いていれば、それを最優先する。
+     展示会のQRコードなど、外部から言語を指定して開かせたい場合に使う。
+     指定された言語は localStorage にも保存されるので、
+     サイト内の別ページへ移動しても引き継がれる。 */
+  function langFromUrl() {
+    var v = new URLSearchParams(window.location.search).get('lang');
+    if (!v) return null;
+    var t = v.trim().toLowerCase();
+    if (t === 'en') return 'en';
+    if (t === 'jp' || t === 'ja') return 'jp';
+    return null;
+  }
+
+  let currentLang = langFromUrl() || localStorage.getItem(LANG_KEY) || 'jp';
 
   function setLang(lang) {
     currentLang = lang;
