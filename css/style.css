@@ -4014,6 +4014,18 @@ html.js .mission-content [data-reveal] {
    hidden 属性だけでは非表示にならない。明示的に打ち消す。 */
 .news-card-full[hidden] { display: none !important; }
 
+/* ページ送りのあと Updates の先頭へ戻すが、ナビは固定表示なので
+   そのままでは見出しがナビの下に隠れる。その分の余白を確保する。 */
+.news-updates__label {
+  scroll-margin-top: calc(var(--nav-height) + 32px);
+}
+
+@media (max-width: 768px) {
+  .news-updates__label {
+    scroll-margin-top: calc(var(--nav-height) + 24px);
+  }
+}
+
 .news-pager {
   display: flex;
   align-items: center;
