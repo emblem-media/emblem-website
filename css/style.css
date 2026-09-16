@@ -4005,3 +4005,57 @@ html.js .mission-content [data-reveal] {
   .video-embed__play::after { border-width: 9px 0 9px 14px; }
   .video-embed-note { margin: -20px auto 28px; }
 }
+
+/* ============================================================
+   News一覧のページャー（js/news-pager.js が生成）
+   ============================================================ */
+.news-pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: var(--border);
+}
+
+.news-pager__num,
+.news-pager__arrow {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border: 0.5px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--stone-600);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  line-height: 1;
+  transition: color var(--transition-fast),
+              background var(--transition-fast),
+              border-color var(--transition-fast);
+}
+
+.news-pager__num:hover,
+.news-pager__arrow:hover:not(:disabled) {
+  color: var(--ink);
+  border-color: var(--stone-200);
+}
+
+.news-pager__num.is-current {
+  color: var(--ink);
+  border-color: var(--ink);
+  font-weight: 600;
+}
+
+.news-pager__arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+@media (max-width: 768px) {
+  .news-pager { margin-top: 32px; padding-top: 22px; gap: 4px; }
+  .news-pager__num,
+  .news-pager__arrow { min-width: 30px; height: 30px; font-size: 12px; }
+}
