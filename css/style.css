@@ -4076,3 +4076,78 @@ html.js .mission-content [data-reveal] {
   .news-pager__num,
   .news-pager__arrow { min-width: 30px; height: 30px; font-size: 12px; }
 }
+
+/* ============================================================
+   News記事の写真スライダー（js/photo-slider.js が制御）
+
+   JS無効時は全画像が縦に並ぶだけ。.is-ready が付いて初めて
+   重ね合わせ表示に切り替わるので、情報が消えることはない。
+   ============================================================ */
+.news-photo-slider {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto 36px;
+}
+
+.news-photo-slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-card);
+}
+
+/* JS有効時：1枚ずつ表示 */
+.news-photo-slider.is-ready img {
+  display: none;
+}
+.news-photo-slider.is-ready img.is-current {
+  display: block;
+}
+
+/* 送りボタン：画像の右端に重ねる */
+.news-photo-slider__next {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 2px 2px;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.news-photo-slider__next:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.06);
+}
+
+/* 現在位置のドット */
+.news-photo-slider__dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+.news-photo-slider__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--stone-200);
+  transition: background var(--transition-fast);
+}
+.news-photo-slider__dot.is-current {
+  background: var(--stone-600);
+}
+
+@media (max-width: 768px) {
+  .news-photo-slider { margin-bottom: 28px; }
+  .news-photo-slider__next { width: 34px; height: 34px; right: 8px; font-size: 19px; }
+}
