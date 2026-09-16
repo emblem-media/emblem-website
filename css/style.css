@@ -4104,11 +4104,12 @@ html.js .mission-content [data-reveal] {
   display: block;
 }
 
-/* 送りボタン：画像の右端に重ねる */
+/* 送り／戻しボタン：画像の左右端に重ねる。
+   端のページでは JS が hidden を付けて隠す。 */
+.news-photo-slider__prev,
 .news-photo-slider__next {
   position: absolute;
   top: 50%;
-  right: 12px;
   transform: translateY(-50%);
   width: 40px;
   height: 40px;
@@ -4121,9 +4122,15 @@ html.js .mission-content [data-reveal] {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0 2px 2px;
   transition: background var(--transition-fast), transform var(--transition-fast);
 }
+.news-photo-slider__prev { left: 12px; padding: 0 2px 2px 0; }
+.news-photo-slider__next { right: 12px; padding: 0 0 2px 2px; }
+
+.news-photo-slider__prev[hidden],
+.news-photo-slider__next[hidden] { display: none !important; }
+
+.news-photo-slider__prev:hover,
 .news-photo-slider__next:hover {
   background: #fff;
   transform: translateY(-50%) scale(1.06);
@@ -4149,5 +4156,8 @@ html.js .mission-content [data-reveal] {
 
 @media (max-width: 768px) {
   .news-photo-slider { margin-bottom: 28px; }
-  .news-photo-slider__next { width: 34px; height: 34px; right: 8px; font-size: 19px; }
+  .news-photo-slider__prev,
+  .news-photo-slider__next { width: 34px; height: 34px; font-size: 19px; }
+  .news-photo-slider__prev { left: 8px; }
+  .news-photo-slider__next { right: 8px; }
 }

@@ -14,7 +14,21 @@
     slider.classList.add('is-ready');
     var current = 0;
 
-    /* 送りボタン */
+    /* 表示前に全画像を読み込んでおく。
+       lazy のままだと、切り替えた瞬間に読み込みが始まり画面が一瞬空白になる。 */
+    imgs.forEach(function (img) {
+      img.removeAttribute('loading');
+      if (!img.complete) { var pre = new Image(); pre.src = img.src; }
+    });
+
+    /* 戻る／送るボタン。端では出さない（2枚なら 1枚目は「›」だけ、2枚目は「‹」だけ） */
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'news-photo-slider__prev';
+    prev.setAttribute('aria-label', '前の写真');
+    prev.innerHTML = '<span aria-hidden="true">‹</span>';
+    slider.appendChild(prev);
+
     var next = document.createElement('button');
     next.type = 'button';
     next.className = 'news-photo-slider__next';
@@ -37,11 +51,16 @@
       [].slice.call(dots.children).forEach(function (d, i) {
         d.classList.toggle('is-current', i === current);
       });
+      prev.hidden = (current === 0);
+      next.hidden = (current === imgs.length - 1);
     }
 
+    prev.addEventListener('click', function () {
+      if (current > 0) { current--; render(); }
+    });
+
     next.addEventListener('click', function () {
-      current = (current + 1) % imgs.length;
-      render();
+      if (current < imgs.length - 1) { current++; render(); }
     });
 
     render();
