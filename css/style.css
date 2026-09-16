@@ -4009,6 +4009,11 @@ html.js .mission-content [data-reveal] {
 /* ============================================================
    News一覧のページャー（js/news-pager.js が生成）
    ============================================================ */
+
+/* カードには .news-card-full { display: flex } が効いているため、
+   hidden 属性だけでは非表示にならない。明示的に打ち消す。 */
+.news-card-full[hidden] { display: none !important; }
+
 .news-pager {
   display: flex;
   align-items: center;
