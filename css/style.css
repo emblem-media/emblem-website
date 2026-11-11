@@ -2547,6 +2547,15 @@ a.news-card-full:hover {
   display: block;
 }
 
+/* 写真のクレジット（出典表示） */
+.news-detail__credit {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--stone-600);
+  text-align: right;
+}
+
 /* 外部リンクのhrefが空の場合は非表示 */
 .news-detail__link[href=""] {
   display: none;
