@@ -2547,13 +2547,23 @@ a.news-card-full:hover {
   display: block;
 }
 
-/* 写真のクレジット（出典表示） */
+/* 写真のクレジット（出典表示）— 写真の右下に重ねる */
+.news-detail__photo { position: relative; }
+
 .news-detail__credit {
-  margin-top: 10px;
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--stone-600);
-  text-align: right;
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .news-detail__credit { right: 8px; bottom: 6px; font-size: 10px; }
 }
 
 /* 外部リンクのhrefが空の場合は非表示 */
