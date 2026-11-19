@@ -139,6 +139,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://emblemand.com/news/2026-12-robonext/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://emblemand.com/news/2026-11-vnu-mou/</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>yearly</changefreq>
